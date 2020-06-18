@@ -1,0 +1,4 @@
+name: Medieval Essentials
+version: ${project.version}
+main: kingdomprogrammers.medievalessentials.MedievalEssentials
+api-version: 1.15.2
