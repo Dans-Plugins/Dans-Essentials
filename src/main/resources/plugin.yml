@@ -1,4 +1,8 @@
-name: Medieval Essentials
-version: ${project.version}
-main: kingdomprogrammers.medievalessentials.MedievalEssentials
-api-version: 1.15.2
+name: MedievalEssentials
+version: 0.1
+author: KingdomProgrammers
+main: essentialsystem.Main
+api-version: 1.13
+
+commands:
+  fly:
