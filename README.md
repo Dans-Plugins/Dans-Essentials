@@ -7,3 +7,4 @@ A minecraft plugin that provides miscellaneous commands.
 
 # Versions
 - 0.1 Initial Build
+- 0.2 'Fly' update
