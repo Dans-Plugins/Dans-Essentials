@@ -1,9 +1,9 @@
-What is this?
+# What is this?
 A minecraft plugin that provides miscellaneous commands.
 
-Notes
-Project building must be done with Java 8 unless your test server is expecting another version.
-Testing can be done by running a local spigot server with the compiled JAR in the plugins folder and checking the console.
-Versions
+# Notes
+- Project building must be done with Java 8 unless your test server is expecting another version.
+- Testing can be done by running a local spigot server with the compiled JAR in the plugins folder and checking the console.
 
-0.1 Initial Build
+# Versions
+- 0.1 Initial Build
