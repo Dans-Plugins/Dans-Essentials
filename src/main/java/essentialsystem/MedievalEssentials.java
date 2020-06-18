@@ -1,4 +1,4 @@
-package kingdomprogrammers.medievalessentials;
+package essentialsystem;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
