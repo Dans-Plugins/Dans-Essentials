@@ -1,4 +1,4 @@
-package essentialsystem;
+package essentialsystem.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

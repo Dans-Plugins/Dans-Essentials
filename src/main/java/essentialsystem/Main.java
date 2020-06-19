@@ -1,5 +1,8 @@
 package essentialsystem;
 
+import essentialsystem.Commands.BroadcastCommand;
+import essentialsystem.Commands.FlyCommand;
+import essentialsystem.Commands.HelpCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
