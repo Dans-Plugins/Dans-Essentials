@@ -10,3 +10,4 @@ commands:
   broadcast:
   motd:
   setmotd:
+  seen:
