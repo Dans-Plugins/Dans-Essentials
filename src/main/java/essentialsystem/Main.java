@@ -89,11 +89,44 @@ public final class Main extends JavaPlugin implements Listener {
     @EventHandler()
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
+        // show motd
         if (motd.isMessageSet()) {
             if (player.hasPermission("me.motd") || player.hasPermission("me.default")) {
                 player.sendMessage(ChatColor.AQUA + motd.getMessage());
             }
         }
+
+        // assign activity record if player doesn't have one
+        if (!hasActivityRecord(player.getName())) {
+            PlayerActivityRecord newRecord = new PlayerActivityRecord();
+            newRecord.setPlayerName(player.getName());
+            newRecord.incrementLogins();
+            activityRecords.add(newRecord);
+        }
+        else {
+            // increment logins for player if player already has record
+            getActivityRecord(player.getName()).incrementLogins();
+        }
+
+    }
+
+    public boolean hasActivityRecord(String playerName) {
+        for (PlayerActivityRecord record : activityRecords) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public PlayerActivityRecord getActivityRecord(String playerName) {
+        for (PlayerActivityRecord record : activityRecords) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return record;
+            }
+        }
+        return null;
     }
 
 }
