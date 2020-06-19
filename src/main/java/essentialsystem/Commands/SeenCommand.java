@@ -30,7 +30,7 @@ public class SeenCommand {
             // console doesn't need permission
             if (getLastLogoutOfPlayer(targetPlayer) != null) {
                 if (!getServer().getPlayer(targetPlayer).isOnline()) {
-                    sender.sendMessage(targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                    sender.sendMessage(targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
                 }
                 else {
                     sender.sendMessage("That player is currently online.");
@@ -47,7 +47,7 @@ public class SeenCommand {
             if (player.hasPermission("me.seen") || player.hasPermission("me.default")) {
                 if (getLastLogoutOfPlayer(targetPlayer) != null) {
                     if (!getServer().getPlayer(targetPlayer).isOnline()) {
-                        player.sendMessage(ChatColor.AQUA + targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                        player.sendMessage(ChatColor.AQUA + targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
                     }
                     else {
                         player.sendMessage(ChatColor.RED + "That player is currently online.");
