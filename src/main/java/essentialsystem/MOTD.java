@@ -44,7 +44,6 @@ public class MOTD {
             // actual saving takes place here
             saveWriter.write(message + "\n");
 
-
             saveWriter.close();
 
             System.out.println("Successfully saved the message of the day.");

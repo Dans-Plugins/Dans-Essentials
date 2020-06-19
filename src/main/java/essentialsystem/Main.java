@@ -10,11 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
+    MOTD motd = new MOTD();
+
     @Override
     public void onEnable() {
         System.out.println("Medieval Essentials in enabling...");
 
-
+        motd.load();
 
         System.out.println("Medieval Essentials is enabled!");
     }
@@ -23,7 +25,7 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         System.out.println("Medieval Essentials in disabling...");
 
-
+        motd.save();
 
         System.out.println("Medieval Essentials is disabled!");
     }
