@@ -19,7 +19,7 @@ public class BroadcastCommand {
 
     public static void sendAllPlayersMessage(String message) {
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            player.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "" + message);
+            player.sendMessage(ChatColor.GREEN + "" + message);
         }
     }
 }
