@@ -74,6 +74,11 @@ public final class Main extends JavaPlugin implements Listener {
             command.setMOTD(sender, args);
         }
 
+        if (label.equalsIgnoreCase("seen")) {
+            SeenCommand command = new SeenCommand(this);
+            command.showLastLogout(sender, args);
+        }
+
         return false;
     }
 
