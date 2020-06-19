@@ -10,9 +10,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+
 public final class Main extends JavaPlugin implements Listener {
 
     public MOTD motd = new MOTD();
+    public ArrayList<PlayerActivityRecord> activityRecords = new ArrayList<>();
 
     @Override
     public void onEnable() {
