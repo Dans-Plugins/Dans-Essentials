@@ -1,8 +1,6 @@
 package essentialsystem;
 
-import essentialsystem.Commands.BroadcastCommand;
-import essentialsystem.Commands.FlyCommand;
-import essentialsystem.Commands.HelpCommand;
+import essentialsystem.Commands.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
-    MOTD motd = new MOTD();
+    public MOTD motd = new MOTD();
 
     @Override
     public void onEnable() {
@@ -55,10 +53,20 @@ public final class Main extends JavaPlugin {
             }
         }
 
+        if (label.equalsIgnoreCase("motd")) {
+            MOTDCommand command = new MOTDCommand(this);
+            command.showMOTD(sender);
+        }
+
+        if (label.equalsIgnoreCase("setmotd")) {
+            SetMOTDCommand command = new SetMOTDCommand(this);
+            command.setMOTD(sender, args);
+        }
+
         return false;
     }
 
-    String createStringFromArgs(int start, int end, String[] args) {
+    public static String createStringFromArgs(int start, int end, String[] args) {
         String toReturn = "";
         for (int i = start; i < end; i++) {
             toReturn = toReturn + args[i];
