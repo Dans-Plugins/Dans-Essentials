@@ -23,13 +23,24 @@ public class SeenCommand {
 
         if (!(sender instanceof Player)) {
             // console doesn't need permission
-            sender.sendMessage(targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+            if (getLastLogoutOfPlayer(targetPlayer) != null) {
+                sender.sendMessage(targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+            }
+            else {
+                sender.sendMessage("That player has never logged into the server.");
+            }
         }
         else {
             // player needs permission
             Player player = (Player) sender;
             if (player.hasPermission("me.seen") || player.hasPermission("me.default")) {
-                player.sendMessage(ChatColor.AQUA + targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                if (getLastLogoutOfPlayer(targetPlayer) != null) {
+                    player.sendMessage(ChatColor.AQUA + targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                }
+                else {
+                    player.sendMessage(ChatColor.RED + "That player has never logged into the server.");
+                }
+
             }
             else {
                 sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.seen' permission to use this command.");
@@ -38,6 +49,12 @@ public class SeenCommand {
     }
 
     String getLastLogoutOfPlayer(String playerName) {
-        return main.getActivityRecord(playerName).getTimeSinceLastLogout();
+        String lastLogout = main.getActivityRecord(playerName).getTimeSinceLastLogout();
+        if (lastLogout != null) {
+            return lastLogout;
+        }
+        else {
+            return null;
+        }
     }
 }
