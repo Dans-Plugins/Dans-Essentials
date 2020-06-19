@@ -46,12 +46,17 @@ public class SeenCommand {
             Player player = (Player) sender;
             if (player.hasPermission("me.seen") || player.hasPermission("me.default")) {
                 if (getLastLogoutOfPlayer(targetPlayer) != null) {
-                    if (!getServer().getPlayer(targetPlayer).isOnline()) {
-                        player.sendMessage(ChatColor.AQUA + targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                    try {
+                        if (!getServer().getPlayer(targetPlayer).isOnline()) {
+                            player.sendMessage(ChatColor.AQUA + targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                        }
+                        else {
+                            player.sendMessage(ChatColor.AQUA + "That player is currently online.");
+                        }
+                    } catch (Exception e) {
+                        player.sendMessage(ChatColor.RED + "That player has never logged into the server.");
                     }
-                    else {
-                        player.sendMessage(ChatColor.AQUA + "That player is currently online.");
-                    }
+
                 }
                 else {
                     player.sendMessage(ChatColor.RED + "That player has never logged into the server.");
@@ -65,12 +70,15 @@ public class SeenCommand {
     }
 
     String getLastLogoutOfPlayer(String playerName) {
-        String lastLogout = main.getActivityRecord(playerName).getTimeSinceLastLogout();
-        if (lastLogout != null) {
-            return lastLogout;
+        if (main.hasActivityRecord(playerName)) {
+            String lastLogout = main.getActivityRecord(playerName).getTimeSinceLastLogout();
+            if (lastLogout != null) {
+                return lastLogout;
+            }
+            else {
+                return null;
+            }
         }
-        else {
-            return null;
-        }
+        return null;
     }
 }
