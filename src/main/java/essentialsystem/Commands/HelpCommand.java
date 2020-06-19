@@ -18,6 +18,7 @@ public class HelpCommand {
                 sender.sendMessage(ChatColor.AQUA + "/broadcast - Broadcast a message to everyone online.");
                 sender.sendMessage(ChatColor.AQUA + "/motd - View the message of the day.");
                 sender.sendMessage(ChatColor.AQUA + "/setmotd - Set the message of the day.");
+                sender.sendMessage(ChatColor.AQUA + "/seen - See how long its been since a player has logged in.");
             }
             else {
                 sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.help' permission to use this command.");
