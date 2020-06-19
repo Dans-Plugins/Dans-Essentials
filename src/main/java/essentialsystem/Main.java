@@ -4,15 +4,21 @@ import essentialsystem.Commands.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin {
+public final class Main extends JavaPlugin implements Listener {
 
     public MOTD motd = new MOTD();
 
     @Override
     public void onEnable() {
         System.out.println("Medieval Essentials in enabling...");
+
+        this.getServer().getPluginManager().registerEvents(this, this);
 
         motd.load();
 
@@ -77,5 +83,14 @@ public final class Main extends JavaPlugin {
         return toReturn;
     }
 
+    @EventHandler()
+    public void onJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (motd.isMessageSet()) {
+            if (player.hasPermission("me.motd") || player.hasPermission("me.default")) {
+                player.sendMessage(ChatColor.AQUA + motd.getMessage());
+            }
+        }
+    }
 
 }
