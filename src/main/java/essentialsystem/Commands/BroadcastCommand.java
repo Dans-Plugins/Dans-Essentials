@@ -1,4 +1,7 @@
-package essentialsystem;
+// Permissions:
+// 'me.broadcast'
+
+package essentialsystem.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,11 +12,12 @@ public class BroadcastCommand {
     public void broadcast(CommandSender sender, String message) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (!player.hasPermission("me.broadcast")) {
-                sender.sendMessage("Sorry! You need the 'me.broadcast' permission to use this command.");
-                return;
+            if (player.hasPermission("me.broadcast") || player.hasPermission("me.admin")) {
+                sendAllPlayersMessage(message);
             }
-            sendAllPlayersMessage(message);
+            else {
+                sender.sendMessage("Sorry! You need the 'me.broadcast' permission to use this command.");
+            }
         }
     }
 

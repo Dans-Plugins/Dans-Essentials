@@ -1,5 +1,5 @@
 name: MedievalEssentials
-version: 0.4
+version: 0.5
 author: KingdomProgrammers
 main: essentialsystem.Main
 api-version: 1.13
@@ -8,3 +8,5 @@ commands:
   medievalessentials:
   fly:
   broadcast:
+  motd:
+  setmotd:

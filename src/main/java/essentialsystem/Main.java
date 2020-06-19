@@ -1,17 +1,26 @@
 package essentialsystem;
 
+import essentialsystem.Commands.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin {
+public final class Main extends JavaPlugin implements Listener {
+
+    public MOTD motd = new MOTD();
 
     @Override
     public void onEnable() {
         System.out.println("Medieval Essentials in enabling...");
 
+        this.getServer().getPluginManager().registerEvents(this, this);
 
+        motd.load();
 
         System.out.println("Medieval Essentials is enabled!");
     }
@@ -20,7 +29,7 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         System.out.println("Medieval Essentials in disabling...");
 
-
+        motd.save();
 
         System.out.println("Medieval Essentials is disabled!");
     }
@@ -50,10 +59,20 @@ public final class Main extends JavaPlugin {
             }
         }
 
+        if (label.equalsIgnoreCase("motd")) {
+            MOTDCommand command = new MOTDCommand(this);
+            command.showMOTD(sender);
+        }
+
+        if (label.equalsIgnoreCase("setmotd")) {
+            SetMOTDCommand command = new SetMOTDCommand(this);
+            command.setMOTD(sender, args);
+        }
+
         return false;
     }
 
-    String createStringFromArgs(int start, int end, String[] args) {
+    public static String createStringFromArgs(int start, int end, String[] args) {
         String toReturn = "";
         for (int i = start; i < end; i++) {
             toReturn = toReturn + args[i];
@@ -64,5 +83,14 @@ public final class Main extends JavaPlugin {
         return toReturn;
     }
 
+    @EventHandler()
+    public void onJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (motd.isMessageSet()) {
+            if (player.hasPermission("me.motd") || player.hasPermission("me.default")) {
+                player.sendMessage(ChatColor.AQUA + motd.getMessage());
+            }
+        }
+    }
 
 }

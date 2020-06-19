@@ -10,3 +10,4 @@ A minecraft plugin that provides miscellaneous commands.
 - 0.2 'Fly' update
 - 0.3 'Broadcast' update
 - 0.4 'Help' update
+- 0.5 'MOTD' update
