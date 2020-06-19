@@ -9,12 +9,20 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        System.out.println("Medieval Essentials in enabling...");
 
+
+
+        System.out.println("Medieval Essentials is enabled!");
     }
 
     @Override
     public void onDisable() {
+        System.out.println("Medieval Essentials in disabling...");
 
+
+
+        System.out.println("Medieval Essentials is disabled!");
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
