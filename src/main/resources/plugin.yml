@@ -1,5 +1,5 @@
 name: MedievalEssentials
-version: 0.3
+version: 0.4
 author: KingdomProgrammers
 main: essentialsystem.Main
 api-version: 1.13

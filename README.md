@@ -9,3 +9,4 @@ A minecraft plugin that provides miscellaneous commands.
 - 0.1 Initial Build
 - 0.2 'Fly' update
 - 0.3 'Broadcast' update
+- 0.4 'Help' update
