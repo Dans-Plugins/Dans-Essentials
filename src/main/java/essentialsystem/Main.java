@@ -19,9 +19,11 @@ public final class Main extends JavaPlugin {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if (label.equalsIgnoreCase("help")) {
-            HelpCommand command = new HelpCommand();
-            command.sendHelpInfo(sender);
+        if (label.equalsIgnoreCase("medievalessentials")) {
+            if (args.length > 0 && args[0].equalsIgnoreCase("help")) {
+                HelpCommand command = new HelpCommand();
+                command.sendHelpInfo(sender);
+            }
         }
 
         if (label.equalsIgnoreCase("fly")) {
