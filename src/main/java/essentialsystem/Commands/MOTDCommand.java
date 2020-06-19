@@ -1,3 +1,6 @@
+// Permissions:
+// 'me.motd'
+
 package essentialsystem.Commands;
 
 import essentialsystem.Main;

@@ -8,11 +8,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public final class Main extends JavaPlugin implements Listener {
 
     public MOTD motd = new MOTD();
+    public ArrayList<PlayerActivityRecord> activityRecords = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -69,6 +74,11 @@ public final class Main extends JavaPlugin implements Listener {
             command.setMOTD(sender, args);
         }
 
+        if (label.equalsIgnoreCase("seen")) {
+            SeenCommand command = new SeenCommand(this);
+            command.showLastLogout(sender, args);
+        }
+
         return false;
     }
 
@@ -86,11 +96,50 @@ public final class Main extends JavaPlugin implements Listener {
     @EventHandler()
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
+        // show motd
         if (motd.isMessageSet()) {
             if (player.hasPermission("me.motd") || player.hasPermission("me.default")) {
                 player.sendMessage(ChatColor.AQUA + motd.getMessage());
             }
         }
+
+        // assign activity record if player doesn't have one
+        if (!hasActivityRecord(player.getName())) {
+            PlayerActivityRecord newRecord = new PlayerActivityRecord();
+            newRecord.setPlayerName(player.getName());
+            newRecord.incrementLogins();
+            activityRecords.add(newRecord);
+        }
+        else {
+            // increment logins for player if player already has record
+            getActivityRecord(player.getName()).incrementLogins();
+        }
+
+    }
+
+    public boolean hasActivityRecord(String playerName) {
+        for (PlayerActivityRecord record : activityRecords) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public PlayerActivityRecord getActivityRecord(String playerName) {
+        for (PlayerActivityRecord record : activityRecords) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return record;
+            }
+        }
+        return null;
+    }
+
+    @EventHandler()
+    public void onQuit(PlayerQuitEvent event) {
+        Date now = new Date();
+        getActivityRecord(event.getPlayer().getName()).setLastLogout(now);
     }
 
 }
