@@ -5,6 +5,6 @@ main: essentialsystem.Main
 api-version: 1.13
 
 commands:
-  help:
+  medievalessentials:
   fly:
   broadcast:
