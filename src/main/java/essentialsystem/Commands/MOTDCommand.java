@@ -21,8 +21,11 @@ public class MOTDCommand {
         else {
             // player needs permission
             Player player = (Player) sender;
-            if (player.hasPermission("me.setmotd")) {
+            if (player.hasPermission("me.motd") || player.hasPermission("me.default")) {
                 player.sendMessage(ChatColor.AQUA + main.motd.getMessage());
+            }
+            else {
+                sender.sendMessage("Sorry! You need the 'me.motd' permission to use this command.");
             }
         }
 
