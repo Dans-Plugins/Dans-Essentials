@@ -8,6 +8,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class SeenCommand {
 
     Main main = null;
@@ -27,7 +29,13 @@ public class SeenCommand {
         if (!(sender instanceof Player)) {
             // console doesn't need permission
             if (getLastLogoutOfPlayer(targetPlayer) != null) {
-                sender.sendMessage(targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                if (!getServer().getPlayer(targetPlayer).isOnline()) {
+                    sender.sendMessage(targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                }
+                else {
+                    sender.sendMessage("That player is currently online.");
+                }
+
             }
             else {
                 sender.sendMessage("That player has never logged into the server.");
@@ -38,7 +46,12 @@ public class SeenCommand {
             Player player = (Player) sender;
             if (player.hasPermission("me.seen") || player.hasPermission("me.default")) {
                 if (getLastLogoutOfPlayer(targetPlayer) != null) {
-                    player.sendMessage(ChatColor.AQUA + targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                    if (!getServer().getPlayer(targetPlayer).isOnline()) {
+                        player.sendMessage(ChatColor.AQUA + targetPlayer + "has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                    }
+                    else {
+                        player.sendMessage(ChatColor.RED + "That player is currently online.");
+                    }
                 }
                 else {
                     player.sendMessage(ChatColor.RED + "That player has never logged into the server.");
