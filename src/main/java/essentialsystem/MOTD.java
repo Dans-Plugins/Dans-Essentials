@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class MOTD {
 
-    private String message;
+    private String message = null;
 
     public MOTD() {
-        message = null;
+
     }
 
     public void setMessage(String newMessage) {
