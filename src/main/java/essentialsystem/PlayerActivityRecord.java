@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Period;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -125,7 +126,14 @@ public class PlayerActivityRecord {
                 minute = Integer.parseInt(loadReader.nextLine());
             }
 
-            lastLogout = new GregorianCalendar(year, month, day, hour, minute).getTime();
+            Calendar myCal = Calendar.getInstance();
+            myCal.set(Calendar.YEAR, year);
+            myCal.set(Calendar.MONTH, month);
+            myCal.set(Calendar.DAY_OF_MONTH, day);
+            myCal.set(Calendar.HOUR, hour);
+            myCal.set(Calendar.MINUTE, minute);
+
+            lastLogout = myCal.getTime();
 
             loadReader.close();
             System.out.println(filename + " successfully loaded.");
