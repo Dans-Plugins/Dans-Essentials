@@ -50,7 +50,7 @@ public class SeenCommand {
                         player.sendMessage(ChatColor.AQUA + targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
                     }
                     else {
-                        player.sendMessage(ChatColor.AQUA + "That player has been online in the past hour.");
+                        player.sendMessage(ChatColor.AQUA + "That player has been online in the past minute.");
                     }
                 }
                 else {
