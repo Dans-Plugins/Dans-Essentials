@@ -126,10 +126,7 @@ public class PlayerActivityRecord {
                 minute = Integer.parseInt(loadReader.nextLine());
             }
 
-            Calendar myCal = Calendar.getInstance();
-            myCal.set(Calendar.YEAR, year);
-            myCal.set(Calendar.MONTH, month);
-            myCal.set(Calendar.DAY_OF_MONTH, day);
+            GregorianCalendar myCal = new GregorianCalendar(year, month, day);
             myCal.set(Calendar.HOUR, hour);
             myCal.set(Calendar.MINUTE, minute);
 
