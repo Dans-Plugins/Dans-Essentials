@@ -30,15 +30,15 @@ public class SeenCommand {
             // console doesn't need permission
             if (getLastLogoutOfPlayer(targetPlayer) != null) {
                 if (!getLastLogoutOfPlayer(targetPlayer).equalsIgnoreCase("0 days and 0 hours")) {
-                    sender.sendMessage(targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
+                    System.out.println(targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
                 }
                 else {
-                    sender.sendMessage(ChatColor.AQUA + "That player has been online in the past hour.");
+                    System.out.println(ChatColor.AQUA + "That player has been online in the past hour.");
                 }
 
             }
             else {
-                sender.sendMessage("That player doesn't have an activity record.");
+                System.out.println("That player doesn't have an activity record.");
             }
         }
         else {
