@@ -38,7 +38,8 @@ public class PlayerActivityRecord {
             double seconds = (now.getTime() - lastLogout.getTime()) / 1000;
             int hours = (int) seconds / 3600;
             int days = hours / 24;
-            return days + " days and " + hours + " hours";
+            int minutes = (int) (seconds - (days * 24 * 3600) - (hours * 3600)) / 60;
+            return days + " days, " + hours + " hours and " + minutes + " minutes";
         }
         else {
             return null;
