@@ -1,12 +1,19 @@
 package essentialsystem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Period;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class PlayerActivityRecord {
     private String playerName = null;
-    private Date lastLogout = null;
     private int logins = 0;
+    private Date lastLogout = null;
 
     public void setPlayerName(String name) {
         playerName = name;
@@ -43,6 +50,93 @@ public class PlayerActivityRecord {
         }
         else {
             return null;
+        }
+    }
+
+    public void save() {
+        try {
+            File saveFolder = new File("./plugins/Medieval-Essentials/");
+            if (!saveFolder.exists()) {
+                saveFolder.mkdir();
+            }
+            File saveFolder2 = new File("./plugins/Medieval-Essentials/Activity-Records/");
+            if (!saveFolder2.exists()) {
+                saveFolder2.mkdir();
+            }
+            File saveFile = new File("./plugins/Medieval-Essentials/Activity-Records/" + playerName + ".txt");
+            if (saveFile.createNewFile()) {
+                System.out.println("Activity Record for " +  playerName + " created.");
+            } else {
+                System.out.println("Activity Record for " +  playerName + " already exists. Altering.");
+            }
+
+            FileWriter saveWriter = new FileWriter("./plugins/Medieval-Essentials/Activity-Records/" + playerName + ".txt");
+
+            // actual saving takes place here
+            saveWriter.write(playerName + "\n");
+            saveWriter.write(logins + "\n");
+
+            // saving date of last logout
+            saveWriter.write(lastLogout.getYear() + "\n");
+            saveWriter.write(lastLogout.getMonth() + "\n");
+            saveWriter.write(lastLogout.getDay() + "\n");
+            saveWriter.write(lastLogout.getHours() + "\n");
+            saveWriter.write(lastLogout.getMinutes() + "\n"); // minutes
+
+            saveWriter.close();
+
+            System.out.println("Successfully saved activity record.");
+
+        } catch (IOException e) {
+            System.out.println("An error occurred saving an activity record.");
+            e.printStackTrace();
+        }
+    }
+
+    public void load(String filename) {
+        try {
+            File loadFile = new File("./plugins/Medieval-Essentials/Activity-Records/" + filename);
+            Scanner loadReader = new Scanner(loadFile);
+            int year = 0;
+            int month = 0;
+            int day = 0;
+            int hour = 0;
+            int minute = 0;
+
+            // actual loading
+            if (loadReader.hasNextLine()) {
+                playerName = loadReader.nextLine();
+            }
+            if (loadReader.hasNextLine()) {
+                logins = Integer.parseInt(loadReader.nextLine());
+            }
+            if (loadReader.hasNextLine()) {
+                year = Integer.parseInt(loadReader.nextLine());
+            }
+            if (loadReader.hasNextLine()) {
+                month = Integer.parseInt(loadReader.nextLine());
+            }
+            if (loadReader.hasNextLine()) {
+                day = Integer.parseInt(loadReader.nextLine());
+            }
+            if (loadReader.hasNextLine()) {
+                hour = Integer.parseInt(loadReader.nextLine());
+            }
+            if (loadReader.hasNextLine()) {
+                minute = Integer.parseInt(loadReader.nextLine());
+            }
+
+            GregorianCalendar myCal = new GregorianCalendar(year, month, day);
+            myCal.set(Calendar.HOUR, hour);
+            myCal.set(Calendar.MINUTE, minute);
+
+            lastLogout = myCal.getTime();
+
+            loadReader.close();
+            System.out.println(filename + " successfully loaded.");
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred loading " + filename + ".");
+            e.printStackTrace();
         }
     }
 }
