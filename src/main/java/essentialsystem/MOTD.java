@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class MOTD {
 
-    private String message = null;
+    private String message = "";
 
     public MOTD() {
 
@@ -23,7 +23,7 @@ public class MOTD {
     }
 
     public boolean isMessageSet() {
-        return (message != null);
+        return (message.equalsIgnoreCase(""));
     }
 
     public void save() {
