@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public final class Main extends JavaPlugin implements Listener {
@@ -211,7 +212,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     @EventHandler()
     public void onQuit(PlayerQuitEvent event) {
-        Date now = new Date();
+        GregorianCalendar now = new GregorianCalendar();
         getActivityRecord(event.getPlayer().getName()).setLastLogout(now);
     }
 

@@ -46,11 +46,11 @@ public class SeenCommand {
             Player player = (Player) sender;
             if (player.hasPermission("me.seen") || player.hasPermission("me.default")) {
                 if (getLastLogoutOfPlayer(targetPlayer) != null) {
-                    if (!getLastLogoutOfPlayer(targetPlayer).equalsIgnoreCase("activity present but lastLogout null")) {
+                    if (!(getServer().getPlayer(targetPlayer) != null)) {
                         player.sendMessage(ChatColor.AQUA + targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
                     }
                     else {
-                        player.sendMessage(ChatColor.AQUA + "That player has been online in the past minute.");
+                        player.sendMessage(ChatColor.AQUA + "That player is online.");
                     }
                 }
                 else {

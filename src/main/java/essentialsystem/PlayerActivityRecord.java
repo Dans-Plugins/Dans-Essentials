@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class PlayerActivityRecord {
     private String playerName = null;
     private int logins = 0;
-    private Date lastLogout = null;
+    private GregorianCalendar lastLogout = null;
 
     public void setPlayerName(String name) {
         playerName = name;
@@ -23,11 +23,11 @@ public class PlayerActivityRecord {
         return playerName;
     }
 
-    public void setLastLogout(Date date) {
+    public void setLastLogout(GregorianCalendar date) {
         lastLogout = date;
     }
 
-    public Date getLastLogout() {
+    public GregorianCalendar getLastLogout() {
         return lastLogout;
     }
 
@@ -41,8 +41,8 @@ public class PlayerActivityRecord {
 
     public String getTimeSinceLastLogout() {
         if (lastLogout != null) {
-            Date now = new Date();
-            double seconds = (now.getTime() - lastLogout.getTime()) / 1000;
+            GregorianCalendar now = new GregorianCalendar();
+            double seconds = (now.getTime().getTime() - lastLogout.getTime().getTime()) / 1000;
             int hours = (int) seconds / 3600;
             int days = hours / 24;
             int minutes = (int) (seconds - (days * 24 * 3600) - (hours * 3600)) / 60;
@@ -77,11 +77,11 @@ public class PlayerActivityRecord {
             saveWriter.write(logins + "\n");
 
             // saving date of last logout
-            saveWriter.write(lastLogout.getYear() + "\n");
-            saveWriter.write(lastLogout.getMonth() + "\n");
-            saveWriter.write(lastLogout.getDay() + "\n");
-            saveWriter.write(lastLogout.getHours() + "\n");
-            saveWriter.write(lastLogout.getMinutes() + "\n"); // minutes
+            saveWriter.write(lastLogout.YEAR + "\n");
+            saveWriter.write(lastLogout.MONTH + "\n");
+            saveWriter.write(lastLogout.DAY_OF_MONTH + "\n");
+            saveWriter.write(lastLogout.HOUR_OF_DAY + "\n");
+            saveWriter.write(lastLogout.MINUTE + "\n"); // minutes
 
             saveWriter.close();
 
@@ -130,7 +130,7 @@ public class PlayerActivityRecord {
             myCal.set(Calendar.HOUR, hour);
             myCal.set(Calendar.MINUTE, minute);
 
-            lastLogout = myCal.getTime();
+            lastLogout = myCal;
 
             loadReader.close();
             System.out.println(filename + " successfully loaded.");
