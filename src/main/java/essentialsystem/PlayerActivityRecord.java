@@ -135,10 +135,7 @@ public class PlayerActivityRecord {
                 second = Integer.parseInt(loadReader.nextLine());
             }
 
-            GregorianCalendar myCal = new GregorianCalendar(year, month, day);
-            myCal.set(Calendar.HOUR, hour);
-            myCal.set(Calendar.MINUTE, minute);
-            myCal.set(Calendar.SECOND, second);
+            GregorianCalendar myCal = new GregorianCalendar(year, month, day, hour, minute);
 
             lastLogout = myCal;
 
