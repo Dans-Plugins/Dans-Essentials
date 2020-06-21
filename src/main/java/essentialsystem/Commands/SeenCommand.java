@@ -29,11 +29,11 @@ public class SeenCommand {
         if (!(sender instanceof Player)) {
             // console doesn't need permission
             if (getLastLogoutOfPlayer(targetPlayer) != null) {
-                if (!getLastLogoutOfPlayer(targetPlayer).equalsIgnoreCase("0 days and 0 hours")) {
+                if (!(getServer().getPlayer(targetPlayer) != null)) {
                     System.out.println(targetPlayer + " has been offline for " + getLastLogoutOfPlayer(targetPlayer) + ".");
                 }
                 else {
-                    System.out.println(ChatColor.AQUA + "That player has been online in the past hour.");
+                    System.out.println(ChatColor.AQUA + "That player is online.");
                 }
 
             }

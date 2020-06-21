@@ -42,11 +42,15 @@ public class PlayerActivityRecord {
     public String getTimeSinceLastLogout() {
         if (lastLogout != null) {
             GregorianCalendar now = new GregorianCalendar();
-            double seconds = (now.getTime().getTime() - lastLogout.getTime().getTime()) / 1000;
-            int hours = (int) seconds / 3600;
+            double totalSeconds = (now.getTime().getTime() - lastLogout.getTime().getTime()) / 1000;
+            int minutes = (int) totalSeconds/60;
+            int hours = minutes / 60;
             int days = hours / 24;
-            int minutes = (int) (seconds - (days * 24 * 3600) - (hours * 3600)) / 60;
-            return days + " days, " + hours + " hours and " + minutes + " minutes";
+            int hoursSince = hours - (days * 24);
+            int minutesSince = minutes - (hours * 60) - (days * 24 * 60);
+            int secondsSince = (int) totalSeconds - (minutes * 60) - (hours * 60 * 60) - (days * 24 * 60 * 60);
+
+            return days + " days, " + hoursSince + " hours, " + minutesSince + " minutes and " + secondsSince + " seconds";
         }
         else {
             return null;
@@ -82,6 +86,7 @@ public class PlayerActivityRecord {
             saveWriter.write(lastLogout.DAY_OF_MONTH + "\n");
             saveWriter.write(lastLogout.HOUR_OF_DAY + "\n");
             saveWriter.write(lastLogout.MINUTE + "\n"); // minutes
+            saveWriter.write(lastLogout.SECOND + "\n"); // seconds
 
             saveWriter.close();
 
@@ -102,6 +107,7 @@ public class PlayerActivityRecord {
             int day = 0;
             int hour = 0;
             int minute = 0;
+            int second = 0;
 
             // actual loading
             if (loadReader.hasNextLine()) {
@@ -125,10 +131,14 @@ public class PlayerActivityRecord {
             if (loadReader.hasNextLine()) {
                 minute = Integer.parseInt(loadReader.nextLine());
             }
+            if (loadReader.hasNextLine()) {
+                second = Integer.parseInt(loadReader.nextLine());
+            }
 
             GregorianCalendar myCal = new GregorianCalendar(year, month, day);
             myCal.set(Calendar.HOUR, hour);
             myCal.set(Calendar.MINUTE, minute);
+            myCal.set(Calendar.SECOND, second);
 
             lastLogout = myCal;
 
