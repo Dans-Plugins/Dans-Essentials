@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.Period;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -13,7 +16,7 @@ import java.util.Scanner;
 public class PlayerActivityRecord {
     private String playerName = null;
     private int logins = 0;
-    private GregorianCalendar lastLogout = null;
+    private ZonedDateTime lastLogout = null;
 
     public void setPlayerName(String name) {
         playerName = name;
@@ -23,11 +26,11 @@ public class PlayerActivityRecord {
         return playerName;
     }
 
-    public void setLastLogout(GregorianCalendar date) {
+    public void setLastLogout(ZonedDateTime date) {
         lastLogout = date;
     }
 
-    public GregorianCalendar getLastLogout() {
+    public ZonedDateTime getLastLogout() {
         return lastLogout;
     }
 
@@ -41,8 +44,9 @@ public class PlayerActivityRecord {
 
     public String getTimeSinceLastLogout() {
         if (lastLogout != null) {
-            GregorianCalendar now = new GregorianCalendar();
-            double totalSeconds = (now.getTime().getTime() - lastLogout.getTime().getTime()) / 1000;
+            ZonedDateTime now = ZonedDateTime.now();
+            Duration duration = Duration.between(lastLogout, now);
+            double totalSeconds = duration.getSeconds();
             int minutes = (int) totalSeconds/60;
             int hours = minutes / 60;
             int days = hours / 24;
@@ -81,12 +85,13 @@ public class PlayerActivityRecord {
             saveWriter.write(logins + "\n");
 
             // saving date of last logout
-            saveWriter.write(lastLogout.YEAR + "\n");
-            saveWriter.write(lastLogout.MONTH + "\n");
-            saveWriter.write(lastLogout.DAY_OF_MONTH + "\n");
-            saveWriter.write(lastLogout.HOUR_OF_DAY + "\n");
-            saveWriter.write(lastLogout.MINUTE + "\n"); // minutes
-            saveWriter.write(lastLogout.SECOND + "\n"); // seconds
+            if (lastLogout != null) {
+                saveWriter.write(lastLogout.format(DateTimeFormatter.ISO_ZONED_DATE_TIME) + "\n");
+            }
+            else {
+                System.out.println("Error! Last logout was null!");
+                return;
+            }
 
             saveWriter.close();
 
@@ -117,27 +122,11 @@ public class PlayerActivityRecord {
                 logins = Integer.parseInt(loadReader.nextLine());
             }
             if (loadReader.hasNextLine()) {
-                year = Integer.parseInt(loadReader.nextLine());
+                lastLogout = ZonedDateTime.parse(loadReader.nextLine(), DateTimeFormatter.ISO_ZONED_DATE_TIME);
             }
-            if (loadReader.hasNextLine()) {
-                month = Integer.parseInt(loadReader.nextLine());
+            else {
+                System.out.println("Error! Last logout not found!");
             }
-            if (loadReader.hasNextLine()) {
-                day = Integer.parseInt(loadReader.nextLine());
-            }
-            if (loadReader.hasNextLine()) {
-                hour = Integer.parseInt(loadReader.nextLine());
-            }
-            if (loadReader.hasNextLine()) {
-                minute = Integer.parseInt(loadReader.nextLine());
-            }
-            if (loadReader.hasNextLine()) {
-                second = Integer.parseInt(loadReader.nextLine());
-            }
-
-            GregorianCalendar myCal = new GregorianCalendar(year, month, day, hour, minute);
-
-            lastLogout = myCal;
 
             loadReader.close();
             System.out.println(filename + " successfully loaded.");

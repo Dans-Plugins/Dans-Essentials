@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -212,7 +214,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     @EventHandler()
     public void onQuit(PlayerQuitEvent event) {
-        GregorianCalendar now = new GregorianCalendar();
+        ZonedDateTime now = ZonedDateTime.now();
         getActivityRecord(event.getPlayer().getName()).setLastLogout(now);
     }
 
