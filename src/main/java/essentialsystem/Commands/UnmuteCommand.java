@@ -44,7 +44,7 @@ public class UnmuteCommand {
 
             }
             else {
-                sender.sendMessage("Sorry! You need the 'me.unmute' permission to use this command.");
+                sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.unmute' permission to use this command.");
             }
         }
     }

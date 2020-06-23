@@ -30,7 +30,7 @@ public class FlyCommand {
                     }
                 }
                 else {
-                    sender.sendMessage("Sorry! You need the 'me.fly' permission to use this command.");
+                    sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.fly' permission to use this command.");
                 }
 
             }

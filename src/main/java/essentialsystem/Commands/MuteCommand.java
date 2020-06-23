@@ -50,7 +50,7 @@ public class MuteCommand {
 
             }
             else {
-                sender.sendMessage("Sorry! You need the 'me.mute' permission to use this command.");
+                sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.mute' permission to use this command.");
             }
         }
     }
