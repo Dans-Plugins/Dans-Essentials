@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,6 +28,7 @@ public final class Main extends JavaPlugin implements Listener {
     public MOTD motd = new MOTD();
     public ArrayList<PlayerActivityRecord> activityRecords = new ArrayList<>();
     public ArrayList<String> vanishedPlayers = new ArrayList<>();
+    public ArrayList<String> mutedPlayers = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -161,6 +163,16 @@ public final class Main extends JavaPlugin implements Listener {
             command.toggleVisibility(sender);
         }
 
+        if (label.equalsIgnoreCase("mute")) {
+            MuteCommand command = new MuteCommand(this);
+            command.mutePlayer(sender, args);
+        }
+
+        if (label.equalsIgnoreCase("unmute")) {
+            UnmuteCommand command = new UnmuteCommand(this);
+            command.unmutePlayer(sender, args);
+        }
+
         return false;
     }
 
@@ -227,6 +239,14 @@ public final class Main extends JavaPlugin implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         ZonedDateTime now = ZonedDateTime.now();
         getActivityRecord(event.getPlayer().getName()).setLastLogout(now);
+    }
+
+    @EventHandler()
+    public void onChat(AsyncPlayerChatEvent event) {
+        if (mutedPlayers.contains(event.getPlayer().getName())) {
+            event.getPlayer().sendMessage(ChatColor.RED + "You are currently muted.");
+            event.setCancelled(true);
+        }
     }
 
 }

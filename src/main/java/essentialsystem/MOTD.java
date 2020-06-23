@@ -23,7 +23,7 @@ public class MOTD {
     }
 
     public boolean isMessageSet() {
-        return (message.equalsIgnoreCase(""));
+        return (!message.equalsIgnoreCase(""));
     }
 
     public void save() {

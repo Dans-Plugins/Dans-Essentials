@@ -1,5 +1,5 @@
 name: MedievalEssentials
-version: 0.7
+version: 0.8
 author: KingdomProgrammers
 main: essentialsystem.Main
 api-version: 1.13
@@ -12,3 +12,5 @@ commands:
   setmotd:
   seen:
   vanish:
+  mute:
+  unmute:
