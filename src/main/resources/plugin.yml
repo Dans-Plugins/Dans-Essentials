@@ -11,3 +11,4 @@ commands:
   motd:
   setmotd:
   seen:
+  vanish:
