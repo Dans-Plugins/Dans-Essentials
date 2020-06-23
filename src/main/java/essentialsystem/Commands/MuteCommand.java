@@ -22,11 +22,11 @@ public class MuteCommand {
             if (player.hasPermission("me.mute") || player.hasPermission("me.admin")) {
 
                 if (args.length > 0) {
-                    if (getServer().getPlayer(args[1]) != null) {
+                    if (getServer().getPlayer(args[0]) != null) {
 
-                        if (!main.mutedPlayers.contains(args[1])) {
-                            main.mutedPlayers.add(args[1]);
-                            getServer().getPlayer(args[1]).sendMessage(ChatColor.RED + "You have been muted.");
+                        if (!main.mutedPlayers.contains(args[0])) {
+                            main.mutedPlayers.add(args[0]);
+                            getServer().getPlayer(args[0]).sendMessage(ChatColor.RED + "You have been muted.");
                             player.sendMessage(ChatColor.GREEN + "Player has been muted.");
                         }
                         else {
