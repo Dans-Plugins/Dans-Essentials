@@ -22,11 +22,11 @@ public class UnmuteCommand {
             if (player.hasPermission("me.unmute") || player.hasPermission("me.admin")) {
 
                 if (args.length > 0) {
-                    if (getServer().getPlayer(args[1]) != null) {
+                    if (getServer().getPlayer(args[0]) != null) {
 
-                        if (main.mutedPlayers.contains(args[1])) {
-                            main.mutedPlayers.remove(args[1]);
-                            getServer().getPlayer(args[1]).sendMessage(ChatColor.RED + "You have been unmuted.");
+                        if (main.mutedPlayers.contains(args[0])) {
+                            main.mutedPlayers.remove(args[0]);
+                            getServer().getPlayer(args[0]).sendMessage(ChatColor.RED + "You have been unmuted.");
                             player.sendMessage(ChatColor.GREEN + "Player has been unmuted.");
                         }
                         else {

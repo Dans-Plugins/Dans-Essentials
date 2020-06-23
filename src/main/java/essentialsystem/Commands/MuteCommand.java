@@ -25,9 +25,15 @@ public class MuteCommand {
                     if (getServer().getPlayer(args[0]) != null) {
 
                         if (!main.mutedPlayers.contains(args[0])) {
-                            main.mutedPlayers.add(args[0]);
-                            getServer().getPlayer(args[0]).sendMessage(ChatColor.RED + "You have been muted.");
-                            player.sendMessage(ChatColor.GREEN + "Player has been muted.");
+                            if (!player.getName().equalsIgnoreCase(args[0])) {
+                                main.mutedPlayers.add(args[0]);
+                                getServer().getPlayer(args[0]).sendMessage(ChatColor.RED + "You have been muted.");
+                                player.sendMessage(ChatColor.GREEN + "Player has been muted.");
+                            }
+                            else {
+                                player.sendMessage(ChatColor.RED + "You can't mute yourself!");
+                            }
+
                         }
                         else {
                             player.sendMessage(ChatColor.RED + "That player is already muted!");
