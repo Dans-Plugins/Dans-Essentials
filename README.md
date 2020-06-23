@@ -12,3 +12,4 @@ A minecraft plugin that provides miscellaneous commands.
 - 0.4 'Help' update
 - 0.5 'MOTD' update
 - 0.6 'Seen' update
+- 0.7 'Vanish' update
