@@ -163,6 +163,16 @@ public final class Main extends JavaPlugin implements Listener {
             command.toggleVisibility(sender);
         }
 
+        if (label.equalsIgnoreCase("mute")) {
+            MuteCommand command = new MuteCommand(this);
+            command.mutePlayer(sender, args);
+        }
+
+        if (label.equalsIgnoreCase("unmute")) {
+            UnmuteCommand command = new UnmuteCommand(this);
+            command.unmutePlayer(sender, args);
+        }
+
         return false;
     }
 

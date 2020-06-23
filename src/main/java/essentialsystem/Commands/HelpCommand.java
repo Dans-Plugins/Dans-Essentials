@@ -20,6 +20,8 @@ public class HelpCommand {
                 sender.sendMessage(ChatColor.AQUA + "/setmotd - Set the message of the day.");
                 sender.sendMessage(ChatColor.AQUA + "/seen - See how long its been since a player has logged in.");
                 sender.sendMessage(ChatColor.AQUA + "/vanish - Hide yourself from view.");
+                sender.sendMessage(ChatColor.AQUA + "/mute - Hide yourself from view.");
+                sender.sendMessage(ChatColor.AQUA + "/unmute - Hide yourself from view.");
             }
             else {
                 sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.help' permission to use this command.");
