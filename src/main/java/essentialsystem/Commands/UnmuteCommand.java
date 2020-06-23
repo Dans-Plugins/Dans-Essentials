@@ -26,7 +26,7 @@ public class UnmuteCommand {
 
                         if (main.mutedPlayers.contains(args[0])) {
                             main.mutedPlayers.remove(args[0]);
-                            getServer().getPlayer(args[0]).sendMessage(ChatColor.RED + "You have been unmuted.");
+                            getServer().getPlayer(args[0]).sendMessage(ChatColor.GREEN + "You have been unmuted.");
                             player.sendMessage(ChatColor.GREEN + "Player has been unmuted.");
                         }
                         else {
