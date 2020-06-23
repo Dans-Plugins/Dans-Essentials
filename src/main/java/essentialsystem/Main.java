@@ -198,6 +198,11 @@ public final class Main extends JavaPlugin implements Listener {
             getActivityRecord(player.getName()).incrementLogins();
         }
 
+        // hide vanished players from this player
+        for (String vanishedPlayer : vanishedPlayers) {
+            event.getPlayer().hidePlayer(this, getServer().getPlayer(vanishedPlayer));
+        }
+
     }
 
     public boolean hasActivityRecord(String playerName) {
