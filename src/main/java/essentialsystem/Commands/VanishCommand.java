@@ -1,6 +1,7 @@
 package essentialsystem.Commands;
 
 import essentialsystem.Main;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -18,9 +19,11 @@ public class VanishCommand {
             if (player.hasPermission("me.vanish") || player.hasPermission("me.admin")) {
                 if (!main.vanishedPlayers.contains(player.getName())) {
                     hidePlayer(player);
+                    player.sendMessage(ChatColor.GREEN + "You are now hidden!");
                 }
                 else {
                     showPlayer(player);
+                    player.sendMessage(ChatColor.GREEN + "You are now visible!");
                 }
             }
             else {
