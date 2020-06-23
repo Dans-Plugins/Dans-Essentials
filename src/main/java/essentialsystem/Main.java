@@ -26,6 +26,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     public MOTD motd = new MOTD();
     public ArrayList<PlayerActivityRecord> activityRecords = new ArrayList<>();
+    public ArrayList<String> vanishedPlayers = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -153,6 +154,11 @@ public final class Main extends JavaPlugin implements Listener {
         if (label.equalsIgnoreCase("seen")) {
             SeenCommand command = new SeenCommand(this);
             command.showLastLogout(sender, args);
+        }
+
+        if (label.equalsIgnoreCase("vanish")) {
+            VanishCommand command = new VanishCommand(this);
+            command.toggleVisibility(sender);
         }
 
         return false;
