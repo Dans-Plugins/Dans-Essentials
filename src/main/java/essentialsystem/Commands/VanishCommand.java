@@ -5,6 +5,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class VanishCommand {
 
     Main main = null;
@@ -34,12 +36,21 @@ public class VanishCommand {
     }
 
     public void hidePlayer(Player player) {
-        player.hidePlayer(main, player);
-        main.vanishedPlayers.add(player.getName());
+        for (Player target : getServer().getOnlinePlayers()) {
+            if (!player.getName().equalsIgnoreCase(target.getName())) {
+                target.hidePlayer(main, player);
+                main.vanishedPlayers.add(player.getName());
+            }
+        }
+
     }
 
     public void showPlayer(Player player) {
-        player.showPlayer(main, player);
-        main.vanishedPlayers.remove(player.getName());
+        for (Player target : getServer().getOnlinePlayers()) {
+            if (!player.getName().equalsIgnoreCase(target.getName())) {
+                target.showPlayer(main, player);
+                main.vanishedPlayers.remove(player.getName());
+            }
+        }
     }
 }
