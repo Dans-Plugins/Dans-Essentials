@@ -52,9 +52,8 @@ public class PlayerActivityRecord {
             int days = hours / 24;
             int hoursSince = hours - (days * 24);
             int minutesSince = minutes - (hours * 60) - (days * 24 * 60);
-            int secondsSince = (int) totalSeconds - (minutes * 60) - (hours * 60 * 60) - (days * 24 * 60 * 60);
 
-            return days + " days, " + hoursSince + " hours, " + minutesSince + " minutes and " + secondsSince + " seconds";
+            return days + " days, " + hoursSince + " hours, and " + minutesSince + " minutes";
         }
         else {
             return null;
@@ -107,12 +106,6 @@ public class PlayerActivityRecord {
         try {
             File loadFile = new File("./plugins/Medieval-Essentials/Activity-Records/" + filename);
             Scanner loadReader = new Scanner(loadFile);
-            int year = 0;
-            int month = 0;
-            int day = 0;
-            int hour = 0;
-            int minute = 0;
-            int second = 0;
 
             // actual loading
             if (loadReader.hasNextLine()) {
