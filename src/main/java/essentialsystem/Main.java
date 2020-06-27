@@ -298,7 +298,8 @@ public final class Main extends JavaPlugin implements Listener {
 
             // if nickname not assigned
             if (!event.getPlayer().getName().equalsIgnoreCase(getNicknameRecord(event.getPlayer().getName()).getNickname())) {
-                event.getPlayer().setDisplayName(getNicknameRecord(event.getPlayer().getName()).getNickname());
+                // assign it
+                event.getPlayer().setDisplayName(ChatColor.translateAlternateColorCodes('&', getNicknameRecord(event.getPlayer().getName()).getNickname() + "&r"));
             }
 
         }
