@@ -29,6 +29,7 @@ public final class Main extends JavaPlugin implements Listener {
     public ArrayList<PlayerActivityRecord> activityRecords = new ArrayList<>();
     public ArrayList<String> vanishedPlayers = new ArrayList<>();
     public ArrayList<String> mutedPlayers = new ArrayList<>();
+    public ArrayList<NicknameRecord> nicknames = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -86,6 +87,16 @@ public final class Main extends JavaPlugin implements Listener {
         }
     }
 
+    public void saveNicknames() {
+        for (NicknameRecord record : nicknames) {
+            record.save();
+        }
+    }
+
+    public void saveNicknameFilenames() {
+
+    }
+
     public void loadActivityRecords() {
         try {
             System.out.println("Attempting to load activity records...");
@@ -116,6 +127,10 @@ public final class Main extends JavaPlugin implements Listener {
         } catch (FileNotFoundException e) {
             System.out.println("Error loading the activity records!");
         }
+    }
+
+    public void loadNicknames() {
+
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -174,7 +189,7 @@ public final class Main extends JavaPlugin implements Listener {
         }
 
         if (label.equalsIgnoreCase("nick")) {
-            NickCommand command = new NickCommand();
+            NickCommand command = new NickCommand(this);
             command.changeDisplayName(sender, args);
         }
 

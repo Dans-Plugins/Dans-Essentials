@@ -1,5 +1,7 @@
 package essentialsystem.Commands;
 
+import essentialsystem.Main;
+import essentialsystem.NicknameRecord;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -7,6 +9,12 @@ import org.bukkit.entity.Player;
 import static org.bukkit.Bukkit.getServer;
 
 public class NickCommand {
+
+    Main main = null;
+
+    public NickCommand(Main plugin) {
+        main = plugin;
+    }
 
     public void changeDisplayName(CommandSender sender, String[] args) {
 
@@ -25,9 +33,15 @@ public class NickCommand {
                     // online check
                     if (target != null) {
 
+                        // set display name
                         target.setDisplayName(ChatColor.translateAlternateColorCodes('&', args[1] + "&r"));
                         player.sendMessage(ChatColor.GREEN + "Nickname set!");
 
+                        // create nickname record
+                        NicknameRecord record = new NicknameRecord();
+                        record.setPlayerName(target.getName());
+                        record.setNickname(args[1]);
+                        main.nicknames.add(record);
                     }
                     else {
                         player.sendMessage(ChatColor.RED + "That player isn't online");
