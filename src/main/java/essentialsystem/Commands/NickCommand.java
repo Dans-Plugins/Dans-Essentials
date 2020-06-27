@@ -25,7 +25,7 @@ public class NickCommand {
                     // online check
                     if (target != null) {
 
-                        target.setDisplayName(args[2]);
+                        target.setDisplayName(args[1]);
                         player.sendMessage(ChatColor.GREEN + "Nickname set!");
 
                     }
