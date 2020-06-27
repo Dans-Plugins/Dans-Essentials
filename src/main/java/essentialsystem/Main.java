@@ -293,6 +293,16 @@ public final class Main extends JavaPlugin implements Listener {
             event.getPlayer().hidePlayer(this, getServer().getPlayer(vanishedPlayer));
         }
 
+        // assign nickname
+        if (hasNicknameRecord(event.getPlayer().getName())) {
+
+            // if nickname not assigned
+            if (!event.getPlayer().getName().equalsIgnoreCase(getNicknameRecord(event.getPlayer().getName()).getNickname())) {
+                event.getPlayer().setDisplayName(getNicknameRecord(event.getPlayer().getName()).getNickname());
+            }
+
+        }
+
     }
 
     public boolean hasActivityRecord(String playerName) {
@@ -306,6 +316,24 @@ public final class Main extends JavaPlugin implements Listener {
 
     public PlayerActivityRecord getActivityRecord(String playerName) {
         for (PlayerActivityRecord record : activityRecords) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return record;
+            }
+        }
+        return null;
+    }
+
+    public boolean hasNicknameRecord(String playerName) {
+        for (NicknameRecord record : nicknames) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public NicknameRecord getNicknameRecord(String playerName) {
+        for (NicknameRecord record : nicknames) {
             if (record.getPlayerName().equalsIgnoreCase(playerName)) {
                 return record;
             }
