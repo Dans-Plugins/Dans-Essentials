@@ -39,6 +39,7 @@ public final class Main extends JavaPlugin implements Listener {
 
         motd.load();
         loadActivityRecords();
+        loadNicknames();
 
         System.out.println("Medieval Essentials is enabled!");
     }
@@ -50,6 +51,8 @@ public final class Main extends JavaPlugin implements Listener {
         motd.save();
         saveActivityRecords();
         saveActivityRecordFilenames();
+        saveNicknames();
+        saveNicknameFilenames();
 
         System.out.println("Medieval Essentials is disabled!");
     }
@@ -94,7 +97,30 @@ public final class Main extends JavaPlugin implements Listener {
     }
 
     public void saveNicknameFilenames() {
+        try {
+            File saveFolder = new File("./plugins/Medieval-Essentials/");
+            if (!saveFolder.exists()) {
+                saveFolder.mkdir();
+            }
+            File saveFile = new File("./plugins/Medieval-Essentials/" + "nicknames.txt");
+            if (saveFile.createNewFile()) {
+                System.out.println("Save file for nickname record filenames created.");
+            } else {
+                System.out.println("Save file for nickname record filenames already exists. Overwriting.");
+            }
 
+            FileWriter saveWriter = new FileWriter(saveFile);
+
+            // actual saving takes place here
+            for (NicknameRecord record : nicknames) {
+                saveWriter.write(record.getPlayerName() + ".txt" + "\n");
+            }
+
+            saveWriter.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving nickname record filenames.");
+        }
     }
 
     public void loadActivityRecords() {
@@ -130,7 +156,34 @@ public final class Main extends JavaPlugin implements Listener {
     }
 
     public void loadNicknames() {
+        try {
+            System.out.println("Attempting to load nickname records...");
+            File loadFile = new File("./plugins/Medieval-Essentials/" + "nicknames.txt");
+            Scanner loadReader = new Scanner(loadFile);
 
+            // actual loading
+            while (loadReader.hasNextLine()) {
+                String nextName = loadReader.nextLine();
+                NicknameRecord temp = new NicknameRecord();
+                temp.load(nextName); // provides owner field among other things
+
+                // existence check
+                boolean exists = false;
+                for (int i = 0; i < nicknames.size(); i++) {
+                    if (nicknames.get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
+                        nicknames.remove(i);
+                    }
+                }
+
+                nicknames.add(temp);
+
+            }
+
+            loadReader.close();
+            System.out.println("Nickname records successfully loaded.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Error loading the nickname records!");
+        }
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
