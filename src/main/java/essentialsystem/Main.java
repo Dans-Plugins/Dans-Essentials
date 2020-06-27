@@ -245,12 +245,12 @@ public final class Main extends JavaPlugin implements Listener {
             NickCommand command = new NickCommand(this);
             command.changeDisplayName(sender, args);
         }
-
+/*
         if (label.equalsIgnoreCase("whois")) {
             WhoIsCommand command = new WhoIsCommand();
             command.showIGNToPlayer(sender, args);
         }
-
+*/
         return false;
     }
 
