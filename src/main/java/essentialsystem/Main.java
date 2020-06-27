@@ -39,6 +39,7 @@ public final class Main extends JavaPlugin implements Listener {
 
         motd.load();
         loadActivityRecords();
+        loadNicknames();
 
         System.out.println("Medieval Essentials is enabled!");
     }
@@ -50,6 +51,8 @@ public final class Main extends JavaPlugin implements Listener {
         motd.save();
         saveActivityRecords();
         saveActivityRecordFilenames();
+        saveNicknames();
+        saveNicknameFilenames();
 
         System.out.println("Medieval Essentials is disabled!");
     }
@@ -94,7 +97,30 @@ public final class Main extends JavaPlugin implements Listener {
     }
 
     public void saveNicknameFilenames() {
+        try {
+            File saveFolder = new File("./plugins/Medieval-Essentials/");
+            if (!saveFolder.exists()) {
+                saveFolder.mkdir();
+            }
+            File saveFile = new File("./plugins/Medieval-Essentials/" + "nicknames.txt");
+            if (saveFile.createNewFile()) {
+                System.out.println("Save file for nickname record filenames created.");
+            } else {
+                System.out.println("Save file for nickname record filenames already exists. Overwriting.");
+            }
 
+            FileWriter saveWriter = new FileWriter(saveFile);
+
+            // actual saving takes place here
+            for (NicknameRecord record : nicknames) {
+                saveWriter.write(record.getPlayerName() + ".txt" + "\n");
+            }
+
+            saveWriter.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving nickname record filenames.");
+        }
     }
 
     public void loadActivityRecords() {
@@ -130,7 +156,34 @@ public final class Main extends JavaPlugin implements Listener {
     }
 
     public void loadNicknames() {
+        try {
+            System.out.println("Attempting to load nickname records...");
+            File loadFile = new File("./plugins/Medieval-Essentials/" + "nicknames.txt");
+            Scanner loadReader = new Scanner(loadFile);
 
+            // actual loading
+            while (loadReader.hasNextLine()) {
+                String nextName = loadReader.nextLine();
+                NicknameRecord temp = new NicknameRecord();
+                temp.load(nextName); // provides owner field among other things
+
+                // existence check
+                boolean exists = false;
+                for (int i = 0; i < nicknames.size(); i++) {
+                    if (nicknames.get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
+                        nicknames.remove(i);
+                    }
+                }
+
+                nicknames.add(temp);
+
+            }
+
+            loadReader.close();
+            System.out.println("Nickname records successfully loaded.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Error loading the nickname records!");
+        }
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -192,12 +245,12 @@ public final class Main extends JavaPlugin implements Listener {
             NickCommand command = new NickCommand(this);
             command.changeDisplayName(sender, args);
         }
-
+/*
         if (label.equalsIgnoreCase("whois")) {
             WhoIsCommand command = new WhoIsCommand();
             command.showIGNToPlayer(sender, args);
         }
-
+*/
         return false;
     }
 
@@ -240,6 +293,17 @@ public final class Main extends JavaPlugin implements Listener {
             event.getPlayer().hidePlayer(this, getServer().getPlayer(vanishedPlayer));
         }
 
+        // assign nickname
+        if (hasNicknameRecord(event.getPlayer().getName())) {
+
+            // if nickname not assigned
+            if (!event.getPlayer().getName().equalsIgnoreCase(getNicknameRecord(event.getPlayer().getName()).getNickname())) {
+                // assign it
+                event.getPlayer().setDisplayName(ChatColor.translateAlternateColorCodes('&', getNicknameRecord(event.getPlayer().getName()).getNickname() + "&r"));
+            }
+
+        }
+
     }
 
     public boolean hasActivityRecord(String playerName) {
@@ -253,6 +317,24 @@ public final class Main extends JavaPlugin implements Listener {
 
     public PlayerActivityRecord getActivityRecord(String playerName) {
         for (PlayerActivityRecord record : activityRecords) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return record;
+            }
+        }
+        return null;
+    }
+
+    public boolean hasNicknameRecord(String playerName) {
+        for (NicknameRecord record : nicknames) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public NicknameRecord getNicknameRecord(String playerName) {
+        for (NicknameRecord record : nicknames) {
             if (record.getPlayerName().equalsIgnoreCase(playerName)) {
                 return record;
             }
