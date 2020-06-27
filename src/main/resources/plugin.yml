@@ -1,5 +1,5 @@
 name: MedievalEssentials
-version: 0.8
+version: 0.9
 author: KingdomProgrammers
 main: essentialsystem.Main
 api-version: 1.13
@@ -14,3 +14,4 @@ commands:
   vanish:
   mute:
   unmute:
+  nick:

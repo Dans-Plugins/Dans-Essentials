@@ -173,6 +173,11 @@ public final class Main extends JavaPlugin implements Listener {
             command.unmutePlayer(sender, args);
         }
 
+        if (label.equalsIgnoreCase("nick")) {
+            NickCommand command = new NickCommand();
+            command.changeDisplayName(sender, args);
+        }
+
         return false;
     }
 
