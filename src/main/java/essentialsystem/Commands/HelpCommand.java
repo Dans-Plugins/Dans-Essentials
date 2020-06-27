@@ -22,6 +22,7 @@ public class HelpCommand {
                 sender.sendMessage(ChatColor.AQUA + "/vanish - Hide yourself from view.");
                 sender.sendMessage(ChatColor.AQUA + "/mute - Hide yourself from view.");
                 sender.sendMessage(ChatColor.AQUA + "/unmute - Hide yourself from view.");
+                sender.sendMessage(ChatColor.AQUA + "/nick - Give another player a nickname.");
             }
             else {
                 sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.help' permission to use this command.");
