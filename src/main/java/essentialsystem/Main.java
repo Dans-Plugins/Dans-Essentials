@@ -251,6 +251,12 @@ public final class Main extends JavaPlugin implements Listener {
             command.showIGNToPlayer(sender, args);
         }
 */
+
+        if (label.equalsIgnoreCase("getpos")) {
+            GetPosCommand command = new GetPosCommand(this);
+            command.sendCoordinates(sender);
+        }
+
         return false;
     }
 
