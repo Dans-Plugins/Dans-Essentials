@@ -356,4 +356,17 @@ public final class Main extends JavaPlugin implements Listener {
         }
     }
 
+    public int[] getPlayersPosition(Player player) {
+        int[] coords = new int[3];
+        coords[0] = player.getLocation().getBlockX();
+        coords[1] = player.getLocation().getBlockY();
+        coords[2] = player.getLocation().getBlockZ();
+        return coords;
+    }
+
+    public String getPlayersDirection(Player player) {
+        // TODO: implement this
+        return null;
+    }
+
 }
