@@ -20,7 +20,7 @@ public class GetPosCommand {
             if (player.hasPermission("medievalessentials.getpos") || player.hasPermission("medievalessentials.default")) {
                 int[] coords = main.getPlayersPosition(player);
 
-                player.sendMessage(ChatColor.AQUA + "" + coords[0] + " " + coords[1] + " " + coords[2]);
+                player.sendMessage(ChatColor.AQUA + "Your current coordinates are " + coords[0] + " " + coords[1] + " " + coords[2]);
             }
             else {
                 player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'medievalessentials.getpos'");
