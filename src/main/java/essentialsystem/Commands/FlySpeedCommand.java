@@ -25,7 +25,7 @@ public class FlySpeedCommand {
                 int speed = Integer.parseInt(args[0]);
 
                 if (player.getAllowFlight()) {
-                    player.setFlySpeed(speed);
+                    player.setFlySpeed(speed); // TODO: fix null error here
                 }
                 else {
                     player.sendMessage(ChatColor.RED + "You don't have flight enabled!");
