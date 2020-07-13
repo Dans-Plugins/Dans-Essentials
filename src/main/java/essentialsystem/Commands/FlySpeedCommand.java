@@ -16,7 +16,7 @@ public class FlySpeedCommand {
         // if its the fly speed (number) command
         if (args.length > 0 && args.length < 3) {
 
-            if (player.hasPermission("medievalessentials.fly.speed") || player.hasPermission("medievalessentials.default")) {
+            if (player.hasPermission("medievalessentials.flyspeed") || player.hasPermission("medievalessentials.default")) {
                 // if not enough arguments
                 if (args.length == 0) {
                     player.sendMessage(ChatColor.RED + "Usage: /flyspeed (number)");
@@ -33,7 +33,7 @@ public class FlySpeedCommand {
 
             }
             else {
-                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'medievalessentials.fly.speed");
+                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'medievalessentials.flyspeed");
             }
 
         }
