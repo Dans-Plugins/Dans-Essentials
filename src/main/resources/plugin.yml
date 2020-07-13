@@ -16,3 +16,4 @@ commands:
   unmute:
   nick:
   getpos:
+  flyspeed:

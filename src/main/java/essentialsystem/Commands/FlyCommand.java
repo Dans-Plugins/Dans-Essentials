@@ -17,35 +17,6 @@ public class FlyCommand {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            // if its the fly speed (number) command
-            if (args.length > 0 && args.length < 3) {
-
-                if (player.hasPermission("medievalessentials.fly.speed") || player.hasPermission("medievalessentials.default")) {
-                    // if not enough arguments
-                    if (args.length == 1 && args[0].equalsIgnoreCase("speed")) {
-                        player.sendMessage(ChatColor.RED + "Usage: /fly speed (number)");
-                        return;
-                    }
-
-                    if (args[0].equalsIgnoreCase("speed")) {
-
-                        if (args.length > 1) {
-
-                            int speed = Integer.parseInt(args[1]);
-
-                            player.setFlySpeed(speed);
-
-                        }
-
-                    }
-                }
-                else {
-                    player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'medievalessentials.fly.speed");
-                    return;
-                }
-
-            }
-
             if (args.length == 0) {
                 if (player.hasPermission("me.fly") || player.hasPermission("me.admin")) {
                     // toggle player's flight
