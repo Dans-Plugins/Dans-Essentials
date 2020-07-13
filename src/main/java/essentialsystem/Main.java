@@ -257,6 +257,11 @@ public final class Main extends JavaPlugin implements Listener {
             command.sendCoordinates(sender);
         }
 
+        if (label.equalsIgnoreCase("flyspeed")) {
+            FlySpeedCommand command = new FlySpeedCommand();
+            command.setFlySpeed(sender, args);
+        }
+
         return false;
     }
 
