@@ -20,10 +20,15 @@ public class FlySpeedCommand {
 
                 int speed = Integer.parseInt(args[0]);
 
-                if (player.getAllowFlight()) {
-                    player.setFlySpeed(speed);
-                } else {
-                    player.sendMessage(ChatColor.RED + "You don't have flight enabled!");
+                if (speed > 0 && speed <= 10) {
+                    if (player.getAllowFlight()) {
+                        player.setFlySpeed(speed);
+                    } else {
+                        player.sendMessage(ChatColor.RED + "You don't have flight enabled!");
+                    }
+                }
+                else {
+                    player.sendMessage(ChatColor.RED + "Fly speed can only be between 1-10");
                 }
 
             } else {
