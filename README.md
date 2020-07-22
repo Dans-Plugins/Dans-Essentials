@@ -17,3 +17,4 @@ A minecraft plugin that provides miscellaneous commands.
 - 0.9 'Nicknames' update
 - 1.0 'Get Position' update
 - 1.1 'Fly Speed' update
+- 1.2 'Gamemode Shortcuts' update
