@@ -20,21 +20,21 @@ public class GamemodeCommand {
 
             Player player = (Player) sender;
 
-            if (player.hasPermission("medievalessentials.gm") || player.hasPermission("medievalessentials.admin")) {
+            if (player.hasPermission("me.gm") || player.hasPermission("me.admin")) {
 
                 if (args.length > 0) {
 
                     if (args[0].equalsIgnoreCase("0")) {
 
                         player.setGameMode(GameMode.SURVIVAL);
-                        player.sendMessage(ChatColor.GREEN + "You are now in survival mdoe!");
+                        player.sendMessage(ChatColor.GREEN + "You are now in survival mode!");
 
                     }
 
                     if (args[0].equalsIgnoreCase("1")) {
 
                         player.setGameMode(GameMode.CREATIVE);
-                        player.sendMessage(ChatColor.GREEN + "You are now in creative mdoe!");
+                        player.sendMessage(ChatColor.GREEN + "You are now in creative mode!");
 
                     }
 
@@ -45,7 +45,7 @@ public class GamemodeCommand {
 
             }
             else {
-                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'medievalessentials.gm");
+                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'me.gm");
             }
 
         }
