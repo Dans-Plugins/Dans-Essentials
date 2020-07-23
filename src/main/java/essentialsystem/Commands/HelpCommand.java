@@ -25,6 +25,7 @@ public class HelpCommand {
                 sender.sendMessage(ChatColor.AQUA + "/nick - Give another player a nickname.");
 //                sender.sendMessage(ChatColor.AQUA + "/whois - Find out a player's IGN.");
                 sender.sendMessage(ChatColor.AQUA + "/getpos - Get your coordinates.");
+                sender.sendMessage(ChatColor.AQUA + "/gm (number) - Set your gamemode.");
             }
             else {
                 sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.help' permission to use this command.");

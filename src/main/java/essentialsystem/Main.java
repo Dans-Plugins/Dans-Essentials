@@ -262,6 +262,11 @@ public final class Main extends JavaPlugin implements Listener {
             command.setFlySpeed(sender, args);
         }
 
+        if (label.equalsIgnoreCase("gm")) {
+            GamemodeCommand command = new GamemodeCommand(this);
+            command.setGamemode(sender, args);
+        }
+
         return false;
     }
 
