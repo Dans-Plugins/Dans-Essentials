@@ -1,7 +1,7 @@
 package essentialsystem.Commands;
 
 import essentialsystem.Main;
-import essentialsystem.NicknameRecord;
+import essentialsystem.Objects.NicknameRecord;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
