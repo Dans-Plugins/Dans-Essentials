@@ -270,7 +270,8 @@ public final class Main extends JavaPlugin implements Listener {
         }
 
         if (label.equalsIgnoreCase("back")) {
-
+            BackCommand command = new BackCommand(this);
+            command.teleportToLastLocation(sender);
         }
 
         if (label.equalsIgnoreCase("logins")) {
