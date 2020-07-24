@@ -267,6 +267,15 @@ public final class Main extends JavaPlugin implements Listener {
             command.setGamemode(sender, args);
         }
 
+        if (label.equalsIgnoreCase("back")) {
+
+        }
+
+        if (label.equalsIgnoreCase("logins")) {
+            LoginsCommand command = new LoginsCommand(this);
+            command.showLogins(sender);
+        }
+
         return false;
     }
 
