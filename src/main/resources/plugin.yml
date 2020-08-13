@@ -1,5 +1,5 @@
 name: MedievalEssentials
-version: 1.3
+version: 1.4
 author: DanTheTechMan
 main: essentialsystem.Main
 api-version: 1.13
@@ -20,3 +20,4 @@ commands:
   gm:
   logins:
   back:
+  label:
