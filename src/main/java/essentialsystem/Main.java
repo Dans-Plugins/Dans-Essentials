@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -279,7 +280,12 @@ public final class Main extends JavaPlugin implements Listener {
             command.showLogins(sender);
         }
 
-        return false;
+        if (label.equalsIgnoreCase("label")) {
+            LabelCommand command = new LabelCommand(this);
+            command.renameItemInMainHand(sender, args);
+        }
+
+        return true;
     }
 
     public static String createStringFromArgs(int start, int end, String[] args) {
