@@ -21,3 +21,5 @@ commands:
   logins:
   back:
   label:
+  invsee:
+  clearinv:

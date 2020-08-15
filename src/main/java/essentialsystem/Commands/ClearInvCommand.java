@@ -1,0 +1,25 @@
+package essentialsystem.Commands;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class ClearInvCommand {
+
+    public void clearInv(CommandSender sender, String[] args){
+        if (sender instanceof Player) {
+            Player clearer = (Player) sender;
+            Player player = Bukkit.getPlayer(args[0]);
+
+            if (args.length != 1 || player == null) {
+                clearer.sendMessage("You must provide 1 argument, that is a valid online player name.");
+                return;
+            }
+
+            if (clearer.hasPermission("me.clearinv") || clearer.hasPermission("me.admin")) {
+                player.getInventory().clear();
+            }
+        }
+    }
+
+}
