@@ -285,6 +285,16 @@ public final class Main extends JavaPlugin implements Listener {
             command.renameItemInMainHand(sender, args);
         }
 
+        if (label.equalsIgnoreCase("invsee"))  {
+            InvseeCommand command = new InvseeCommand();
+            command.invseePlayer(sender, args);
+        }
+
+        if (label.equalsIgnoreCase("clearinv"))  {
+            ClearInvCommand command = new ClearInvCommand();
+            command.clearInv(sender, args);
+        }
+
         return true;
     }
 
