@@ -9,9 +9,16 @@ public class InvseeCommand {
     public void invseePlayer(CommandSender sender, String[] args){
         if (sender instanceof Player) {
             Player spyer = (Player) sender;
+
+
+            if (args.length != 1) {
+                spyer.sendMessage("You must provide 1 argument, that is a valid online player name.");
+                return;
+            }
+
             Player player = Bukkit.getPlayer(args[0]);
 
-            if (args.length != 1 || player == null) {
+            if (player == null){
                 spyer.sendMessage("You must provide 1 argument, that is a valid online player name.");
                 return;
             }

@@ -9,9 +9,15 @@ public class ClearInvCommand {
     public void clearInv(CommandSender sender, String[] args){
         if (sender instanceof Player) {
             Player clearer = (Player) sender;
+
+            if (args.length != 1) {
+                clearer.sendMessage("You must provide 1 argument, that is a valid online player name.");
+                return;
+            }
+
             Player player = Bukkit.getPlayer(args[0]);
 
-            if (args.length != 1 || player == null) {
+            if (player == null){
                 clearer.sendMessage("You must provide 1 argument, that is a valid online player name.");
                 return;
             }
