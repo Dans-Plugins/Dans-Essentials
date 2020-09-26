@@ -27,6 +27,8 @@ public class HelpCommand {
                 sender.sendMessage(ChatColor.AQUA + "/getpos - Get your coordinates.");
                 sender.sendMessage(ChatColor.AQUA + "/gm (number) - Set your gamemode.");
                 sender.sendMessage(ChatColor.AQUA + "/label (name) - Rename an item.");
+                sender.sendMessage(ChatColor.AQUA + "/invsee (player) - Interact with a player's inventory.");
+                sender.sendMessage(ChatColor.AQUA + "/clearinv (player) - Clear a player's inventory.");
             }
             else {
                 sender.sendMessage(ChatColor.RED + "Sorry! You need the 'me.help' permission to use this command.");
