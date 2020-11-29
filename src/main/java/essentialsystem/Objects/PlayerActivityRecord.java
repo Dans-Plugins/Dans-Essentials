@@ -51,9 +51,8 @@ public class PlayerActivityRecord {
             int hours = minutes / 60;
             int days = hours / 24;
             int hoursSince = hours - (days * 24);
-            int minutesSince = minutes - (hours * 60) - (days * 24 * 60);
 
-            return days + " days, " + hoursSince + " hours, and " + minutesSince + " minutes";
+            return days + " days and " + hoursSince + " hours";
         }
         else {
             return null;
