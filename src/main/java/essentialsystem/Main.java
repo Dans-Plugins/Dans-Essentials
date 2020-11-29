@@ -79,9 +79,9 @@ public final class Main extends JavaPlugin implements Listener {
             }
             File saveFile = new File("./plugins/Medieval-Essentials/" + "activity-record-filenames.txt");
             if (saveFile.createNewFile()) {
-                System.out.println("Save file for activity record filenames created.");
+//                System.out.println("Save file for activity record filenames created.");
             } else {
-                System.out.println("Save file for activity record filenames already exists. Overwriting.");
+//                System.out.println("Save file for activity record filenames already exists. Overwriting.");
             }
 
             FileWriter saveWriter = new FileWriter(saveFile);
@@ -112,9 +112,9 @@ public final class Main extends JavaPlugin implements Listener {
             }
             File saveFile = new File("./plugins/Medieval-Essentials/" + "nicknames.txt");
             if (saveFile.createNewFile()) {
-                System.out.println("Save file for nickname record filenames created.");
+//                System.out.println("Save file for nickname record filenames created.");
             } else {
-                System.out.println("Save file for nickname record filenames already exists. Overwriting.");
+//                System.out.println("Save file for nickname record filenames already exists. Overwriting.");
             }
 
             FileWriter saveWriter = new FileWriter(saveFile);

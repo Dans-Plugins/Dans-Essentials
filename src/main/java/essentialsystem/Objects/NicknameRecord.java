@@ -41,9 +41,9 @@ public class NicknameRecord {
             }
             File saveFile = new File("./plugins/Medieval-Essentials/Nicknames/" + playerName + ".txt");
             if (saveFile.createNewFile()) {
-                System.out.println("Nickname Record for " +  playerName + " created.");
+//                System.out.println("Nickname Record for " +  playerName + " created.");
             } else {
-                System.out.println("Nickname Record for " +  playerName + " already exists. Altering.");
+//                System.out.println("Nickname Record for " +  playerName + " already exists. Altering.");
             }
 
             FileWriter saveWriter = new FileWriter("./plugins/Medieval-Essentials/Nicknames/" + playerName + ".txt");
@@ -54,7 +54,7 @@ public class NicknameRecord {
 
             saveWriter.close();
 
-            System.out.println("Successfully saved Nickname Records.");
+//            System.out.println("Successfully saved Nickname Records.");
 
         } catch (IOException e) {
             System.out.println("An error occurred saving a Nickname Record.");

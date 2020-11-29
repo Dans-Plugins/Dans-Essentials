@@ -71,9 +71,9 @@ public class PlayerActivityRecord {
             }
             File saveFile = new File("./plugins/Medieval-Essentials/Activity-Records/" + playerName + ".txt");
             if (saveFile.createNewFile()) {
-                System.out.println("Activity Record for " +  playerName + " created.");
+//                System.out.println("Activity Record for " +  playerName + " created.");
             } else {
-                System.out.println("Activity Record for " +  playerName + " already exists. Altering.");
+//                System.out.println("Activity Record for " +  playerName + " already exists. Altering.");
             }
 
             FileWriter saveWriter = new FileWriter("./plugins/Medieval-Essentials/Activity-Records/" + playerName + ".txt");
@@ -93,7 +93,7 @@ public class PlayerActivityRecord {
 
             saveWriter.close();
 
-            System.out.println("Successfully saved activity record.");
+//            System.out.println("Successfully saved activity record.");
 
         } catch (IOException e) {
             System.out.println("An error occurred saving an activity record.");
