@@ -5,6 +5,7 @@ import essentialsystem.Objects.MOTD;
 import essentialsystem.Objects.NicknameRecord;
 import essentialsystem.Objects.PlayerActivityRecord;
 import essentialsystem.bStats.Metrics;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -316,6 +317,12 @@ public final class Main extends JavaPlugin implements Listener {
     @EventHandler()
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
+        if (!player.hasPlayedBefore()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                p.sendMessage(ChatColor.GREEN + "Welcome " + player.getName() + " to the server!");
+            }
+        }
 
         // show motd
         if (motd.isMessageSet()) {
