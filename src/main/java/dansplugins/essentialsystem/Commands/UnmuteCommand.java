@@ -1,5 +1,6 @@
 package dansplugins.essentialsystem.Commands;
 
+import dansplugins.essentialsystem.EphemeralData;
 import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -24,8 +25,8 @@ public class UnmuteCommand {
                 if (args.length > 0) {
                     if (getServer().getPlayer(args[0]) != null) {
 
-                        if (medievalEssentials.mutedPlayers.contains(args[0])) {
-                            medievalEssentials.mutedPlayers.remove(args[0]);
+                        if (EphemeralData.getInstance().getMutedPlayers().contains(args[0])) {
+                            EphemeralData.getInstance().getMutedPlayers().remove(args[0]);
                             getServer().getPlayer(args[0]).sendMessage(ChatColor.GREEN + "You have been unmuted.");
                             player.sendMessage(ChatColor.GREEN + "Player has been unmuted.");
                         }

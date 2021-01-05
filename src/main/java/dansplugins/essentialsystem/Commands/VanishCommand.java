@@ -1,5 +1,6 @@
 package dansplugins.essentialsystem.Commands;
 
+import dansplugins.essentialsystem.EphemeralData;
 import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -19,7 +20,7 @@ public class VanishCommand {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (player.hasPermission("me.vanish") || player.hasPermission("me.admin")) {
-                if (!medievalEssentials.vanishedPlayers.contains(player.getName())) {
+                if (!EphemeralData.getInstance().getVanishedPlayers().contains(player.getName())) {
                     hidePlayer(player);
                     player.sendMessage(ChatColor.GREEN + "You are now hidden!");
                 }
@@ -39,7 +40,7 @@ public class VanishCommand {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
                 target.hidePlayer(medievalEssentials, player);
-                medievalEssentials.vanishedPlayers.add(player.getName());
+                EphemeralData.getInstance().getVanishedPlayers().add(player.getName());
             }
         }
 
@@ -49,7 +50,7 @@ public class VanishCommand {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
                 target.showPlayer(medievalEssentials, player);
-                medievalEssentials.vanishedPlayers.remove(player.getName());
+                EphemeralData.getInstance().getVanishedPlayers().remove(player.getName());
             }
         }
     }

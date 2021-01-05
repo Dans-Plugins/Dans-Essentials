@@ -1,5 +1,6 @@
 package dansplugins.essentialsystem.Commands;
 
+import dansplugins.essentialsystem.EphemeralData;
 import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -24,9 +25,9 @@ public class MuteCommand {
                 if (args.length > 0) {
                     if (getServer().getPlayer(args[0]) != null) {
 
-                        if (!medievalEssentials.mutedPlayers.contains(args[0])) {
+                        if (!EphemeralData.getInstance().getMutedPlayers().contains(args[0])) {
                             if (!player.getName().equalsIgnoreCase(args[0])) {
-                                medievalEssentials.mutedPlayers.add(args[0]);
+                                EphemeralData.getInstance().getMutedPlayers().add(args[0]);
                                 getServer().getPlayer(args[0]).sendMessage(ChatColor.RED + "You have been muted.");
                                 player.sendMessage(ChatColor.GREEN + "Player has been muted.");
                             }

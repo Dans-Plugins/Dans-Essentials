@@ -1,13 +1,11 @@
 package dansplugins.essentialsystem;
 
 import dansplugins.essentialsystem.Commands.*;
-import dansplugins.essentialsystem.Objects.MOTD;
 import dansplugins.essentialsystem.Objects.NicknameRecord;
 import dansplugins.essentialsystem.Objects.PlayerActivityRecord;
 import dansplugins.essentialsystem.bStats.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,17 +18,10 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MedievalEssentials extends JavaPlugin implements Listener {
 
     private static MedievalEssentials instance;
-
-    // ephemeral
-    public ArrayList<String> vanishedPlayers = new ArrayList<>();
-    public ArrayList<String> mutedPlayers = new ArrayList<>();
-    public HashMap<Player, Location> lastLogins = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -211,7 +202,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
         }
 
         // hide vanished players from this player
-        for (String vanishedPlayer : vanishedPlayers) {
+        for (String vanishedPlayer : EphemeralData.getInstance().getVanishedPlayers()) {
             event.getPlayer().hidePlayer(this, getServer().getPlayer(vanishedPlayer));
         }
 
@@ -272,7 +263,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
 
     @EventHandler()
     public void onChat(AsyncPlayerChatEvent event) {
-        if (mutedPlayers.contains(event.getPlayer().getName())) {
+        if (EphemeralData.getInstance().getMutedPlayers().contains(event.getPlayer().getName())) {
             event.getPlayer().sendMessage(ChatColor.RED + "You are currently muted.");
             event.setCancelled(true);
         }
@@ -293,7 +284,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
 
     @EventHandler()
     public void onTeleport(PlayerTeleportEvent event) {
-        lastLogins.put(event.getPlayer(), event.getFrom());
+        EphemeralData.getInstance().getLastLogins().put(event.getPlayer(), event.getFrom());
     }
 
 }

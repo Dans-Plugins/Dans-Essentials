@@ -1,5 +1,6 @@
 package dansplugins.essentialsystem.Commands;
 
+import dansplugins.essentialsystem.EphemeralData;
 import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -21,7 +22,7 @@ public class BackCommand {
 
             if (player.hasPermission("me.back") || player.hasPermission("me.admin")) {
 
-                player.teleport(medievalEssentials.lastLogins.get(player));
+                player.teleport(EphemeralData.getInstance().getLastLogins().get(player));
                 player.sendMessage(ChatColor.AQUA + "Teleported to your last location!");
 
             }
