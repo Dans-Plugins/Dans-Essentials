@@ -1,7 +1,7 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
-import essentialsystem.Objects.NicknameRecord;
+import dansplugins.essentialsystem.MedievalEssentials;
+import dansplugins.essentialsystem.Objects.NicknameRecord;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -10,10 +10,10 @@ import static org.bukkit.Bukkit.getServer;
 
 public class NickCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public NickCommand(Main plugin) {
-        main = plugin;
+    public NickCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void changeDisplayName(CommandSender sender, String[] args) {
@@ -41,7 +41,7 @@ public class NickCommand {
                         NicknameRecord record = new NicknameRecord();
                         record.setPlayerName(target.getName());
                         record.setNickname(args[1]);
-                        main.nicknames.add(record);
+                        medievalEssentials.nicknames.add(record);
                     }
                     else {
                         player.sendMessage(ChatColor.RED + "That player isn't online");

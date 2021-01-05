@@ -1,6 +1,6 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
@@ -8,10 +8,10 @@ import org.bukkit.entity.Player;
 
 public class GamemodeCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public GamemodeCommand(Main plugin) {
-        main = plugin;
+    public GamemodeCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void setGamemode(CommandSender sender, String[] args) {

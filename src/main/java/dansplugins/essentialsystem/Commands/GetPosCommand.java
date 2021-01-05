@@ -1,16 +1,16 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class GetPosCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public GetPosCommand(Main plugin) {
-        main = plugin;
+    public GetPosCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void sendCoordinates(CommandSender sender) {
@@ -18,7 +18,7 @@ public class GetPosCommand {
             Player player = (Player) sender;
 
             if (player.hasPermission("medievalessentials.getpos") || player.hasPermission("medievalessentials.default")) {
-                int[] coords = main.getPlayersPosition(player);
+                int[] coords = medievalEssentials.getPlayersPosition(player);
 
                 player.sendMessage(ChatColor.AQUA + "\nYour current coordinates are " + coords[0] + " " + coords[1] + " " + coords[2] + "\n");
             }

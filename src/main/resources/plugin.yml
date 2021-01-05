@@ -1,7 +1,7 @@
 name: MedievalEssentials
-version: 1.4
+version: 1.5
 author: DanTheTechMan
-main: essentialsystem.Main
+main: dansplugins.essentialsystem.MedievalEssentials
 api-version: 1.13
 
 commands:

@@ -1,6 +1,6 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -9,10 +9,10 @@ import static org.bukkit.Bukkit.getServer;
 
 public class MuteCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public MuteCommand(Main plugin) {
-        main = plugin;
+    public MuteCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void mutePlayer(CommandSender sender, String[] args) {
@@ -24,9 +24,9 @@ public class MuteCommand {
                 if (args.length > 0) {
                     if (getServer().getPlayer(args[0]) != null) {
 
-                        if (!main.mutedPlayers.contains(args[0])) {
+                        if (!medievalEssentials.mutedPlayers.contains(args[0])) {
                             if (!player.getName().equalsIgnoreCase(args[0])) {
-                                main.mutedPlayers.add(args[0]);
+                                medievalEssentials.mutedPlayers.add(args[0]);
                                 getServer().getPlayer(args[0]).sendMessage(ChatColor.RED + "You have been muted.");
                                 player.sendMessage(ChatColor.GREEN + "Player has been muted.");
                             }

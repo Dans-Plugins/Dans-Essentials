@@ -1,6 +1,6 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -9,10 +9,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class LabelCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public LabelCommand(Main plugin) {
-        main = plugin;
+    public LabelCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void renameItemInMainHand(CommandSender sender, String[] args) {

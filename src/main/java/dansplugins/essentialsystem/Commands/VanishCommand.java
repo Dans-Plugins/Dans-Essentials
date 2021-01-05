@@ -1,6 +1,6 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -9,17 +9,17 @@ import static org.bukkit.Bukkit.getServer;
 
 public class VanishCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public VanishCommand(Main plugin) {
-        main = plugin;
+    public VanishCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void toggleVisibility(CommandSender sender) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (player.hasPermission("me.vanish") || player.hasPermission("me.admin")) {
-                if (!main.vanishedPlayers.contains(player.getName())) {
+                if (!medievalEssentials.vanishedPlayers.contains(player.getName())) {
                     hidePlayer(player);
                     player.sendMessage(ChatColor.GREEN + "You are now hidden!");
                 }
@@ -38,8 +38,8 @@ public class VanishCommand {
     public void hidePlayer(Player player) {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
-                target.hidePlayer(main, player);
-                main.vanishedPlayers.add(player.getName());
+                target.hidePlayer(medievalEssentials, player);
+                medievalEssentials.vanishedPlayers.add(player.getName());
             }
         }
 
@@ -48,8 +48,8 @@ public class VanishCommand {
     public void showPlayer(Player player) {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
-                target.showPlayer(main, player);
-                main.vanishedPlayers.remove(player.getName());
+                target.showPlayer(medievalEssentials, player);
+                medievalEssentials.vanishedPlayers.remove(player.getName());
             }
         }
     }

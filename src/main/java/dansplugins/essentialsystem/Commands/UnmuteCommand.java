@@ -1,6 +1,6 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -9,10 +9,10 @@ import static org.bukkit.Bukkit.getServer;
 
 public class UnmuteCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public UnmuteCommand(Main plugin) {
-        main = plugin;
+    public UnmuteCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void unmutePlayer(CommandSender sender, String[] args) {
@@ -24,8 +24,8 @@ public class UnmuteCommand {
                 if (args.length > 0) {
                     if (getServer().getPlayer(args[0]) != null) {
 
-                        if (main.mutedPlayers.contains(args[0])) {
-                            main.mutedPlayers.remove(args[0]);
+                        if (medievalEssentials.mutedPlayers.contains(args[0])) {
+                            medievalEssentials.mutedPlayers.remove(args[0]);
                             getServer().getPlayer(args[0]).sendMessage(ChatColor.GREEN + "You have been unmuted.");
                             player.sendMessage(ChatColor.GREEN + "Player has been unmuted.");
                         }

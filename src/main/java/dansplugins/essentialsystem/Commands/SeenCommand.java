@@ -1,9 +1,9 @@
 // Permissions:
 // 'me.seen'
 
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -12,10 +12,10 @@ import static org.bukkit.Bukkit.getServer;
 
 public class SeenCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public SeenCommand(Main plugin) {
-        main = plugin;
+    public SeenCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void showLastLogout(CommandSender sender, String[] args) {
@@ -65,8 +65,8 @@ public class SeenCommand {
     }
 
     String getLastLogoutOfPlayer(String playerName) {
-        if (main.hasActivityRecord(playerName)) {
-            String lastLogout = main.getActivityRecord(playerName).getTimeSinceLastLogout();
+        if (medievalEssentials.hasActivityRecord(playerName)) {
+            String lastLogout = medievalEssentials.getActivityRecord(playerName).getTimeSinceLastLogout();
             if (lastLogout != null) {
                 return lastLogout;
             }

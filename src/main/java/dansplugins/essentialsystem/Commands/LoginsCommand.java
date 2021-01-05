@@ -1,16 +1,16 @@
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import essentialsystem.Main;
+import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class LoginsCommand {
 
-    Main main = null;
+    MedievalEssentials medievalEssentials = null;
 
-    public LoginsCommand(Main plugin) {
-        main = plugin;
+    public LoginsCommand(MedievalEssentials plugin) {
+        medievalEssentials = plugin;
     }
 
     public void showLogins(CommandSender sender) {
@@ -21,7 +21,7 @@ public class LoginsCommand {
 
             if (player.hasPermission("me.logins") || player.hasPermission("me.default")) {
 
-                int logins = main.getActivityRecord(player.getName()).getLogins();
+                int logins = medievalEssentials.getActivityRecord(player.getName()).getLogins();
 
                 player.sendMessage(ChatColor.AQUA + "You have logged in " + logins + " times.");
 

@@ -1,7 +1,7 @@
 // Permissions:
 // 'me.broadcast'
 
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

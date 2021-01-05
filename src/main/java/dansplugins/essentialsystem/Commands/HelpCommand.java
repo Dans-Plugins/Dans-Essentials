@@ -1,7 +1,7 @@
 // Permissions:
 // 'me.help'
 
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

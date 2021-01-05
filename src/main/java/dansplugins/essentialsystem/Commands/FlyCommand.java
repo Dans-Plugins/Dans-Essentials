@@ -2,9 +2,8 @@
 // 'me.fly'
 // 'me.fly.others'
 
-package essentialsystem.Commands;
+package dansplugins.essentialsystem.Commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

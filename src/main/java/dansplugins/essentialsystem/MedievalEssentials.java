@@ -1,10 +1,10 @@
-package essentialsystem;
+package dansplugins.essentialsystem;
 
-import essentialsystem.Commands.*;
-import essentialsystem.Objects.MOTD;
-import essentialsystem.Objects.NicknameRecord;
-import essentialsystem.Objects.PlayerActivityRecord;
-import essentialsystem.bStats.Metrics;
+import dansplugins.essentialsystem.Commands.*;
+import dansplugins.essentialsystem.Objects.MOTD;
+import dansplugins.essentialsystem.Objects.NicknameRecord;
+import dansplugins.essentialsystem.Objects.PlayerActivityRecord;
+import dansplugins.essentialsystem.bStats.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -19,15 +19,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public final class Main extends JavaPlugin implements Listener {
+public class MedievalEssentials extends JavaPlugin implements Listener {
+
+    private static MedievalEssentials instance;
 
     public MOTD motd = new MOTD();
     public ArrayList<PlayerActivityRecord> activityRecords = new ArrayList<>();
@@ -40,11 +38,11 @@ public final class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         System.out.println("Medieval Essentials in enabling...");
 
+        instance = this;
+
         this.getServer().getPluginManager().registerEvents(this, this);
 
-        motd.load();
-        loadActivityRecords();
-        loadNicknames();
+        StorageManager.getInstance().load();
 
         int pluginId = 9527;
         Metrics metrics = new Metrics(this, pluginId);
@@ -56,142 +54,13 @@ public final class Main extends JavaPlugin implements Listener {
     public void onDisable() {
         System.out.println("Medieval Essentials in disabling...");
 
-        motd.save();
-        saveActivityRecords();
-        saveActivityRecordFilenames();
-        saveNicknames();
-        saveNicknameFilenames();
+        StorageManager.getInstance().save();
 
         System.out.println("Medieval Essentials is disabled!");
     }
 
-    public void saveActivityRecords() {
-        for (PlayerActivityRecord record : activityRecords) {
-            record.save();
-        }
-    }
-
-    public void saveActivityRecordFilenames() {
-        try {
-            File saveFolder = new File("./plugins/Medieval-Essentials/");
-            if (!saveFolder.exists()) {
-                saveFolder.mkdir();
-            }
-            File saveFile = new File("./plugins/Medieval-Essentials/" + "activity-record-filenames.txt");
-            if (saveFile.createNewFile()) {
-//                System.out.println("Save file for activity record filenames created.");
-            } else {
-//                System.out.println("Save file for activity record filenames already exists. Overwriting.");
-            }
-
-            FileWriter saveWriter = new FileWriter(saveFile);
-
-            // actual saving takes place here
-            for (PlayerActivityRecord record : activityRecords) {
-                saveWriter.write(record.getPlayerName() + ".txt" + "\n");
-            }
-
-            saveWriter.close();
-
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving activity record filenames.");
-        }
-    }
-
-    public void saveNicknames() {
-        for (NicknameRecord record : nicknames) {
-            record.save();
-        }
-    }
-
-    public void saveNicknameFilenames() {
-        try {
-            File saveFolder = new File("./plugins/Medieval-Essentials/");
-            if (!saveFolder.exists()) {
-                saveFolder.mkdir();
-            }
-            File saveFile = new File("./plugins/Medieval-Essentials/" + "nicknames.txt");
-            if (saveFile.createNewFile()) {
-//                System.out.println("Save file for nickname record filenames created.");
-            } else {
-//                System.out.println("Save file for nickname record filenames already exists. Overwriting.");
-            }
-
-            FileWriter saveWriter = new FileWriter(saveFile);
-
-            // actual saving takes place here
-            for (NicknameRecord record : nicknames) {
-                saveWriter.write(record.getPlayerName() + ".txt" + "\n");
-            }
-
-            saveWriter.close();
-
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving nickname record filenames.");
-        }
-    }
-
-    public void loadActivityRecords() {
-        try {
-            System.out.println("Attempting to load activity records...");
-            File loadFile = new File("./plugins/Medieval-Essentials/" + "activity-record-filenames.txt");
-            Scanner loadReader = new Scanner(loadFile);
-
-            // actual loading
-            while (loadReader.hasNextLine()) {
-                String nextName = loadReader.nextLine();
-                PlayerActivityRecord temp = new PlayerActivityRecord();
-                temp.setPlayerName(nextName);
-                temp.load(nextName); // provides owner field among other things
-
-                // existence check
-                boolean exists = false;
-                for (int i = 0; i < activityRecords.size(); i++) {
-                    if (activityRecords.get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
-                        activityRecords.remove(i);
-                    }
-                }
-
-                activityRecords.add(temp);
-
-            }
-
-            loadReader.close();
-            System.out.println("Activity records successfully loaded.");
-        } catch (FileNotFoundException e) {
-            System.out.println("Error loading the activity records!");
-        }
-    }
-
-    public void loadNicknames() {
-        try {
-            System.out.println("Attempting to load nickname records...");
-            File loadFile = new File("./plugins/Medieval-Essentials/" + "nicknames.txt");
-            Scanner loadReader = new Scanner(loadFile);
-
-            // actual loading
-            while (loadReader.hasNextLine()) {
-                String nextName = loadReader.nextLine();
-                NicknameRecord temp = new NicknameRecord();
-                temp.load(nextName); // provides owner field among other things
-
-                // existence check
-                boolean exists = false;
-                for (int i = 0; i < nicknames.size(); i++) {
-                    if (nicknames.get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
-                        nicknames.remove(i);
-                    }
-                }
-
-                nicknames.add(temp);
-
-            }
-
-            loadReader.close();
-            System.out.println("Nickname records successfully loaded.");
-        } catch (FileNotFoundException e) {
-            System.out.println("Error loading the nickname records!");
-        }
+    public static MedievalEssentials getInstance() {
+        return instance;
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
