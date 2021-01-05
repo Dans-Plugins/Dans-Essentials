@@ -59,17 +59,6 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
         return true;
     }
 
-    public static String createStringFromArgs(int start, int end, String[] args) {
-        String toReturn = "";
-        for (int i = start; i < end; i++) {
-            toReturn = toReturn + args[i];
-            if (i < end - 1) {
-                toReturn = toReturn + " ";
-            }
-        }
-        return toReturn;
-    }
-
     @EventHandler()
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();

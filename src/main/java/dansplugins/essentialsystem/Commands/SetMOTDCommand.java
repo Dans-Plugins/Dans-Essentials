@@ -3,6 +3,7 @@
 
 package dansplugins.essentialsystem.Commands;
 
+import dansplugins.essentialsystem.ArgumentParser;
 import dansplugins.essentialsystem.MedievalEssentials;
 import dansplugins.essentialsystem.data.PersistentData;
 import org.bukkit.ChatColor;
@@ -16,7 +17,7 @@ public class SetMOTDCommand {
             sender.sendMessage(ChatColor.RED + "Usage: /setmotd (message)");
             return;
         }
-        String message = MedievalEssentials.createStringFromArgs(0, args.length, args);
+        String message = ArgumentParser.getInstance().createStringFromArgs(0, args.length, args);
         if (!(sender instanceof Player)) {
             // console can just set MOTD anytime
             PersistentData.getInstance().getMotd().setMessage(message);

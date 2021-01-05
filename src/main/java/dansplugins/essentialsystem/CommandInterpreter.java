@@ -4,8 +4,6 @@ import dansplugins.essentialsystem.Commands.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import static dansplugins.essentialsystem.MedievalEssentials.createStringFromArgs;
-
 public class CommandInterpreter {
 
     private static CommandInterpreter instance;
@@ -37,7 +35,7 @@ public class CommandInterpreter {
         if (label.equalsIgnoreCase("broadcast")) {
             BroadcastCommand command = new BroadcastCommand();
             if (args.length != 0) {
-                command.broadcast(sender, createStringFromArgs(0, args.length, args));
+                command.broadcast(sender, ArgumentParser.getInstance().createStringFromArgs(0, args.length, args));
             }
             else {
                 sender.sendMessage(ChatColor.RED + "Usage: /broadcast (message)");
