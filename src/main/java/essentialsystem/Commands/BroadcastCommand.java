@@ -19,6 +19,9 @@ public class BroadcastCommand {
                 sender.sendMessage("Sorry! You need the 'me.broadcast' permission to use this command.");
             }
         }
+        else {
+            sendAllPlayersMessage(message);
+        }
     }
 
     public static void sendAllPlayersMessage(String message) {
