@@ -27,11 +27,9 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
 
     private static MedievalEssentials instance;
 
-    public MOTD motd = new MOTD();
-    public ArrayList<PlayerActivityRecord> activityRecords = new ArrayList<>();
+    // ephemeral
     public ArrayList<String> vanishedPlayers = new ArrayList<>();
     public ArrayList<String> mutedPlayers = new ArrayList<>();
-    public ArrayList<NicknameRecord> nicknames = new ArrayList<>();
     public HashMap<Player, Location> lastLogins = new HashMap<>();
 
     @Override
@@ -194,9 +192,9 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
         }
 
         // show motd
-        if (motd.isMessageSet()) {
+        if (PersistentData.getInstance().getMotd().isMessageSet()) {
             if (player.hasPermission("me.motd") || player.hasPermission("me.default")) {
-                player.sendMessage(ChatColor.AQUA + motd.getMessage());
+                player.sendMessage(ChatColor.AQUA + PersistentData.getInstance().getMotd().getMessage());
             }
         }
 
@@ -205,7 +203,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
             PlayerActivityRecord newRecord = new PlayerActivityRecord();
             newRecord.setPlayerName(player.getName());
             newRecord.incrementLogins();
-            activityRecords.add(newRecord);
+            PersistentData.getInstance().getActivityRecords().add(newRecord);
         }
         else {
             // increment logins for player if player already has record
@@ -231,7 +229,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
     }
 
     public boolean hasActivityRecord(String playerName) {
-        for (PlayerActivityRecord record : activityRecords) {
+        for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
             if (record.getPlayerName().equalsIgnoreCase(playerName)) {
                 return true;
             }
@@ -240,7 +238,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
     }
 
     public PlayerActivityRecord getActivityRecord(String playerName) {
-        for (PlayerActivityRecord record : activityRecords) {
+        for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
             if (record.getPlayerName().equalsIgnoreCase(playerName)) {
                 return record;
             }
@@ -249,7 +247,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
     }
 
     public boolean hasNicknameRecord(String playerName) {
-        for (NicknameRecord record : nicknames) {
+        for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
             if (record.getPlayerName().equalsIgnoreCase(playerName)) {
                 return true;
             }
@@ -258,7 +256,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
     }
 
     public NicknameRecord getNicknameRecord(String playerName) {
-        for (NicknameRecord record : nicknames) {
+        for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
             if (record.getPlayerName().equalsIgnoreCase(playerName)) {
                 return record;
             }

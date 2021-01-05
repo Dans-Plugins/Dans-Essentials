@@ -4,6 +4,7 @@
 package dansplugins.essentialsystem.Commands;
 
 import dansplugins.essentialsystem.MedievalEssentials;
+import dansplugins.essentialsystem.PersistentData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -24,14 +25,14 @@ public class SetMOTDCommand {
         String message = MedievalEssentials.createStringFromArgs(0, args.length, args);
         if (!(sender instanceof Player)) {
             // console can just set MOTD anytime
-            medievalEssentials.motd.setMessage(message);
+            PersistentData.getInstance().getMotd().setMessage(message);
             sender.sendMessage("MOTD set!");
         }
         else {
             // player needs permission
             Player player = (Player) sender;
             if (player.hasPermission("me.setmotd") || player.hasPermission("me.admin")) {
-                medievalEssentials.motd.setMessage(message);
+                PersistentData.getInstance().getMotd().setMessage(message);
                 player.sendMessage(ChatColor.GREEN + "MOTD set!");
             }
             else {

@@ -25,7 +25,7 @@ public class StorageManager {
     }
 
     public void save() {
-        MedievalEssentials.getInstance().motd.save();
+        PersistentData.getInstance().getMotd().save();
         saveActivityRecords();
         saveActivityRecordFilenames();
         saveNicknames();
@@ -33,13 +33,13 @@ public class StorageManager {
     }
 
     public void load() {
-        MedievalEssentials.getInstance().motd.load();
+        PersistentData.getInstance().getMotd().load();
         loadActivityRecords();
         loadNicknames();
     }
 
     public void saveActivityRecords() {
-        for (PlayerActivityRecord record : MedievalEssentials.getInstance().activityRecords) {
+        for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
             record.save();
         }
     }
@@ -60,7 +60,7 @@ public class StorageManager {
             FileWriter saveWriter = new FileWriter(saveFile);
 
             // actual saving takes place here
-            for (PlayerActivityRecord record : MedievalEssentials.getInstance().activityRecords) {
+            for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
                 saveWriter.write(record.getPlayerName() + ".txt" + "\n");
             }
 
@@ -72,7 +72,7 @@ public class StorageManager {
     }
 
     public void saveNicknames() {
-        for (NicknameRecord record : MedievalEssentials.getInstance().nicknames) {
+        for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
             record.save();
         }
     }
@@ -93,7 +93,7 @@ public class StorageManager {
             FileWriter saveWriter = new FileWriter(saveFile);
 
             // actual saving takes place here
-            for (NicknameRecord record : MedievalEssentials.getInstance().nicknames) {
+            for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
                 saveWriter.write(record.getPlayerName() + ".txt" + "\n");
             }
 
@@ -119,13 +119,13 @@ public class StorageManager {
 
                 // existence check
                 boolean exists = false;
-                for (int i = 0; i < MedievalEssentials.getInstance().activityRecords.size(); i++) {
-                    if (MedievalEssentials.getInstance().activityRecords.get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
-                        MedievalEssentials.getInstance().activityRecords.remove(i);
+                for (int i = 0; i < PersistentData.getInstance().getActivityRecords().size(); i++) {
+                    if (PersistentData.getInstance().getActivityRecords().get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
+                        PersistentData.getInstance().getActivityRecords().remove(i);
                     }
                 }
 
-                MedievalEssentials.getInstance().activityRecords.add(temp);
+                PersistentData.getInstance().getActivityRecords().add(temp);
 
             }
 
@@ -150,13 +150,13 @@ public class StorageManager {
 
                 // existence check
                 boolean exists = false;
-                for (int i = 0; i < MedievalEssentials.getInstance().nicknames.size(); i++) {
-                    if (MedievalEssentials.getInstance().nicknames.get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
-                        MedievalEssentials.getInstance().nicknames.remove(i);
+                for (int i = 0; i < PersistentData.getInstance().getNicknames().size(); i++) {
+                    if (PersistentData.getInstance().getNicknames().get(i).getPlayerName().equalsIgnoreCase(temp.getPlayerName())) {
+                        PersistentData.getInstance().getNicknames().remove(i);
                     }
                 }
 
-                MedievalEssentials.getInstance().nicknames.add(temp);
+                PersistentData.getInstance().getNicknames().add(temp);
 
             }
 

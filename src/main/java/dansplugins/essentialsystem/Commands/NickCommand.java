@@ -2,6 +2,7 @@ package dansplugins.essentialsystem.Commands;
 
 import dansplugins.essentialsystem.MedievalEssentials;
 import dansplugins.essentialsystem.Objects.NicknameRecord;
+import dansplugins.essentialsystem.PersistentData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -41,7 +42,7 @@ public class NickCommand {
                         NicknameRecord record = new NicknameRecord();
                         record.setPlayerName(target.getName());
                         record.setNickname(args[1]);
-                        medievalEssentials.nicknames.add(record);
+                        PersistentData.getInstance().getNicknames().add(record);
                     }
                     else {
                         player.sendMessage(ChatColor.RED + "That player isn't online");
