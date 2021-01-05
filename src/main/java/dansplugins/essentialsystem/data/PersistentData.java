@@ -48,4 +48,40 @@ public class PersistentData {
     public void setNicknames(ArrayList<NicknameRecord> nicknames) {
         this.nicknames = nicknames;
     }
+
+    public boolean hasActivityRecord(String playerName) {
+        for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public PlayerActivityRecord getActivityRecord(String playerName) {
+        for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return record;
+            }
+        }
+        return null;
+    }
+
+    public boolean hasNicknameRecord(String playerName) {
+        for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public NicknameRecord getNicknameRecord(String playerName) {
+        for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
+            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
+                return record;
+            }
+        }
+        return null;
+    }
 }

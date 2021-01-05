@@ -4,6 +4,7 @@
 package dansplugins.essentialsystem.Commands;
 
 import dansplugins.essentialsystem.MedievalEssentials;
+import dansplugins.essentialsystem.data.PersistentData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -59,8 +60,8 @@ public class SeenCommand {
     }
 
     String getLastLogoutOfPlayer(String playerName) {
-        if (MedievalEssentials.getInstance().hasActivityRecord(playerName)) {
-            String lastLogout = MedievalEssentials.getInstance().getActivityRecord(playerName).getTimeSinceLastLogout();
+        if (PersistentData.getInstance().hasActivityRecord(playerName)) {
+            String lastLogout = PersistentData.getInstance().getActivityRecord(playerName).getTimeSinceLastLogout();
             if (lastLogout != null) {
                 return lastLogout;
             }

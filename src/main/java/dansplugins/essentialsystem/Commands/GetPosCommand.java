@@ -12,7 +12,7 @@ public class GetPosCommand {
             Player player = (Player) sender;
 
             if (player.hasPermission("medievalessentials.getpos") || player.hasPermission("medievalessentials.default")) {
-                int[] coords = MedievalEssentials.getInstance().getPlayersPosition(player);
+                int[] coords = getPlayersPosition(player);
 
                 player.sendMessage(ChatColor.AQUA + "\nYour current coordinates are " + coords[0] + " " + coords[1] + " " + coords[2] + "\n");
             }
@@ -22,6 +22,14 @@ public class GetPosCommand {
 
         }
 
+    }
+
+    private int[] getPlayersPosition(Player player) {
+        int[] coords = new int[3];
+        coords[0] = player.getLocation().getBlockX();
+        coords[1] = player.getLocation().getBlockY();
+        coords[2] = player.getLocation().getBlockZ();
+        return coords;
     }
 
 }

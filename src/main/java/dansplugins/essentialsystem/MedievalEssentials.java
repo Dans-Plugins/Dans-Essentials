@@ -77,7 +77,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
         }
 
         // assign activity record if player doesn't have one
-        if (!hasActivityRecord(player.getName())) {
+        if (!PersistentData.getInstance().hasActivityRecord(player.getName())) {
             PlayerActivityRecord newRecord = new PlayerActivityRecord();
             newRecord.setPlayerName(player.getName());
             newRecord.incrementLogins();
@@ -85,7 +85,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
         }
         else {
             // increment logins for player if player already has record
-            getActivityRecord(player.getName()).incrementLogins();
+            PersistentData.getInstance().getActivityRecord(player.getName()).incrementLogins();
         }
 
         // hide vanished players from this player
@@ -94,58 +94,22 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
         }
 
         // assign nickname
-        if (hasNicknameRecord(event.getPlayer().getName())) {
+        if (PersistentData.getInstance().hasNicknameRecord(event.getPlayer().getName())) {
 
             // if nickname not assigned
-            if (!event.getPlayer().getName().equalsIgnoreCase(getNicknameRecord(event.getPlayer().getName()).getNickname())) {
+            if (!event.getPlayer().getName().equalsIgnoreCase(PersistentData.getInstance().getNicknameRecord(event.getPlayer().getName()).getNickname())) {
                 // assign it
-                event.getPlayer().setDisplayName(ChatColor.translateAlternateColorCodes('&', getNicknameRecord(event.getPlayer().getName()).getNickname() + "&r"));
+                event.getPlayer().setDisplayName(ChatColor.translateAlternateColorCodes('&', PersistentData.getInstance().getNicknameRecord(event.getPlayer().getName()).getNickname() + "&r"));
             }
 
         }
 
-    }
-
-    public boolean hasActivityRecord(String playerName) {
-        for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
-            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public PlayerActivityRecord getActivityRecord(String playerName) {
-        for (PlayerActivityRecord record : PersistentData.getInstance().getActivityRecords()) {
-            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
-                return record;
-            }
-        }
-        return null;
-    }
-
-    public boolean hasNicknameRecord(String playerName) {
-        for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
-            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public NicknameRecord getNicknameRecord(String playerName) {
-        for (NicknameRecord record : PersistentData.getInstance().getNicknames()) {
-            if (record.getPlayerName().equalsIgnoreCase(playerName)) {
-                return record;
-            }
-        }
-        return null;
     }
 
     @EventHandler()
     public void onQuit(PlayerQuitEvent event) {
         ZonedDateTime now = ZonedDateTime.now();
-        getActivityRecord(event.getPlayer().getName()).setLastLogout(now);
+        PersistentData.getInstance().getActivityRecord(event.getPlayer().getName()).setLastLogout(now);
     }
 
     @EventHandler()
@@ -154,19 +118,6 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
             event.getPlayer().sendMessage(ChatColor.RED + "You are currently muted.");
             event.setCancelled(true);
         }
-    }
-
-    public int[] getPlayersPosition(Player player) {
-        int[] coords = new int[3];
-        coords[0] = player.getLocation().getBlockX();
-        coords[1] = player.getLocation().getBlockY();
-        coords[2] = player.getLocation().getBlockZ();
-        return coords;
-    }
-
-    public String getPlayersDirection(Player player) {
-        // TODO: implement this
-        return null;
     }
 
     @EventHandler()
