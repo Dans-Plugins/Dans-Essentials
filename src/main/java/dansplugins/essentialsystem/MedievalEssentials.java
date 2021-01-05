@@ -1,7 +1,5 @@
 package dansplugins.essentialsystem;
 
-import dansplugins.essentialsystem.Commands.*;
-import dansplugins.essentialsystem.Objects.NicknameRecord;
 import dansplugins.essentialsystem.Objects.PlayerActivityRecord;
 import dansplugins.essentialsystem.bStats.Metrics;
 import dansplugins.essentialsystem.data.EphemeralData;

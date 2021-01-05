@@ -1,6 +1,5 @@
 package dansplugins.essentialsystem.Commands;
 
-import dansplugins.essentialsystem.MedievalEssentials;
 import dansplugins.essentialsystem.Objects.NicknameRecord;
 import dansplugins.essentialsystem.data.PersistentData;
 import org.bukkit.ChatColor;

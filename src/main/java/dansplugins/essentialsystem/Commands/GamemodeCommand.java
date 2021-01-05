@@ -1,6 +1,5 @@
 package dansplugins.essentialsystem.Commands;
 
-import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
