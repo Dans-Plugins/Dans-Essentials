@@ -7,12 +7,6 @@ import org.bukkit.entity.Player;
 
 public class LoginsCommand {
 
-    MedievalEssentials medievalEssentials = null;
-
-    public LoginsCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
-
     public void showLogins(CommandSender sender) {
 
         if (sender instanceof Player) {
@@ -21,7 +15,7 @@ public class LoginsCommand {
 
             if (player.hasPermission("me.logins") || player.hasPermission("me.default")) {
 
-                int logins = medievalEssentials.getActivityRecord(player.getName()).getLogins();
+                int logins = MedievalEssentials.getInstance().getActivityRecord(player.getName()).getLogins();
 
                 player.sendMessage(ChatColor.AQUA + "You have logged in " + logins + " times.");
 

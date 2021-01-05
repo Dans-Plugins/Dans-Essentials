@@ -1,6 +1,6 @@
 package dansplugins.essentialsystem.Commands;
 
-import dansplugins.essentialsystem.EphemeralData;
+import dansplugins.essentialsystem.data.EphemeralData;
 import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -9,12 +9,6 @@ import org.bukkit.entity.Player;
 import static org.bukkit.Bukkit.getServer;
 
 public class MuteCommand {
-
-    MedievalEssentials medievalEssentials = null;
-
-    public MuteCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
 
     public void mutePlayer(CommandSender sender, String[] args) {
         if (sender instanceof Player) {

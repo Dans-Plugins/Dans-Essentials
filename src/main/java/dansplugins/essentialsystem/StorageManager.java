@@ -2,6 +2,7 @@ package dansplugins.essentialsystem;
 
 import dansplugins.essentialsystem.Objects.NicknameRecord;
 import dansplugins.essentialsystem.Objects.PlayerActivityRecord;
+import dansplugins.essentialsystem.data.PersistentData;
 
 import java.io.File;
 import java.io.FileNotFoundException;

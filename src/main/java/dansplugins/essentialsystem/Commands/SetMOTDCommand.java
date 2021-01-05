@@ -4,18 +4,12 @@
 package dansplugins.essentialsystem.Commands;
 
 import dansplugins.essentialsystem.MedievalEssentials;
-import dansplugins.essentialsystem.PersistentData;
+import dansplugins.essentialsystem.data.PersistentData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SetMOTDCommand {
-
-    MedievalEssentials medievalEssentials = null;
-
-    public SetMOTDCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
 
     public void setMOTD(CommandSender sender, String[] args) {
         if (args.length == 0) {

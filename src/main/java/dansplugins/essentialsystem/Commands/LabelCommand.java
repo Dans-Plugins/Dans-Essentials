@@ -9,12 +9,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class LabelCommand {
 
-    MedievalEssentials medievalEssentials = null;
-
-    public LabelCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
-
     public void renameItemInMainHand(CommandSender sender, String[] args) {
 
         if (sender instanceof Player) {

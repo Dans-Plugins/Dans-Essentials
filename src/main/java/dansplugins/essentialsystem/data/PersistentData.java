@@ -1,4 +1,4 @@
-package dansplugins.essentialsystem;
+package dansplugins.essentialsystem.data;
 
 import dansplugins.essentialsystem.Objects.MOTD;
 import dansplugins.essentialsystem.Objects.NicknameRecord;

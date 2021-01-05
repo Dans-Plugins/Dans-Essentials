@@ -2,7 +2,7 @@ package dansplugins.essentialsystem.Commands;
 
 import dansplugins.essentialsystem.MedievalEssentials;
 import dansplugins.essentialsystem.Objects.NicknameRecord;
-import dansplugins.essentialsystem.PersistentData;
+import dansplugins.essentialsystem.data.PersistentData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -10,12 +10,6 @@ import org.bukkit.entity.Player;
 import static org.bukkit.Bukkit.getServer;
 
 public class NickCommand {
-
-    MedievalEssentials medievalEssentials = null;
-
-    public NickCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
 
     public void changeDisplayName(CommandSender sender, String[] args) {
 

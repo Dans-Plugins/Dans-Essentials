@@ -12,12 +12,6 @@ import static org.bukkit.Bukkit.getServer;
 
 public class SeenCommand {
 
-    MedievalEssentials medievalEssentials = null;
-
-    public SeenCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
-
     public void showLastLogout(CommandSender sender, String[] args) {
         if (args.length == 0) {
             sender.sendMessage(ChatColor.RED + "Usage: /seen (player-name)");
@@ -65,8 +59,8 @@ public class SeenCommand {
     }
 
     String getLastLogoutOfPlayer(String playerName) {
-        if (medievalEssentials.hasActivityRecord(playerName)) {
-            String lastLogout = medievalEssentials.getActivityRecord(playerName).getTimeSinceLastLogout();
+        if (MedievalEssentials.getInstance().hasActivityRecord(playerName)) {
+            String lastLogout = MedievalEssentials.getInstance().getActivityRecord(playerName).getTimeSinceLastLogout();
             if (lastLogout != null) {
                 return lastLogout;
             }

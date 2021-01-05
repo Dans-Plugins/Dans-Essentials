@@ -8,12 +8,6 @@ import org.bukkit.entity.Player;
 
 public class GamemodeCommand {
 
-    MedievalEssentials medievalEssentials = null;
-
-    public GamemodeCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
-
     public void setGamemode(CommandSender sender, String[] args) {
 
         if (sender instanceof Player) {

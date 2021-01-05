@@ -1,18 +1,12 @@
 package dansplugins.essentialsystem.Commands;
 
-import dansplugins.essentialsystem.EphemeralData;
+import dansplugins.essentialsystem.data.EphemeralData;
 import dansplugins.essentialsystem.MedievalEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class BackCommand {
-
-    MedievalEssentials medievalEssentials = null;
-
-    public BackCommand(MedievalEssentials plugin) {
-        medievalEssentials = plugin;
-    }
 
     public void teleportToLastLocation(CommandSender sender) {
 

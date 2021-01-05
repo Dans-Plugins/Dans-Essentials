@@ -4,6 +4,8 @@ import dansplugins.essentialsystem.Commands.*;
 import dansplugins.essentialsystem.Objects.NicknameRecord;
 import dansplugins.essentialsystem.Objects.PlayerActivityRecord;
 import dansplugins.essentialsystem.bStats.Metrics;
+import dansplugins.essentialsystem.data.EphemeralData;
+import dansplugins.essentialsystem.data.PersistentData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -53,111 +55,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
-        if (label.equalsIgnoreCase("medievalessentials")) {
-            if (args.length > 0 && args[0].equalsIgnoreCase("help")) {
-                HelpCommand command = new HelpCommand();
-                command.sendHelpInfo(sender);
-            }
-        }
-
-        if (label.equalsIgnoreCase("fly")) {
-            FlyCommand command = new FlyCommand();
-            command.toggleFlight(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("broadcast")) {
-            BroadcastCommand command = new BroadcastCommand();
-            if (args.length != 0) {
-                command.broadcast(sender, createStringFromArgs(0, args.length, args));
-            }
-            else {
-                sender.sendMessage(ChatColor.RED + "Usage: /broadcast (message)");
-                return false;
-            }
-        }
-
-        if (label.equalsIgnoreCase("motd")) {
-            MOTDCommand command = new MOTDCommand(this);
-            command.showMOTD(sender);
-        }
-
-        if (label.equalsIgnoreCase("setmotd")) {
-            SetMOTDCommand command = new SetMOTDCommand(this);
-            command.setMOTD(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("seen")) {
-            SeenCommand command = new SeenCommand(this);
-            command.showLastLogout(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("vanish")) {
-            VanishCommand command = new VanishCommand(this);
-            command.toggleVisibility(sender);
-        }
-
-        if (label.equalsIgnoreCase("mute")) {
-            MuteCommand command = new MuteCommand(this);
-            command.mutePlayer(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("unmute")) {
-            UnmuteCommand command = new UnmuteCommand(this);
-            command.unmutePlayer(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("nick")) {
-            NickCommand command = new NickCommand(this);
-            command.changeDisplayName(sender, args);
-        }
-/*
-        if (label.equalsIgnoreCase("whois")) {
-            WhoIsCommand command = new WhoIsCommand();
-            command.showIGNToPlayer(sender, args);
-        }
-*/
-
-        if (label.equalsIgnoreCase("getpos")) {
-            GetPosCommand command = new GetPosCommand(this);
-            command.sendCoordinates(sender);
-        }
-
-        if (label.equalsIgnoreCase("flyspeed")) {
-            FlySpeedCommand command = new FlySpeedCommand();
-            command.setFlySpeed(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("gm")) {
-            GamemodeCommand command = new GamemodeCommand(this);
-            command.setGamemode(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("back")) {
-            BackCommand command = new BackCommand(this);
-            command.teleportToLastLocation(sender);
-        }
-
-        if (label.equalsIgnoreCase("logins")) {
-            LoginsCommand command = new LoginsCommand(this);
-            command.showLogins(sender);
-        }
-
-        if (label.equalsIgnoreCase("label")) {
-            LabelCommand command = new LabelCommand(this);
-            command.renameItemInMainHand(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("invsee"))  {
-            InvseeCommand command = new InvseeCommand();
-            command.invseePlayer(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("clearinv"))  {
-            ClearInvCommand command = new ClearInvCommand();
-            command.clearInv(sender, args);
-        }
-
+        CommandInterpreter.getInstance().interpretCommand(sender, label, args);
         return true;
     }
 
