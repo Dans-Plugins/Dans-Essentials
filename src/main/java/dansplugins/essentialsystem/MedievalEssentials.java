@@ -148,7 +148,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
         if (clickedBlock != null) {
             // if that block is a sign
             if (isSign(clickedBlock)) {
-                // if that sign has [Spawn]
+                // if that sign has [Warp]
                 Sign sign = (Sign) clickedBlock.getState();
                 if (sign.getLine(0).contains("[Warp]")) {
                     // acquire coordinates
