@@ -6,7 +6,7 @@
 
     <groupId>KingdomProgrammers</groupId>
     <artifactId>Medieval-Essentials</artifactId>
-    <version>v1.5-beta</version>
+    <version>v1.5-beta-2</version>
     <packaging>jar</packaging>
 
     <name>Medieval Essentials</name>
