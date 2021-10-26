@@ -23,3 +23,7 @@ commands:
   label:
   invsee:
   clearinv:
+
+permissions:
+  medievalessentials.usewarpsign:
+    default: true

@@ -151,6 +151,12 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
                 // if that sign has [Warp]
                 Sign sign = (Sign) clickedBlock.getState();
                 if (sign.getLine(0).contains("[Warp]")) {
+
+                    if (!event.getPlayer().hasPermission("medievalessentials.usewarpsign")) {
+                        event.getPlayer().sendMessage(ChatColor.RED + "You don't have permission to use this.");
+                        return;
+                    }
+
                     // acquire coordinates
                     try {
                         int x = Integer.parseInt(sign.getLine(1));
