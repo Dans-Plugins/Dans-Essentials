@@ -1,11 +1,11 @@
-name: MedievalEssentials
+name: DansEssentials
 version: 2.0-alpha-1
-author: DanTheTechMan
-main: dansplugins.essentialsystem.MedievalEssentials
+author: Daniel Stephenson
+main: dansplugins.essentialsystem.DansEssentials
 api-version: 1.13
 
 commands:
-  medievalessentials:
+  dansessentials:
   fly:
   broadcast:
   motd:
@@ -25,5 +25,5 @@ commands:
   clearinv:
 
 permissions:
-  medievalessentials.usewarpsign:
+  dansessentials.usewarpsign:
     default: true

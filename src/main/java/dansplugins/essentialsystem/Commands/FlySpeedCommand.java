@@ -11,7 +11,7 @@ public class FlySpeedCommand {
 
             Player player = (Player) sender;
 
-            if (player.hasPermission("me.flyspeed") || player.hasPermission("me.default")) {
+            if (player.hasPermission("de.flyspeed") || player.hasPermission("de.default")) {
                 // if not enough arguments
                 if (args.length == 0) {
                     player.sendMessage(ChatColor.RED + "Usage: /flyspeed (number)");

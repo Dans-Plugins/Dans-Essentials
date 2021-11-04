@@ -27,7 +27,7 @@ public class InvseeCommand {
                 spyer.sendMessage("Do not look at your own inventory silly! You can cause accidental dupes!");
             }
 
-            if (spyer.hasPermission("me.invsee") || spyer.hasPermission("me.admin")) {
+            if (spyer.hasPermission("de.invsee") || spyer.hasPermission("de.admin")) {
                 spyer.closeInventory();
                 spyer.openInventory(player.getInventory());
             }

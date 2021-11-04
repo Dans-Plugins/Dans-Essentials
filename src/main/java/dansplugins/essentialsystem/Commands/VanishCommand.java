@@ -1,6 +1,6 @@
 package dansplugins.essentialsystem.Commands;
 
-import dansplugins.essentialsystem.MedievalEssentials;
+import dansplugins.essentialsystem.DansEssentials;
 import dansplugins.essentialsystem.data.EphemeralData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -13,7 +13,7 @@ public class VanishCommand {
     public void toggleVisibility(CommandSender sender) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (player.hasPermission("me.vanish") || player.hasPermission("me.admin")) {
+            if (player.hasPermission("de.vanish") || player.hasPermission("de.admin")) {
                 if (!EphemeralData.getInstance().getVanishedPlayers().contains(player.getName())) {
                     hidePlayer(player);
                     player.sendMessage(ChatColor.GREEN + "You are now hidden!");
@@ -33,7 +33,7 @@ public class VanishCommand {
     public void hidePlayer(Player player) {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
-                target.hidePlayer(MedievalEssentials.getInstance(), player);
+                target.hidePlayer(DansEssentials.getInstance(), player);
                 EphemeralData.getInstance().getVanishedPlayers().add(player.getName());
             }
         }
@@ -43,7 +43,7 @@ public class VanishCommand {
     public void showPlayer(Player player) {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
-                target.showPlayer(MedievalEssentials.getInstance(), player);
+                target.showPlayer(DansEssentials.getInstance(), player);
                 EphemeralData.getInstance().getVanishedPlayers().remove(player.getName());
             }
         }

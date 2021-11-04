@@ -13,7 +13,7 @@ public class GamemodeCommand {
 
             Player player = (Player) sender;
 
-            if (player.hasPermission("me.gm") || player.hasPermission("me.admin")) {
+            if (player.hasPermission("de.gm") || player.hasPermission("de.admin")) {
 
                 if (args.length > 0) {
 
@@ -38,7 +38,7 @@ public class GamemodeCommand {
 
             }
             else {
-                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'me.gm");
+                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'de.gm");
             }
 
         }

@@ -13,7 +13,7 @@ public class UnmuteCommand {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (player.hasPermission("me.unmute") || player.hasPermission("me.admin")) {
+            if (player.hasPermission("de.unmute") || player.hasPermission("de.admin")) {
 
                 if (args.length > 0) {
                     if (getServer().getPlayer(args[0]) != null) {

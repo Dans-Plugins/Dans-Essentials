@@ -12,11 +12,11 @@ public class BroadcastCommand {
     public void broadcast(CommandSender sender, String message) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (player.hasPermission("me.broadcast") || player.hasPermission("me.admin")) {
+            if (player.hasPermission("de.broadcast") || player.hasPermission("de.admin")) {
                 sendAllPlayersMessage(message);
             }
             else {
-                sender.sendMessage("Sorry! You need the 'me.broadcast' permission to use this command.");
+                sender.sendMessage("Sorry! You need the 'de.broadcast' permission to use this command.");
             }
         }
         else {

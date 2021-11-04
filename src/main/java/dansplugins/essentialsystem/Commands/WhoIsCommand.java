@@ -15,7 +15,7 @@ public class WhoIsCommand {
             Player player = (Player) sender;
 
             // permission check
-            if (player.hasPermission("me.whois") || player.hasPermission("me.default")) {
+            if (player.hasPermission("de.whois") || player.hasPermission("de.default")) {
 
                 // argument check
                 if (args.length > 0) {
