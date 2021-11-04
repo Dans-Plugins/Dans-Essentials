@@ -12,7 +12,7 @@ public class HelpCommand {
     public void sendHelpInfo(CommandSender sender) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (player.hasPermission("me.help") || player.hasPermission("me.default")) {
+            if (player.hasPermission("de.help") || player.hasPermission("de.default")) {
                 sender.sendMessage(ChatColor.AQUA + "/medievalessentials help - See a list of helpful commands.");
                 sender.sendMessage(ChatColor.AQUA + "/fly - Toggle flight for you or another player.");
                 sender.sendMessage(ChatColor.AQUA + "/broadcast - Broadcast a message to everyone online.");

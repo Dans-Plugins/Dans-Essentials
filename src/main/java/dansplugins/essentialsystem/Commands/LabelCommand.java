@@ -14,7 +14,7 @@ public class LabelCommand {
 
             Player player = (Player) sender;
 
-            if (player.hasPermission("me.label") || player.hasPermission("me.admin")) {
+            if (player.hasPermission("de.label") || player.hasPermission("de.admin")) {
 
                 ItemStack item = player.getInventory().getItemInMainHand();
 

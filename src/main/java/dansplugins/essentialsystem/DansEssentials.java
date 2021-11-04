@@ -19,9 +19,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 
-public class MedievalEssentials extends JavaPlugin implements Listener {
+public class DansEssentials extends JavaPlugin implements Listener {
 
-    private static MedievalEssentials instance;
+    private static DansEssentials instance;
 
     private String version = "v2.0-alpha-1";
 
@@ -37,7 +37,7 @@ public class MedievalEssentials extends JavaPlugin implements Listener {
     public void onDisable() {
     }
 
-    public static MedievalEssentials getInstance() {
+    public static DansEssentials getInstance() {
         return instance;
     }
 

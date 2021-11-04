@@ -22,7 +22,7 @@ public class ClearInvCommand {
                 return;
             }
 
-            if (clearer.hasPermission("me.clearinv") || clearer.hasPermission("me.admin")) {
+            if (clearer.hasPermission("de.clearinv") || clearer.hasPermission("de.admin")) {
                 player.getInventory().clear();
             }
         }

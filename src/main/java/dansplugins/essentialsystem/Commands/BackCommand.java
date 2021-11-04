@@ -13,14 +13,14 @@ public class BackCommand {
 
             Player player = (Player) sender;
 
-            if (player.hasPermission("me.back") || player.hasPermission("me.admin")) {
+            if (player.hasPermission("de.back") || player.hasPermission("de.admin")) {
 
                 player.teleport(EphemeralData.getInstance().getLastLogins().get(player));
                 player.sendMessage(ChatColor.AQUA + "Teleported to your last location!");
 
             }
             else {
-                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'me.back'");
+                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'de.back'");
             }
 
         }

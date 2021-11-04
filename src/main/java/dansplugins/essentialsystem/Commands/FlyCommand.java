@@ -17,7 +17,7 @@ public class FlyCommand {
             Player player = (Player) sender;
 
             if (args.length == 0) {
-                if (player.hasPermission("me.fly") || player.hasPermission("me.admin")) {
+                if (player.hasPermission("de.fly") || player.hasPermission("de.admin")) {
                     // toggle player's flight
                     player.setAllowFlight(!player.getAllowFlight());
                     if (player.getAllowFlight()) {
@@ -35,7 +35,7 @@ public class FlyCommand {
 
             }
             else {
-                if (player.hasPermission("me.fly.others") || player.hasPermission("me.admin")) {
+                if (player.hasPermission("de.fly.others") || player.hasPermission("de.admin")) {
                     try {
                         Player target = getServer().getPlayer(args[0]);
                         target.setAllowFlight(!target.getAllowFlight());
