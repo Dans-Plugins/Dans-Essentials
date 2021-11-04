@@ -16,10 +16,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
+import preponderous.ponder.AbstractPonderPlugin;
 
 
-
-public class DansEssentials extends JavaPlugin implements Listener {
+public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
     private static DansEssentials instance;
 
