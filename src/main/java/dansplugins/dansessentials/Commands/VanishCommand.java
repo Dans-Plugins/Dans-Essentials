@@ -9,29 +9,35 @@ import preponderous.ponder.misc.AbstractCommand;
 
 import static org.bukkit.Bukkit.getServer;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class VanishCommand extends AbstractCommand {
 
-    public void toggleVisibility(CommandSender sender) {
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            if (player.hasPermission("de.vanish") || player.hasPermission("de.admin")) {
-                if (!EphemeralData.getInstance().getVanishedPlayers().contains(player.getName())) {
-                    hidePlayer(player);
-                    player.sendMessage(ChatColor.GREEN + "You are now hidden!");
-                }
-                else {
-                    showPlayer(player);
-                    player.sendMessage(ChatColor.GREEN + "You are now visible!");
-                }
-            }
-            else {
-                sender.sendMessage("Sorry! You need the 'me.vanish' permission to use this command.");
-            }
+    @Override
+    public boolean execute(CommandSender commandSender) {
+        if (!(commandSender instanceof Player)) {
+            commandSender.sendMessage("Only players can use this command.");
+            return false;
         }
-
+        Player player = (Player) commandSender;
+        if (!EphemeralData.getInstance().getVanishedPlayers().contains(player.getName())) {
+            hidePlayer(player);
+            player.sendMessage(ChatColor.GREEN + "You are now hidden!");
+        }
+        else {
+            showPlayer(player);
+            player.sendMessage(ChatColor.GREEN + "You are now visible!");
+        }
+        return true;
     }
 
-    public void hidePlayer(Player player) {
+    @Override
+    public boolean execute(CommandSender commandSender, String[] strings) {
+        return execute(commandSender);
+    }
+
+    private void hidePlayer(Player player) {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
                 target.hidePlayer(DansEssentials.getInstance(), player);
@@ -41,7 +47,7 @@ public class VanishCommand extends AbstractCommand {
 
     }
 
-    public void showPlayer(Player player) {
+    private void showPlayer(Player player) {
         for (Player target : getServer().getOnlinePlayers()) {
             if (!player.getName().equalsIgnoreCase(target.getName())) {
                 target.showPlayer(DansEssentials.getInstance(), player);

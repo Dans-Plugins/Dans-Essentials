@@ -3,6 +3,7 @@
 
 package dansplugins.dansessentials.Commands;
 
+import dansplugins.dansessentials.DansEssentials;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -12,6 +13,9 @@ import preponderous.ponder.misc.AbstractCommand;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class BroadcastCommand extends AbstractCommand {
 
     private ArrayList<String> names = new ArrayList<>(Collections.singletonList("broadcast"));
@@ -27,38 +31,27 @@ public class BroadcastCommand extends AbstractCommand {
         return permissions;
     }
 
-    public void broadcast(CommandSender sender, String message) {
-
-    }
-
-    private void sendAllPlayersMessage(String message) {
-        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            player.sendMessage(ChatColor.GREEN + "" + message);
-        }
-    }
-
     @Override
     public boolean execute(CommandSender commandSender) {
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de broadcast \"message\"");
         return false;
     }
 
     @Override
     public boolean execute(CommandSender commandSender, String[] args) {
-        // TODO: construct message from arguments
-
-        String mesage = "";
-
-        if (commandSender instanceof Player) {
-            Player player = (Player) commandSender;
-            if (player.hasPermission("de.broadcast") || player.hasPermission("de.admin")) {
-                sendAllPlayersMessage(message);
-            }
-            else {
-                commandSender.sendMessage("Sorry! You need the 'de.broadcast' permission to use this command.");
-            }
+        ArrayList<String> doubleQuoteArgs = DansEssentials.getInstance().getToolbox().getArgumentParser().getArgumentsInsideDoubleQuotes(args);
+        if (doubleQuoteArgs.size() == 0) {
+            commandSender.sendMessage(ChatColor.RED + "Message must be specified between double quotes.");
+            return false;
         }
-        else {
-            sendAllPlayersMessage(message);
+        String message = doubleQuoteArgs.get(0);
+        sendAllPlayersMessage(message);
+        return true;
+    }
+
+    private void sendAllPlayersMessage(String message) {
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            player.sendMessage(ChatColor.GREEN + "" + message);
         }
     }
 }

@@ -5,12 +5,14 @@ package dansplugins.dansessentials.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import preponderous.ponder.misc.AbstractCommand;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class HelpCommand extends AbstractCommand {
 
     private ArrayList<String> names = new ArrayList<>(Collections.singletonList("help"));

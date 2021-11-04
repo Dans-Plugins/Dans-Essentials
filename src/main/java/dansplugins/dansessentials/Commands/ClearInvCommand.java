@@ -1,6 +1,7 @@
 package dansplugins.dansessentials.Commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import preponderous.ponder.misc.AbstractCommand;
@@ -8,6 +9,10 @@ import preponderous.ponder.misc.AbstractCommand;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @author Pasarus
+ * @author Daniel Stephenson
+ */
 public class ClearInvCommand extends AbstractCommand {
 
     private ArrayList<String> names = new ArrayList<>(Collections.singletonList("clearinv"));
@@ -25,29 +30,20 @@ public class ClearInvCommand extends AbstractCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de clearinv (playerName)");
         return false;
     }
 
     @Override
     public boolean execute(CommandSender commandSender, String[] args) {
-        if (commandSender instanceof Player) {
-            Player clearer = (Player) commandSender;
+        Player targetPlayer = Bukkit.getPlayer(args[0]);
 
-            if (args.length != 1) {
-                clearer.sendMessage("You must provide 1 argument, that is a valid online player name.");
-                return;
-            }
-
-            Player player = Bukkit.getPlayer(args[0]);
-
-            if (player == null){
-                clearer.sendMessage("You must provide 1 argument, that is a valid online player name.");
-                return;
-            }
-
-            if (clearer.hasPermission("de.clearinv") || clearer.hasPermission("de.admin")) {
-                player.getInventory().clear();
-            }
+        if (targetPlayer == null){
+            commandSender.sendMessage("That player isn't online.");
+            return false;
         }
+
+        targetPlayer.getInventory().clear();
+        return true;
     }
 }

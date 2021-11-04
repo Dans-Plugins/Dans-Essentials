@@ -2,20 +2,9 @@ package dansplugins.dansessentials;
 
 import dansplugins.dansessentials.Commands.*;
 import dansplugins.dansessentials.bStats.Metrics;
-import dansplugins.dansessentials.data.EphemeralData;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.player.*;
 import preponderous.ponder.AbstractPonderPlugin;
 import preponderous.ponder.misc.PonderAPI_Integrator;
 import preponderous.ponder.misc.specification.ICommand;
@@ -118,7 +107,6 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
                 new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
                 new LabelCommand(), new MuteCommand(), new UnmuteCommand()
         ));
-        commands.add(commands);
         getPonderAPI().getCommandService().initialize(commands, "That command wasn't found.");
     }
 

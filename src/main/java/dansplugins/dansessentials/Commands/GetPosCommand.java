@@ -5,23 +5,25 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import preponderous.ponder.misc.AbstractCommand;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+/**
+ * @author Daniel Stephenson
+ */
 public class GetPosCommand extends AbstractCommand {
 
-    public void sendCoordinates(CommandSender sender) {
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("getpos"));
+    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.getpos"));
 
-            if (player.hasPermission("medievalessentials.getpos") || player.hasPermission("medievalessentials.default")) {
-                int[] coords = getPlayersPosition(player);
+    @Override
+    public ArrayList<String> getNames() {
+        return names;
+    }
 
-                player.sendMessage(ChatColor.AQUA + "\nYour current coordinates are " + coords[0] + " " + coords[1] + " " + coords[2] + "\n");
-            }
-            else {
-                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'medievalessentials.getpos'");
-            }
-
-        }
-
+    @Override
+    public ArrayList<String> getPermissions() {
+        return permissions;
     }
 
     private int[] getPlayersPosition(Player player) {
@@ -32,4 +34,22 @@ public class GetPosCommand extends AbstractCommand {
         return coords;
     }
 
+    @Override
+    public boolean execute(CommandSender commandSender) {
+        if (!(commandSender instanceof Player)) {
+            commandSender.sendMessage("Only players can use this command.");
+            return false;
+        }
+        Player player = (Player) commandSender;
+
+        int[] coordinates = getPlayersPosition(player);
+
+        player.sendMessage(ChatColor.AQUA + "Your current coordinates are " + coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
+        return true;
+    }
+
+    @Override
+    public boolean execute(CommandSender commandSender, String[] strings) {
+        return execute(commandSender);
+    }
 }

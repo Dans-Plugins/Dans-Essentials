@@ -9,6 +9,9 @@ import preponderous.ponder.misc.AbstractCommand;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class BackCommand extends AbstractCommand {
 
     private ArrayList<String> names = new ArrayList<>(Collections.singletonList("back"));
@@ -30,7 +33,9 @@ public class BackCommand extends AbstractCommand {
             commandSender.sendMessage("At this time, only players can use this command.");
             return false;
         }
+
         Player player = (Player) commandSender;
+
         player.teleport(EphemeralData.getInstance().getLastLogins().get(player));
         player.sendMessage(ChatColor.AQUA + "Teleported to your last location!");
         return true;
