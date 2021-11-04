@@ -42,21 +42,6 @@ public class CommandInterpreter {
             }
         }
 
-        if (label.equalsIgnoreCase("motd")) {
-            MOTDCommand command = new MOTDCommand();
-            command.showMOTD(sender);
-        }
-
-        if (label.equalsIgnoreCase("setmotd")) {
-            SetMOTDCommand command = new SetMOTDCommand();
-            command.setMOTD(sender, args);
-        }
-
-        if (label.equalsIgnoreCase("seen")) {
-            SeenCommand command = new SeenCommand();
-            command.showLastLogout(sender, args);
-        }
-
         if (label.equalsIgnoreCase("vanish")) {
             VanishCommand command = new VanishCommand();
             command.toggleVisibility(sender);
@@ -71,17 +56,6 @@ public class CommandInterpreter {
             UnmuteCommand command = new UnmuteCommand();
             command.unmutePlayer(sender, args);
         }
-
-        if (label.equalsIgnoreCase("nick")) {
-            NickCommand command = new NickCommand();
-            command.changeDisplayName(sender, args);
-        }
-/*
-        if (label.equalsIgnoreCase("whois")) {
-            WhoIsCommand command = new WhoIsCommand();
-            command.showIGNToPlayer(sender, args);
-        }
-*/
 
         if (label.equalsIgnoreCase("getpos")) {
             GetPosCommand command = new GetPosCommand();
@@ -101,11 +75,6 @@ public class CommandInterpreter {
         if (label.equalsIgnoreCase("back")) {
             BackCommand command = new BackCommand();
             command.teleportToLastLocation(sender);
-        }
-
-        if (label.equalsIgnoreCase("logins")) {
-            LoginsCommand command = new LoginsCommand();
-            command.showLogins(sender);
         }
 
         if (label.equalsIgnoreCase("label")) {
