@@ -1,4 +1,4 @@
-package dansplugins.essentialsystem.data;
+package dansplugins.dansessentials.data;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

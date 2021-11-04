@@ -1,4 +1,4 @@
-package dansplugins.essentialsystem.bStats;
+package dansplugins.dansessentials.bStats;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
