@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-
+/**
+ * @author Daniel Stephenson
+ */
 public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
     private static DansEssentials instance;

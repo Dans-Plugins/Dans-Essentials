@@ -16,6 +16,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class EventHandlers implements Listener {
 
     @EventHandler()

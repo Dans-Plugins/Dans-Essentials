@@ -6,24 +6,34 @@ api-version: 1.13
 
 commands:
   dansessentials:
-  fly:
-  broadcast:
-  motd:
-  setmotd:
-  seen:
-  vanish:
-  mute:
-  unmute:
-  nick:
-  getpos:
-  flyspeed:
-  gm:
-  logins:
-  back:
-  label:
-  invsee:
-  clearinv:
+  de:
 
 permissions:
-  dansessentials.usewarpsign:
+  de.help:
     default: true
+  de.getpos:
+    default: true
+  de.back:
+    default: op
+  de.broadacast:
+    default: op
+  de.clearinv:
+    default: op
+  de.fly:
+    default: op
+  de.fly.others:
+    default: op
+  de.flyspeed:
+    default: op
+  de.gm:
+    default: op
+  de.invsee:
+    default: op
+  de.label:
+    default: op
+  de.mute:
+    default: op
+  de.unmute:
+    default: op
+  de.vanish:
+    default: op
