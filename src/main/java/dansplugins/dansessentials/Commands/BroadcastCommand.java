@@ -43,7 +43,11 @@ public class BroadcastCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean execute(CommandSender commandSender, String[] strings) {
+    public boolean execute(CommandSender commandSender, String[] args) {
+        // TODO: construct message from arguments
+
+        String mesage = "";
+
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             if (player.hasPermission("de.broadcast") || player.hasPermission("de.admin")) {
