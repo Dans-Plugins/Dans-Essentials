@@ -45,10 +45,12 @@ public class UnmuteCommand extends AbstractCommand {
 
         if (targetPlayer == null) {
             operator.sendMessage(ChatColor.RED + "That player isn't online!");
+            return false;
         }
 
         if (!EphemeralData.getInstance().getMutedPlayers().contains(args[0])) {
             operator.sendMessage(ChatColor.RED + "That player is already not muted!");
+            return false;
         }
 
         EphemeralData.getInstance().getMutedPlayers().remove(args[0]);
