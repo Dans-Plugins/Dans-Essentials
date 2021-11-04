@@ -6,6 +6,9 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Daniel Stephenson
+ */
 public class EphemeralData {
 
     private static EphemeralData instance;
