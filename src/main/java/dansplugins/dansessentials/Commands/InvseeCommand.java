@@ -50,7 +50,7 @@ public class InvseeCommand extends AbstractCommand {
         }
 
         if (spy == targetPlayer){
-            spy.sendMessage("Using this command on yourself is disabled.");
+            spy.sendMessage(ChatColor.RED + "Using this command on yourself is disabled.");
             return false;
         }
 
