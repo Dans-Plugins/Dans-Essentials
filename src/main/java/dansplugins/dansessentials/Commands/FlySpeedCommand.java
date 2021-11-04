@@ -1,10 +1,11 @@
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.misc.AbstractCommand;
 
-public class FlySpeedCommand {
+public class FlySpeedCommand extends AbstractCommand {
 
     public void setFlySpeed(CommandSender sender, String[] args) {
         if (sender instanceof Player) {

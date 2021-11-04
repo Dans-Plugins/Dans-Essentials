@@ -2,15 +2,16 @@
 // 'me.fly'
 // 'me.fly.others'
 
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.misc.AbstractCommand;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class FlyCommand {
+public class FlyCommand extends AbstractCommand {
 
     public void toggleFlight(CommandSender sender, String[] args) {
         if (sender instanceof Player) {

@@ -1,13 +1,14 @@
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
-import dansplugins.essentialsystem.data.EphemeralData;
+import dansplugins.dansessentials.data.EphemeralData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.misc.AbstractCommand;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class UnmuteCommand {
+public class UnmuteCommand extends AbstractCommand {
 
     public void unmutePlayer(CommandSender sender, String[] args) {
         if (sender instanceof Player) {

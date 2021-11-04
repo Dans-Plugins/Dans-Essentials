@@ -1,10 +1,11 @@
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.misc.AbstractCommand;
 
-public class GetPosCommand {
+public class GetPosCommand extends AbstractCommand {
 
     public void sendCoordinates(CommandSender sender) {
         if (sender instanceof Player) {

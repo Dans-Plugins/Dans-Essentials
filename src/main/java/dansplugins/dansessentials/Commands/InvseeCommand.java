@@ -1,10 +1,11 @@
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.misc.AbstractCommand;
 
-public class InvseeCommand {
+public class InvseeCommand extends AbstractCommand {
 
     public void invseePlayer(CommandSender sender, String[] args){
         if (sender instanceof Player) {

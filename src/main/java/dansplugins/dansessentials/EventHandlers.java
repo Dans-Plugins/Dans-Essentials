@@ -1,50 +1,22 @@
-package dansplugins.essentialsystem;
+package dansplugins.dansessentials;
 
-import dansplugins.essentialsystem.bStats.Metrics;
-import dansplugins.essentialsystem.data.EphemeralData;
+import dansplugins.dansessentials.data.EphemeralData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.player.*;
-import org.bukkit.plugin.java.JavaPlugin;
-import preponderous.ponder.AbstractPonderPlugin;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
-
-public class DansEssentials extends AbstractPonderPlugin implements Listener {
-
-    private static DansEssentials instance;
-
-    private String version = "v2.0-alpha-1";
-
-    @Override
-    public void onEnable() {
-        instance = this;
-        this.getServer().getPluginManager().registerEvents(this, this);
-        int pluginId = 9527;
-        Metrics metrics = new Metrics(this, pluginId);
-    }
-
-    @Override
-    public void onDisable() {
-    }
-
-    public static DansEssentials getInstance() {
-        return instance;
-    }
-
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        CommandInterpreter.getInstance().interpretCommand(sender, label, args);
-        return true;
-    }
+public class EventHandlers implements Listener {
 
     @EventHandler()
     public void onJoin(PlayerJoinEvent event) {
@@ -58,7 +30,7 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
         // hide vanished players from this player
         for (String vanishedPlayer : EphemeralData.getInstance().getVanishedPlayers()) {
-            event.getPlayer().hidePlayer(this, getServer().getPlayer(vanishedPlayer));
+            event.getPlayer().hidePlayer(DansEssentials.getInstance(), Bukkit.getServer().getPlayer(vanishedPlayer));
         }
 
     }

@@ -1,14 +1,15 @@
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
-import dansplugins.essentialsystem.DansEssentials;
-import dansplugins.essentialsystem.data.EphemeralData;
+import dansplugins.dansessentials.DansEssentials;
+import dansplugins.dansessentials.data.EphemeralData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.misc.AbstractCommand;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class VanishCommand {
+public class VanishCommand extends AbstractCommand {
 
     public void toggleVisibility(CommandSender sender) {
         if (sender instanceof Player) {

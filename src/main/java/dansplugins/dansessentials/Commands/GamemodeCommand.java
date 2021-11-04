@@ -1,11 +1,12 @@
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.misc.AbstractCommand;
 
-public class GamemodeCommand {
+public class GamemodeCommand extends AbstractCommand {
 
     public void setGamemode(CommandSender sender, String[] args) {
 

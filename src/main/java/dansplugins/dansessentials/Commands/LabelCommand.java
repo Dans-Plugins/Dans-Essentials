@@ -1,12 +1,13 @@
-package dansplugins.essentialsystem.Commands;
+package dansplugins.dansessentials.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import preponderous.ponder.misc.AbstractCommand;
 
-public class LabelCommand {
+public class LabelCommand extends AbstractCommand {
 
     public void renameItemInMainHand(CommandSender sender, String[] args) {
 

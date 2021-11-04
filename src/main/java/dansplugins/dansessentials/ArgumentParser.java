@@ -1,4 +1,4 @@
-package dansplugins.essentialsystem;
+package dansplugins.dansessentials;
 
 public class ArgumentParser {
 
