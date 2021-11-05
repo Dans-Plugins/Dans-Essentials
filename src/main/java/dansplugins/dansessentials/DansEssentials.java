@@ -107,7 +107,8 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
                 new BackCommand(), new BroadcastCommand(), new ClearInvCommand(),
                 new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
                 new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
-                new LabelCommand(), new MuteCommand(), new UnmuteCommand()
+                new LabelCommand(), new MuteCommand(), new UnmuteCommand(),
+                new VanishCommand()
         ));
         getPonderAPI().getCommandService().initialize(commands, "That command wasn't found.");
     }
