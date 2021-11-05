@@ -1,5 +1,5 @@
 name: DansEssentials
-version: 2.0-alpha-1
+version: 2.0-beta-1
 author: Daniel Stephenson
 main: dansplugins.dansessentials.DansEssentials
 api-version: 1.13
