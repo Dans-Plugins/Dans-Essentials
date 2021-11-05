@@ -40,6 +40,7 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
         initializeCommandService();
         int pluginId = 9527;
         Metrics metrics = new Metrics(this, pluginId);
+        getPonderAPI().setDebug(false);
     }
 
     @Override
