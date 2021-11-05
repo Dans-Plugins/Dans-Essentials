@@ -62,11 +62,11 @@ public class FlyCommand extends AbstractCommand {
         target.setAllowFlight(!target.getAllowFlight());
         if (target.getAllowFlight()) {
             target.sendMessage(ChatColor.GREEN + "Flight enabled!");
-            commandSender.sendMessage("Flight enabled for " + target.getName());
+            commandSender.sendMessage(ChatColor.GREEN + "Flight enabled for " + target.getName());
         }
         else {
             target.sendMessage(ChatColor.GREEN + "Flight disabled!");
-            commandSender.sendMessage("Flight disabled for " + target.getName());
+            commandSender.sendMessage(ChatColor.GREEN + "Flight disabled for " + target.getName());
         }
         return true;
     }
