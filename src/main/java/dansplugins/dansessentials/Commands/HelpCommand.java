@@ -37,7 +37,7 @@ public class HelpCommand extends AbstractCommand {
         commandSender.sendMessage(ChatColor.AQUA + "/de mute - Hide yourself from view.");
         commandSender.sendMessage(ChatColor.AQUA + "/de unmute - Hide yourself from view.");
         commandSender.sendMessage(ChatColor.AQUA + "/de getpos - Get your coordinates.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de (number) - Set your gamemode.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de gm [ 0 | 1 ] - Set your gamemode.");
         commandSender.sendMessage(ChatColor.AQUA + "/de label (name) - Rename an item.");
         commandSender.sendMessage(ChatColor.AQUA + "/de invsee (player) - Interact with a player's inventory.");
         commandSender.sendMessage(ChatColor.AQUA + "/de clearinv (player) - Clear a player's inventory.");

@@ -112,6 +112,20 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
         getPonderAPI().getCommandService().initialize(commands, "That command wasn't found.");
     }
 
+    @Override
+    public boolean isVersionMismatched() {
+        String versionInConfig = this.getConfig().getString("version");
+        if (versionInConfig == null) {
+            return true;
+        }
+        return !versionInConfig.equalsIgnoreCase(getVersion());
+    }
+
+    @Override
+    public String getVersion() {
+        return version;
+    }
+
     // end of helper methods -------------------------------------------------------------------------
 
 }

@@ -29,7 +29,7 @@ public class GamemodeCommand extends AbstractCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /gm (number)");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /gm [ 0 | 1 ]");
         return false;
     }
 
