@@ -31,12 +31,12 @@ public class HelpCommand extends AbstractCommand {
     @Override
     public boolean execute(CommandSender commandSender) {
         commandSender.sendMessage(ChatColor.AQUA + "/de help - See a list of helpful commands.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de getpos - Get your coordinates.");
         commandSender.sendMessage(ChatColor.AQUA + "/de fly - Toggle flight for you or another player.");
         commandSender.sendMessage(ChatColor.AQUA + "/de broadcast - Broadcast a message to everyone online.");
         commandSender.sendMessage(ChatColor.AQUA + "/de vanish - Hide yourself from view.");
         commandSender.sendMessage(ChatColor.AQUA + "/de mute - Hide yourself from view.");
         commandSender.sendMessage(ChatColor.AQUA + "/de unmute - Hide yourself from view.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de getpos - Get your coordinates.");
         commandSender.sendMessage(ChatColor.AQUA + "/de gm [ 0 | 1 ] - Set your gamemode.");
         commandSender.sendMessage(ChatColor.AQUA + "/de label (name) - Rename an item.");
         commandSender.sendMessage(ChatColor.AQUA + "/de invsee (player) - Interact with a player's inventory.");
