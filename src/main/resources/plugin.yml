@@ -15,7 +15,7 @@ permissions:
     default: true
   de.back:
     default: op
-  de.broadacast:
+  de.broadcast:
     default: op
   de.clearinv:
     default: op
