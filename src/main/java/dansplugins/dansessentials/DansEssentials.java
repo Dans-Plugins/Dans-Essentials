@@ -21,7 +21,7 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
     private static DansEssentials instance;
 
-    private String version = "v2.0-beta-2";
+    private String version = "v2.0";
 
     // public methods -------------------------------------------------------------------------
 
