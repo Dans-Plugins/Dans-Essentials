@@ -18,6 +18,8 @@ import java.util.Arrays;
  */
 public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
+    private boolean debug = true;
+
     private static DansEssentials instance;
 
     private String version = "v2.1-alpha-3";
@@ -101,6 +103,10 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
     public String getVersion() {
         return version;
+    }
+
+    public boolean isDebugEnabled() {
+        return debug;
     }
 
     // end of helper methods -------------------------------------------------------------------------
