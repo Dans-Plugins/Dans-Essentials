@@ -2,6 +2,7 @@ package dansplugins.dansessentials;
 
 import dansplugins.dansessentials.Commands.*;
 import dansplugins.dansessentials.bStats.Metrics;
+import dansplugins.dansessentials.eventhandlers.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
@@ -95,7 +96,11 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
      */
     private void registerEventHandlers() {
         ArrayList<Listener> listeners = new ArrayList<>();
-        listeners.add(new EventHandlers());
+        listeners.add(new ChatHandler());
+        listeners.add(new InteractionHandler());
+        listeners.add(new JoinHandler());
+        listeners.add(new SignHandler());
+        listeners.add(new TeleportHandler());
         getToolbox().getEventHandlerRegistry().registerEventHandlers(listeners, this);
     }
 
