@@ -56,7 +56,7 @@ public class EventHandlers implements Listener {
         // check if it contains says [Spawn]
         if (event.getLine(0).contains("[Warp]")) {
             // if it does, check if the player has permission
-            if (event.getPlayer().hasPermission("medievalessentials.placeWarpSign") || event.getPlayer().hasPermission("medievalessentials.admin")) {
+            if (event.getPlayer().hasPermission("de.placeWarpSign")) {
                 event.getPlayer().sendMessage(ChatColor.GREEN + "Warp sign created!");
             }
             else {
@@ -78,7 +78,7 @@ public class EventHandlers implements Listener {
                 Sign sign = (Sign) clickedBlock.getState();
                 if (sign.getLine(0).contains("[Warp]")) {
 
-                    if (!event.getPlayer().hasPermission("medievalessentials.usewarpsign")) {
+                    if (!event.getPlayer().hasPermission("de.usewarpsign")) {
                         event.getPlayer().sendMessage(ChatColor.RED + "You don't have permission to use this.");
                         return;
                     }

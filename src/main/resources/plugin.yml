@@ -1,5 +1,5 @@
 name: DansEssentials
-version: 2.0
+version: 2.1-alpha-1
 author: Daniel Stephenson
 main: dansplugins.dansessentials.DansEssentials
 api-version: 1.13
@@ -12,6 +12,8 @@ permissions:
   de.help:
     default: true
   de.getpos:
+    default: true
+  de.usewarpsign:
     default: true
   de.back:
     default: op
@@ -36,4 +38,6 @@ permissions:
   de.unmute:
     default: op
   de.vanish:
+    default: op
+  de.placewarpsign:
     default: op
