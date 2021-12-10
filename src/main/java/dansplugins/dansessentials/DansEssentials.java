@@ -20,11 +20,11 @@ import java.util.Arrays;
  */
 public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
-    private boolean debug = true;
+    private boolean debug = false;
 
     private static DansEssentials instance;
 
-    private String version = "v2.1-alpha-4";
+    private String version = "v2.1";
 
     // public methods -------------------------------------------------------------------------
 
