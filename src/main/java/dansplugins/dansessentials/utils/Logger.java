@@ -24,7 +24,7 @@ public class Logger {
 
     public void log(String message) {
         if (DansEssentials.getInstance().isDebugEnabled()) {
-            DansEssentials.getInstance().getLogger().log(Level.INFO, "[SimpleSkills] " + message);
+            DansEssentials.getInstance().getLogger().log(Level.INFO, "[Dan's Essentials] " + message);
         }
     }
 
