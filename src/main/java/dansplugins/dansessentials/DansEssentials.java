@@ -3,6 +3,7 @@ package dansplugins.dansessentials;
 import dansplugins.dansessentials.Commands.*;
 import dansplugins.dansessentials.bStats.Metrics;
 import dansplugins.dansessentials.eventhandlers.*;
+import dansplugins.dansessentials.services.LocalConfigService;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
@@ -10,6 +11,7 @@ import preponderous.ponder.AbstractPonderPlugin;
 import preponderous.ponder.misc.PonderAPI_Integrator;
 import preponderous.ponder.misc.specification.ICommand;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -36,7 +38,17 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
         ponderAPI_integrator = new PonderAPI_Integrator(this);
         toolbox = getPonderAPI().getToolbox();
 
-        // TODO: handle config stuff
+        // create/load config
+        if (!(new File("./plugins/SimpleSkills/config.yml").exists())) {
+            LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
+        }
+        else {
+            // pre load compatibility checks
+            if (isVersionMismatched()) {
+                LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
+            }
+            reloadConfig();
+        }
 
         registerEventHandlers();
         initializeCommandService();
