@@ -35,8 +35,9 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
         instance = this;
         ponderAPI_integrator = new PonderAPI_Integrator(this);
         toolbox = getPonderAPI().getToolbox();
-        initializeConfigService();
-        initializeConfigFile();
+
+        // TODO: handle config stuff
+
         registerEventHandlers();
         initializeCommandService();
         int pluginId = 9527;
@@ -62,33 +63,6 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
 
 
     // helper methods -------------------------------------------------------------------------
-
-    /**
-     * Method to get initialize the config service with config options and values.
-     *
-     */
-    private void initializeConfigService() {
-        HashMap<String, Object> configOptions = new HashMap<>();
-        configOptions.put("debugMode", false);
-        getPonderAPI().getConfigService().initialize(configOptions);
-    }
-
-    /**
-     * Method to initialize the actual config.yml file.
-     *
-     */
-    private void initializeConfigFile() {
-        if (!(new File("./plugins/DansEssentials/config.yml").exists())) {
-            getPonderAPI().getConfigService().saveMissingConfigDefaultsIfNotPresent();
-        }
-        else {
-            // pre load compatibility checks
-            if (isVersionMismatched()) {
-                getPonderAPI().getConfigService().saveMissingConfigDefaultsIfNotPresent();
-            }
-            reloadConfig();
-        }
-    }
 
     /**
      * Method to create and register the event handlers.
