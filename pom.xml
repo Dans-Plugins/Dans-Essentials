@@ -6,7 +6,7 @@
 
     <groupId>dansplugins</groupId>
     <artifactId>Dans-Essentials</artifactId>
-    <version>v2.1-alpha-1</version>
+    <version>v2.1-alpha-2</version>
     <packaging>jar</packaging>
 
     <name>Dan's Essentials</name>
@@ -73,7 +73,7 @@
         <dependency>
             <groupId>preponderous</groupId>
             <artifactId>ponder</artifactId>
-            <version>v0.7</version>
+            <version>v0.8</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
