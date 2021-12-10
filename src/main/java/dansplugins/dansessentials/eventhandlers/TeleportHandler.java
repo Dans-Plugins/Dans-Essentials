@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class TeleportHandler implements Listener {
     @EventHandler()
-    public void onTeleport(PlayerTeleportEvent event) {
+    public void handle(PlayerTeleportEvent event) {
         EphemeralData.getInstance().getLastLogins().put(event.getPlayer(), event.getFrom());
     }
 }

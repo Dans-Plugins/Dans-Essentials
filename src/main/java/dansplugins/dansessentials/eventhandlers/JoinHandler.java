@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class JoinHandler implements Listener {
     @EventHandler()
-    public void onJoin(PlayerJoinEvent event) {
+    public void handle(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
         if (!player.hasPlayedBefore()) {

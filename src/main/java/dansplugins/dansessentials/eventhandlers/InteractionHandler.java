@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class InteractionHandler implements Listener {
     @EventHandler()
-    public void onPlayerInteractEvent(PlayerInteractEvent event) {
+    public void handle(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
         // if player isn't right clicking a block
@@ -60,7 +60,8 @@ public class InteractionHandler implements Listener {
             case SIGN:
             case WALL_SIGN:
                 return true;
+            default:
+                return false;
         }
-        return false;
     }
 }

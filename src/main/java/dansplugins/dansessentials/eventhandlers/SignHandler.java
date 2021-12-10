@@ -7,7 +7,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 public class SignHandler implements Listener {
     @EventHandler()
-    public void onSignChangeEvent(SignChangeEvent event) {
+    public void handle(SignChangeEvent event) {
         // check if it contains says [Spawn]
         if (event.getLine(0).contains("[Warp]")) {
             // if it does, check if the player has permission
