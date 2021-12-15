@@ -39,7 +39,7 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
         toolbox = getPonderAPI().getToolbox();
 
         // create/load config
-        if (!(new File("./plugins/SimpleSkills/config.yml").exists())) {
+        if (!(new File("./plugins/DansEssentials/config.yml").exists())) {
             LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
         }
         else {
