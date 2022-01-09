@@ -34,6 +34,7 @@ public class DansEssentials extends PonderPlugin implements Listener {
     @Override
     public void onEnable() {
         instance = this;
+        this.ponderAPI_integrator = new PonderAPI_Integrator(this);
 
         // create/load config
         if (!(new File("./plugins/DansEssentials/config.yml").exists())) {
