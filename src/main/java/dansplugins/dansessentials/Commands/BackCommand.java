@@ -4,27 +4,18 @@ import dansplugins.dansessentials.data.EphemeralData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class BackCommand extends AbstractCommand {
+public class BackCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("back"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.back"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public BackCommand() {
+        super(new ArrayList<>(Arrays.asList("back")), new ArrayList<>(Arrays.asList("de.back")));
     }
 
     @Override

@@ -5,6 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
+/**
+ * @author Daniel McCoy Stephenson
+ */
 public class SignHandler implements Listener {
     @EventHandler()
     public void handle(SignChangeEvent event) {

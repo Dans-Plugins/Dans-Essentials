@@ -1,5 +1,5 @@
 name: DansEssentials
-version: 2.1
+version: '${project.version}'
 author: Daniel Stephenson
 main: dansplugins.dansessentials.DansEssentials
 api-version: 1.13

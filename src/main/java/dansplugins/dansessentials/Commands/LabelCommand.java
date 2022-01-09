@@ -1,32 +1,23 @@
 package dansplugins.dansessentials.Commands;
 
-import dansplugins.dansessentials.DansEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
+import preponderous.ponder.misc.ArgumentParser;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class LabelCommand extends AbstractCommand {
+public class LabelCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("label"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.label"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public LabelCommand() {
+        super(new ArrayList<>(Arrays.asList("label")), new ArrayList<>(Arrays.asList("de.label")));
     }
 
     @Override
@@ -50,7 +41,8 @@ public class LabelCommand extends AbstractCommand {
             player.sendMessage(ChatColor.RED + "You must be holding an item in your main hand!");
         }
 
-        ArrayList<String> doubleQuoteArgs = DansEssentials.getInstance().getToolbox().getArgumentParser().getArgumentsInsideDoubleQuotes(args);
+        ArgumentParser argumentParser = new ArgumentParser();
+        ArrayList<String> doubleQuoteArgs = argumentParser.getArgumentsInsideDoubleQuotes(args);
 
         if (doubleQuoteArgs.size() == 0) {
             player.sendMessage(ChatColor.RED + "New label must be specified between double quotes.");

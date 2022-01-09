@@ -7,24 +7,23 @@ import dansplugins.dansessentials.services.LocalConfigService;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
-import preponderous.ponder.AbstractPonderPlugin;
-import preponderous.ponder.misc.PonderAPI_Integrator;
-import preponderous.ponder.misc.specification.ICommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
+import preponderous.ponder.minecraft.abs.PonderPlugin;
+import preponderous.ponder.minecraft.spigot.tools.EventHandlerRegistry;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class DansEssentials extends AbstractPonderPlugin implements Listener {
-
+public class DansEssentials extends PonderPlugin implements Listener {
     private boolean debug = false;
 
     private static DansEssentials instance;
 
-    private String version = "v2.1";
+    private final String pluginVersion = "v" + getDescription().getVersion();
 
     // public methods -------------------------------------------------------------------------
 
@@ -35,8 +34,6 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
     @Override
     public void onEnable() {
         instance = this;
-        ponderAPI_integrator = new PonderAPI_Integrator(this);
-        toolbox = getPonderAPI().getToolbox();
 
         // create/load config
         if (!(new File("./plugins/DansEssentials/config.yml").exists())) {
@@ -87,7 +84,8 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
         listeners.add(new JoinHandler());
         listeners.add(new SignHandler());
         listeners.add(new TeleportHandler());
-        getToolbox().getEventHandlerRegistry().registerEventHandlers(listeners, this);
+        EventHandlerRegistry eventHandlerRegistry = new EventHandlerRegistry(getPonderAPI());
+        eventHandlerRegistry.registerEventHandlers(listeners, this);
     }
 
     /**
@@ -95,7 +93,7 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
      *
      */
     private void initializeCommandService() {
-        ArrayList<ICommand> commands = new ArrayList<>(Arrays.asList(
+        ArrayList<AbstractPluginCommand> commands = new ArrayList<>(Arrays.asList(
                 new BackCommand(), new BroadcastCommand(), new ClearInvCommand(),
                 new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
                 new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
@@ -114,7 +112,7 @@ public class DansEssentials extends AbstractPonderPlugin implements Listener {
     }
 
     public String getVersion() {
-        return version;
+        return pluginVersion;
     }
 
     public boolean isDebugEnabled() {

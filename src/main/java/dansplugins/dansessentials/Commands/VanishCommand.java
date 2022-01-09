@@ -5,29 +5,20 @@ import dansplugins.dansessentials.data.EphemeralData;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 import static org.bukkit.Bukkit.getServer;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class VanishCommand extends AbstractCommand {
+public class VanishCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("vanish"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.vanish"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public VanishCommand() {
+        super(new ArrayList<>(Arrays.asList("vanish")), new ArrayList<>(Arrays.asList("de.vanish")));
     }
 
     @Override
