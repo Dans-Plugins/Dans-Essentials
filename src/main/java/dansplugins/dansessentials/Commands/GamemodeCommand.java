@@ -4,27 +4,18 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class GamemodeCommand extends AbstractCommand {
+public class GamemodeCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("gm"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.gm"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public GamemodeCommand() {
+        super(new ArrayList<>(Arrays.asList("gm")), new ArrayList<>(Arrays.asList("de.gm")));
     }
 
     @Override

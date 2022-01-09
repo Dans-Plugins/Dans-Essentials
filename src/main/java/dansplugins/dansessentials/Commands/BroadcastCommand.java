@@ -3,32 +3,23 @@
 
 package dansplugins.dansessentials.Commands;
 
-import dansplugins.dansessentials.DansEssentials;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
+import preponderous.ponder.misc.ArgumentParser;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class BroadcastCommand extends AbstractCommand {
+public class BroadcastCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("broadcast"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.broadcast"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public BroadcastCommand() {
+        super(new ArrayList<>(Arrays.asList("broadcast")), new ArrayList<>(Arrays.asList("de.broadcast")));
     }
 
     @Override
@@ -39,7 +30,8 @@ public class BroadcastCommand extends AbstractCommand {
 
     @Override
     public boolean execute(CommandSender commandSender, String[] args) {
-        ArrayList<String> doubleQuoteArgs = DansEssentials.getInstance().getToolbox().getArgumentParser().getArgumentsInsideDoubleQuotes(args);
+        ArgumentParser argumentParser = new ArgumentParser();
+        ArrayList<String> doubleQuoteArgs = argumentParser.getArgumentsInsideDoubleQuotes(args);
         if (doubleQuoteArgs.size() == 0) {
             commandSender.sendMessage(ChatColor.RED + "Message must be specified between double quotes.");
             return false;

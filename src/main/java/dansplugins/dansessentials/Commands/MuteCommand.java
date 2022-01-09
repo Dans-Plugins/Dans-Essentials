@@ -5,27 +5,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class MuteCommand extends AbstractCommand {
+public class MuteCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("mute"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.mute"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public MuteCommand() {
+        super(new ArrayList<>(Arrays.asList("mute")), new ArrayList<>(Arrays.asList("de.mute")));
     }
 
     @Override

@@ -11,6 +11,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+/**
+ * @author Daniel McCoy Stephenson
+ */
 public class InteractionHandler implements Listener {
     @EventHandler()
     public void handle(PlayerInteractEvent event) {

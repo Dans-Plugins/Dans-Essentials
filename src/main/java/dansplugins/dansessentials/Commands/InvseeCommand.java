@@ -4,28 +4,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /**
  * @author Pasarus
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class InvseeCommand extends AbstractCommand {
+public class InvseeCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("invsee"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.invsee"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public InvseeCommand() {
+        super(new ArrayList<>(Arrays.asList("invsee")), new ArrayList<>(Arrays.asList("de.invsee")));
     }
 
     @Override

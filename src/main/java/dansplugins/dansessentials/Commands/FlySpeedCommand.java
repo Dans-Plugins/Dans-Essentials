@@ -3,27 +3,18 @@ package dansplugins.dansessentials.Commands;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import preponderous.ponder.misc.AbstractCommand;
+import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
-public class FlySpeedCommand extends AbstractCommand {
+public class FlySpeedCommand extends AbstractPluginCommand {
 
-    private ArrayList<String> names = new ArrayList<>(Collections.singletonList("flyspeed"));
-    private ArrayList<String> permissions = new ArrayList<>(Collections.singletonList("de.flyspeed"));
-
-    @Override
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    @Override
-    public ArrayList<String> getPermissions() {
-        return permissions;
+    public FlySpeedCommand() {
+        super(new ArrayList<>(Arrays.asList("flyspeed")), new ArrayList<>(Arrays.asList("de.flyspeed")));
     }
 
     @Override

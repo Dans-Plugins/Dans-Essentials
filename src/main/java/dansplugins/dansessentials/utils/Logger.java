@@ -5,7 +5,7 @@ import dansplugins.dansessentials.DansEssentials;
 import java.util.logging.Level;
 
 /**
- * @author Daniel Stephenson
+ * @author Daniel McCoy Stephenson
  */
 public class Logger {
 
