@@ -34,7 +34,7 @@ public class BroadcastCommand extends AbstractPluginCommand {
         ArgumentParser argumentParser = new ArgumentParser();
         ArrayList<String> doubleQuoteArgs = argumentParser.getArgumentsInsideDoubleQuotes(args);
         if (doubleQuoteArgs.size() == 0) {
-            commandSender.sendMessage(ChatColor.RED + "Message must be specified between double quotes.");
+            commandSender.sendMessage(ChatColor.RED + "Message must be specified in between quotation marks.");
             return false;
         }
         String message = doubleQuoteArgs.get(0);
