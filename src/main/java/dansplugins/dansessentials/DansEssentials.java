@@ -4,13 +4,14 @@ import dansplugins.dansessentials.Commands.*;
 import dansplugins.dansessentials.bStats.Metrics;
 import dansplugins.dansessentials.eventhandlers.*;
 import dansplugins.dansessentials.services.LocalConfigService;
+import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
+import preponderous.ponder.minecraft.bukkit.abs.PonderBukkitPlugin;
+import preponderous.ponder.minecraft.bukkit.services.CommandService;
+import preponderous.ponder.minecraft.bukkit.tools.EventHandlerRegistry;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
-import preponderous.ponder.minecraft.abs.AbstractPluginCommand;
-import preponderous.ponder.minecraft.abs.PonderPlugin;
-import preponderous.ponder.minecraft.spigot.misc.PonderAPI_Integrator;
-import preponderous.ponder.minecraft.spigot.tools.EventHandlerRegistry;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,41 +20,34 @@ import java.util.Arrays;
 /**
  * @author Daniel McCoy Stephenson
  */
-public class DansEssentials extends PonderPlugin implements Listener {
-    private boolean debug = false;
-
+public class DansEssentials extends PonderBukkitPlugin implements Listener {
     private static DansEssentials instance;
-
     private final String pluginVersion = "v" + getDescription().getVersion();
+    private CommandService commandService;
 
-    // public methods -------------------------------------------------------------------------
-
+    /**
+     * This can be used to get the instance of the main class that is managed by itself.
+     * @return The managed instance of the main class.
+     */
     public static DansEssentials getInstance() {
         return instance;
     }
 
+    /**
+     * This runs when the server starts.
+     */
     @Override
     public void onEnable() {
         instance = this;
-        this.ponderAPI_integrator = new PonderAPI_Integrator(this);
-
-        // create/load config
-        if (!(new File("./plugins/DansEssentials/config.yml").exists())) {
-            LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
-        }
-        else {
-            // pre load compatibility checks
-            if (isVersionMismatched()) {
-                LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
-            }
-            reloadConfig();
-        }
-
+        initializeConfig();
         registerEventHandlers();
         initializeCommandService();
+        handlebStatsIntegration();
+    }
+
+    private void handlebStatsIntegration() {
         int pluginId = 9527;
         Metrics metrics = new Metrics(this, pluginId);
-        getPonderAPI().setDebug(false);
     }
 
     @Override
@@ -61,19 +55,43 @@ public class DansEssentials extends PonderPlugin implements Listener {
 
     }
 
+    /**
+     * This method handles commands sent to the minecraft server and interprets them if the label matches one of the core commands.
+     * @param sender The sender of the command.
+     * @param cmd The command that was sent. This is unused.
+     * @param label The core command that has been invoked.
+     * @param args Arguments of the core command. Often sub-commands.
+     * @return A boolean indicating whether the execution of the command was successful.
+     */
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length == 0) {
             DefaultCommand defaultCommand = new DefaultCommand();
             return defaultCommand.execute(sender);
         }
 
-        return getPonderAPI().getCommandService().interpretCommand(sender, label, args);
+        return commandService.interpretAndExecuteCommand(sender, label, args);
     }
 
-    // end of public methods -------------------------------------------------------------------------
+    private void initializeConfig() {
+        if (configFileExists()) {
+            performCompatibilityChecks();
+        }
+        else {
+            LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
+        }
+    }
 
+    private boolean configFileExists() {
+        return new File("./plugins/" + getName() + "/config.yml").exists();
+    }
 
-    // helper methods -------------------------------------------------------------------------
+    private void performCompatibilityChecks() {
+        if (isVersionMismatched()) {
+            LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
+        }
+        reloadConfig();
+    }
 
     /**
      * Method to create and register the event handlers.
@@ -86,7 +104,7 @@ public class DansEssentials extends PonderPlugin implements Listener {
         listeners.add(new JoinHandler());
         listeners.add(new SignHandler());
         listeners.add(new TeleportHandler());
-        EventHandlerRegistry eventHandlerRegistry = new EventHandlerRegistry(getPonderAPI());
+        EventHandlerRegistry eventHandlerRegistry = new EventHandlerRegistry();
         eventHandlerRegistry.registerEventHandlers(listeners, this);
     }
 
@@ -102,7 +120,7 @@ public class DansEssentials extends PonderPlugin implements Listener {
                 new LabelCommand(), new MuteCommand(), new UnmuteCommand(),
                 new VanishCommand()
         ));
-        getPonderAPI().getCommandService().initialize(commands, "That command wasn't found.");
+        commandService.initialize(commands, "That command wasn't found.");
     }
 
     public boolean isVersionMismatched() {
@@ -117,10 +135,11 @@ public class DansEssentials extends PonderPlugin implements Listener {
         return pluginVersion;
     }
 
+    /**
+     * Checks if debug is enabled.
+     * @return Whether debug is enabled.
+     */
     public boolean isDebugEnabled() {
-        return debug;
+        return LocalConfigService.getInstance().getBoolean("debugMode");
     }
-
-    // end of helper methods -------------------------------------------------------------------------
-
 }
