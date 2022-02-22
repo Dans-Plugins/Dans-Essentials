@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class DansEssentials extends PonderBukkitPlugin implements Listener {
     private static DansEssentials instance;
     private final String pluginVersion = "v" + getDescription().getVersion();
-    private CommandService commandService;
+    private CommandService commandService = new CommandService(getPonder());
 
     /**
      * This can be used to get the instance of the main class that is managed by itself.
@@ -47,7 +47,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
 
     private void handlebStatsIntegration() {
         int pluginId = 9527;
-        Metrics metrics = new Metrics(this, pluginId);
+        new Metrics(this, pluginId);
     }
 
     @Override
