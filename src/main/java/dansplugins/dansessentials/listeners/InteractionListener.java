@@ -1,4 +1,4 @@
-package dansplugins.dansessentials.eventhandlers;
+package dansplugins.dansessentials.listeners;
 
 import dansplugins.dansessentials.utils.Logger;
 import org.bukkit.ChatColor;
@@ -14,7 +14,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 /**
  * @author Daniel McCoy Stephenson
  */
-public class InteractionHandler implements Listener {
+public class InteractionListener implements Listener {
+    private final Logger logger;
+
+    public InteractionListener(Logger logger) {
+        this.logger = logger;
+    }
+
     @EventHandler()
     public void handle(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -22,30 +28,30 @@ public class InteractionHandler implements Listener {
         // if player isn't right clicking a block
         Block clickedBlock = event.getClickedBlock();
         if (clickedBlock == null) {
-            Logger.getInstance().log(player.getName() + " didn't click a block.");
+            logger.log(player.getName() + " didn't click a block.");
             return;
         }
 
         // if that block isn't a sign
         if (!isSign(clickedBlock)) {
-            Logger.getInstance().log(player.getName() + " clicked a block that wasn't a sign.");
+            logger.log(player.getName() + " clicked a block that wasn't a sign.");
             return;
         }
 
         // if that sign doesn't have [Warp]
         Sign sign = (Sign) clickedBlock.getState();
         if (!sign.getLine(0).contains("[Warp]")) {
-            Logger.getInstance().log(player.getName() + " clicked a sign that wasn't a warp sign.");
+            logger.log(player.getName() + " clicked a sign that wasn't a warp sign.");
             return;
         }
 
         if (!player.hasPermission("de.usewarpsign")) {
-            Logger.getInstance().log(player.getName() + " clicked on a warp sign but didn't have permission to use it.");
+            logger.log(player.getName() + " clicked on a warp sign but didn't have permission to use it.");
             event.getPlayer().sendMessage(ChatColor.RED + "You don't have permission to use this.");
             return;
         }
 
-        Logger.getInstance().log(player.getName() + " clicked on a warp sign. Teleporting.");
+        logger.log(player.getName() + " clicked on a warp sign. Teleporting.");
 
         try {
             // acquire coordinates

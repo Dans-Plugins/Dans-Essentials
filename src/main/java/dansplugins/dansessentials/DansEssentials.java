@@ -1,17 +1,18 @@
 package dansplugins.dansessentials;
 
-import dansplugins.dansessentials.Commands.*;
 import dansplugins.dansessentials.bStats.Metrics;
-import dansplugins.dansessentials.eventhandlers.*;
-import dansplugins.dansessentials.services.LocalConfigService;
+import dansplugins.dansessentials.commands.*;
+import dansplugins.dansessentials.data.EphemeralData;
+import dansplugins.dansessentials.listeners.*;
+import dansplugins.dansessentials.services.ConfigService;
+import dansplugins.dansessentials.utils.Logger;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.event.Listener;
 import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
 import preponderous.ponder.minecraft.bukkit.abs.PonderBukkitPlugin;
 import preponderous.ponder.minecraft.bukkit.services.CommandService;
 import preponderous.ponder.minecraft.bukkit.tools.EventHandlerRegistry;
-
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.event.Listener;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,24 +22,18 @@ import java.util.Arrays;
  * @author Daniel McCoy Stephenson
  */
 public class DansEssentials extends PonderBukkitPlugin implements Listener {
-    private static DansEssentials instance;
     private final String pluginVersion = "v" + getDescription().getVersion();
-    private CommandService commandService = new CommandService(getPonder());
 
-    /**
-     * This can be used to get the instance of the main class that is managed by itself.
-     * @return The managed instance of the main class.
-     */
-    public static DansEssentials getInstance() {
-        return instance;
-    }
+    private final CommandService commandService = new CommandService(getPonder());
+    private final ConfigService configService = new ConfigService(this);
+    private final EphemeralData ephemeralData = new EphemeralData();
+    private final Logger logger = new Logger(this);
 
     /**
      * This runs when the server starts.
      */
     @Override
     public void onEnable() {
-        instance = this;
         initializeConfig();
         registerEventHandlers();
         initializeCommandService();
@@ -66,7 +61,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length == 0) {
-            DefaultCommand defaultCommand = new DefaultCommand();
+            DefaultCommand defaultCommand = new DefaultCommand(this);
             return defaultCommand.execute(sender);
         }
 
@@ -78,7 +73,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
             performCompatibilityChecks();
         }
         else {
-            LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
+            configService.saveMissingConfigDefaultsIfNotPresent();
         }
     }
 
@@ -88,7 +83,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
 
     private void performCompatibilityChecks() {
         if (isVersionMismatched()) {
-            LocalConfigService.getInstance().saveMissingConfigDefaultsIfNotPresent();
+            configService.saveMissingConfigDefaultsIfNotPresent();
         }
         reloadConfig();
     }
@@ -99,11 +94,11 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
      */
     private void registerEventHandlers() {
         ArrayList<Listener> listeners = new ArrayList<>();
-        listeners.add(new ChatHandler());
-        listeners.add(new InteractionHandler());
-        listeners.add(new JoinHandler());
-        listeners.add(new SignHandler());
-        listeners.add(new TeleportHandler());
+        listeners.add(new ChatListener(ephemeralData));
+        listeners.add(new InteractionListener(logger));
+        listeners.add(new JoinListener(ephemeralData, this));
+        listeners.add(new SignListener());
+        listeners.add(new TeleportListener(ephemeralData));
         EventHandlerRegistry eventHandlerRegistry = new EventHandlerRegistry();
         eventHandlerRegistry.registerEventHandlers(listeners, this);
     }
@@ -114,11 +109,11 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
      */
     private void initializeCommandService() {
         ArrayList<AbstractPluginCommand> commands = new ArrayList<>(Arrays.asList(
-                new BackCommand(), new BroadcastCommand(), new ClearInvCommand(),
+                new BackCommand(ephemeralData), new BroadcastCommand(), new ClearInvCommand(),
                 new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
                 new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
-                new LabelCommand(), new MuteCommand(), new UnmuteCommand(),
-                new VanishCommand()
+                new LabelCommand(), new MuteCommand(ephemeralData), new UnmuteCommand(ephemeralData),
+                new VanishCommand(ephemeralData, this)
         ));
         commandService.initialize(commands, "That command wasn't found.");
     }
@@ -140,6 +135,6 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
      * @return Whether debug is enabled.
      */
     public boolean isDebugEnabled() {
-        return LocalConfigService.getInstance().getBoolean("debugMode");
+        return configService.getBoolean("debugMode");
     }
 }

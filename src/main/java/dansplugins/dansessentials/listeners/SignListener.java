@@ -1,4 +1,4 @@
-package dansplugins.dansessentials.eventhandlers;
+package dansplugins.dansessentials.listeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -8,7 +8,8 @@ import org.bukkit.event.block.SignChangeEvent;
 /**
  * @author Daniel McCoy Stephenson
  */
-public class SignHandler implements Listener {
+public class SignListener implements Listener {
+
     @EventHandler()
     public void handle(SignChangeEvent event) {
         // check if it contains says [Spawn]

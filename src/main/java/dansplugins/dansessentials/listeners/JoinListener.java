@@ -1,4 +1,4 @@
-package dansplugins.dansessentials.eventhandlers;
+package dansplugins.dansessentials.listeners;
 
 import dansplugins.dansessentials.DansEssentials;
 import dansplugins.dansessentials.data.EphemeralData;
@@ -12,7 +12,15 @@ import org.bukkit.event.player.PlayerJoinEvent;
 /**
  * @author Daniel McCoy Stephenson
  */
-public class JoinHandler implements Listener {
+public class JoinListener implements Listener {
+    private final EphemeralData ephemeralData;
+    private final DansEssentials dansEssentials;
+
+    public JoinListener(EphemeralData ephemeralData, DansEssentials dansEssentials) {
+        this.ephemeralData = ephemeralData;
+        this.dansEssentials = dansEssentials;
+    }
+
     @EventHandler()
     public void handle(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -24,8 +32,8 @@ public class JoinHandler implements Listener {
         }
 
         // hide vanished players from this player
-        for (String vanishedPlayer : EphemeralData.getInstance().getVanishedPlayers()) {
-            event.getPlayer().hidePlayer(DansEssentials.getInstance(), Bukkit.getServer().getPlayer(vanishedPlayer));
+        for (String vanishedPlayer : ephemeralData.getVanishedPlayers()) {
+            event.getPlayer().hidePlayer(dansEssentials, Bukkit.getServer().getPlayer(vanishedPlayer));
         }
 
     }

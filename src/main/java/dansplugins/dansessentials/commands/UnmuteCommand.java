@@ -1,12 +1,12 @@
-package dansplugins.dansessentials.Commands;
+package dansplugins.dansessentials.commands;
 
 import dansplugins.dansessentials.data.EphemeralData;
-import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,9 +14,11 @@ import java.util.Arrays;
  * @author Daniel McCoy Stephenson
  */
 public class UnmuteCommand extends AbstractPluginCommand {
+    private final EphemeralData ephemeralData;
 
-    public UnmuteCommand() {
+    public UnmuteCommand(EphemeralData ephemeralData) {
         super(new ArrayList<>(Arrays.asList("unmute")), new ArrayList<>(Arrays.asList("de.unmute")));
+        this.ephemeralData = ephemeralData;
     }
 
     @Override
@@ -39,12 +41,12 @@ public class UnmuteCommand extends AbstractPluginCommand {
             return false;
         }
 
-        if (!EphemeralData.getInstance().getMutedPlayers().contains(args[0])) {
+        if (!ephemeralData.getMutedPlayers().contains(args[0])) {
             operator.sendMessage(ChatColor.RED + "That player is already not muted!");
             return false;
         }
 
-        EphemeralData.getInstance().getMutedPlayers().remove(args[0]);
+        ephemeralData.getMutedPlayers().remove(args[0]);
         targetPlayer.sendMessage(ChatColor.GREEN + "You have been unmuted.");
         operator.sendMessage(ChatColor.GREEN + "Player has been unmuted.");
         return true;

@@ -8,23 +8,15 @@ import java.util.logging.Level;
  * @author Daniel McCoy Stephenson
  */
 public class Logger {
+    private final DansEssentials dansEssentials;
 
-    private static Logger instance;
-
-    private Logger() {
-
-    }
-
-    public static Logger getInstance() {
-        if (instance == null) {
-            instance = new Logger();
-        }
-        return instance;
+    public Logger(DansEssentials dansEssentials) {
+        this.dansEssentials = dansEssentials;
     }
 
     public void log(String message) {
-        if (DansEssentials.getInstance().isDebugEnabled()) {
-            DansEssentials.getInstance().getLogger().log(Level.INFO, "[Dan's Essentials] " + message);
+        if (dansEssentials.isDebugEnabled()) {
+            dansEssentials.getLogger().log(Level.INFO, "[Dan's Essentials] " + message);
         }
     }
 
