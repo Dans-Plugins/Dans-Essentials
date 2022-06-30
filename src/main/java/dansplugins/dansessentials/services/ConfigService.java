@@ -15,35 +15,28 @@ import org.bukkit.configuration.file.FileConfiguration;
 /**
  * @author Daniel McCoy Stephenson
  */
-public class LocalConfigService {
+public class ConfigService {
+    private final DansEssentials dansEssentials;
 
-    private static LocalConfigService instance;
     private boolean altered = false;
 
-    private LocalConfigService() {
-
-    }
-
-    public static LocalConfigService getInstance() {
-        if (instance == null) {
-            instance = new LocalConfigService();
-        }
-        return instance;
+    public ConfigService(DansEssentials dansEssentials) {
+        this.dansEssentials = dansEssentials;
     }
 
     public void saveMissingConfigDefaultsIfNotPresent() {
         // set version
         if (!getConfig().isString("version")) {
-            getConfig().addDefault("version", DansEssentials.getInstance().getVersion());
+            getConfig().addDefault("version", dansEssentials.getVersion());
         } else {
-            getConfig().set("version", DansEssentials.getInstance().getVersion());
+            getConfig().set("version", dansEssentials.getVersion());
         }
 
         // save config options
         if (!isSet("debugMode")) { getConfig().set("debugMode", false); }
 
         getConfig().options().copyDefaults(true);
-        DansEssentials.getInstance().saveConfig();
+        dansEssentials.saveConfig();
     }
 
     public void setConfigOption(String option, String value, CommandSender sender) {
@@ -66,7 +59,7 @@ public class LocalConfigService {
             }
 
             // save
-            DansEssentials.getInstance().saveConfig();
+            dansEssentials.saveConfig();
             altered = true;
         } else {
             sender.sendMessage(ChatColor.RED + "That config option wasn't found.");
@@ -84,7 +77,7 @@ public class LocalConfigService {
     }
 
     public FileConfiguration getConfig() {
-        return DansEssentials.getInstance().getConfig();
+        return dansEssentials.getConfig();
     }
 
     public boolean isSet(String option) {

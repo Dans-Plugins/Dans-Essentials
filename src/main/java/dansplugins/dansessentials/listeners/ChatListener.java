@@ -1,4 +1,4 @@
-package dansplugins.dansessentials.eventhandlers;
+package dansplugins.dansessentials.listeners;
 
 import dansplugins.dansessentials.data.EphemeralData;
 import org.bukkit.ChatColor;
@@ -9,10 +9,16 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 /**
  * @author Daniel McCoy Stephenson
  */
-public class ChatHandler implements Listener {
+public class ChatListener implements Listener {
+    private final EphemeralData ephemeralData;
+
+    public ChatListener(EphemeralData ephemeralData) {
+        this.ephemeralData = ephemeralData;
+    }
+
     @EventHandler()
     public void handle(AsyncPlayerChatEvent event) {
-        if (EphemeralData.getInstance().getMutedPlayers().contains(event.getPlayer().getName())) {
+        if (ephemeralData.getMutedPlayers().contains(event.getPlayer().getName())) {
             event.getPlayer().sendMessage(ChatColor.RED + "You are currently muted.");
             event.setCancelled(true);
         }

@@ -1,11 +1,10 @@
-package dansplugins.dansessentials.Commands;
+package dansplugins.dansessentials.commands;
 
 import dansplugins.dansessentials.data.EphemeralData;
-import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,9 +13,11 @@ import java.util.Arrays;
  * @author Daniel McCoy Stephenson
  */
 public class BackCommand extends AbstractPluginCommand {
+    private final EphemeralData ephemeralData;
 
-    public BackCommand() {
+    public BackCommand(EphemeralData ephemeralData) {
         super(new ArrayList<>(Arrays.asList("back")), new ArrayList<>(Arrays.asList("de.back")));
+        this.ephemeralData = ephemeralData;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class BackCommand extends AbstractPluginCommand {
 
         Player player = (Player) commandSender;
 
-        player.teleport(EphemeralData.getInstance().getLastLogins().get(player));
+        player.teleport(ephemeralData.getLastLogins().get(player));
         player.sendMessage(ChatColor.AQUA + "Teleported to your last location!");
         return true;
     }

@@ -10,23 +10,9 @@ import java.util.HashMap;
  * @author Daniel McCoy Stephenson
  */
 public class EphemeralData {
-
-    private static EphemeralData instance;
-
     private ArrayList<String> vanishedPlayers = new ArrayList<>();
     private ArrayList<String> mutedPlayers = new ArrayList<>();
     private HashMap<Player, Location> lastLogins = new HashMap<>();
-
-    private EphemeralData() {
-
-    }
-
-    public static EphemeralData getInstance() {
-        if (instance == null) {
-            instance = new EphemeralData();
-        }
-        return instance;
-    }
 
     public ArrayList<String> getVanishedPlayers() {
         return vanishedPlayers;
