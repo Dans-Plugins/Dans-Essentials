@@ -112,8 +112,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
                 new BackCommand(ephemeralData), new BroadcastCommand(), new ClearInvCommand(),
                 new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
                 new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
-                new LabelCommand(), new MuteCommand(ephemeralData), new UnmuteCommand(ephemeralData),
-                new VanishCommand(ephemeralData, this)
+                new LabelCommand(), new MuteCommand(ephemeralData), new UnmuteCommand(ephemeralData)
         ));
         commandService.initialize(commands, "That command wasn't found.");
     }

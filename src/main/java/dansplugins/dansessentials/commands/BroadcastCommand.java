@@ -12,6 +12,7 @@ import preponderous.ponder.misc.ArgumentParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Daniel McCoy Stephenson
@@ -31,7 +32,7 @@ public class BroadcastCommand extends AbstractPluginCommand {
     @Override
     public boolean execute(CommandSender commandSender, String[] args) {
         ArgumentParser argumentParser = new ArgumentParser();
-        ArrayList<String> doubleQuoteArgs = argumentParser.getArgumentsInsideDoubleQuotes(args);
+        List<String> doubleQuoteArgs = argumentParser.getArgumentsInsideDoubleQuotes(args);
         if (doubleQuoteArgs.size() == 0) {
             commandSender.sendMessage(ChatColor.RED + "Message must be specified in between quotation marks.");
             return false;
