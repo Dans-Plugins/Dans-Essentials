@@ -29,6 +29,12 @@ permissions:
     default: op
   de.gm:
     default: op
+  de.gm.0:
+    default: op
+  de.gm.1:
+    default: op
+  de.gm.2:
+    default: op
   de.invsee:
     default: op
   de.label:
