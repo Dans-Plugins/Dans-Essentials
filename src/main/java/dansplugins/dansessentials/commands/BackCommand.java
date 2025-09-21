@@ -29,6 +29,11 @@ public class BackCommand extends AbstractPluginCommand {
 
         Player player = (Player) commandSender;
 
+        if (ephemeralData.getLastLogins().get(player) == null) {
+            player.sendMessage(ChatColor.RED + "You don't have a previous location to return to!");
+            return false;
+        }
+
         player.teleport(ephemeralData.getLastLogins().get(player));
         player.sendMessage(ChatColor.AQUA + "Teleported to your last location!");
         return true;
