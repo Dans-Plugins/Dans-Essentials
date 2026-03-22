@@ -45,5 +45,5 @@ permissions:
     default: op
   de.vanish:
     default: op
-  de.placewarpsign:
+  de.placeWarpSign:
     default: op

@@ -49,10 +49,12 @@ Issues are grouped into [milestones](https://github.com/Dans-Plugins/Dans-Essent
 
 ## Testing
 
-Run the unit tests with:
+There are currently no automated unit tests configured in this project. To verify your changes compile correctly, run:
 
-Linux: `mvn clean test`  
-Windows: `mvn clean test`
+Linux: `mvn clean package`  
+Windows: `mvn clean package`
+
+If you see `BUILD SUCCESS`, the plugin compiled successfully.
 
 For manual testing, start a local Spigot or Paper server:
 

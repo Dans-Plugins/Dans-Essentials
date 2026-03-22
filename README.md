@@ -41,17 +41,19 @@ Please fill out a bug report [here](https://github.com/Dans-Plugins/Dans-Essenti
 
 ## Testing
 
-### Unit Tests
+### Build Verification
+
+There are currently no automated unit tests configured. Run:
 
 Linux:
 
-    mvn clean test
+    mvn clean package
 
 Windows:
 
-    mvn clean test
+    mvn clean package
 
-If you see `BUILD SUCCESS`, the tests have passed.
+If you see `BUILD SUCCESS`, the plugin compiled successfully. No automated tests will run until a test framework is added to `pom.xml`.
 
 ## Development
 
