@@ -23,7 +23,7 @@ public class DefaultCommand extends AbstractPluginCommand {
     public boolean execute(CommandSender commandSender) {
         commandSender.sendMessage(ChatColor.AQUA + "Dan's Essentials " + dansEssentials.getVersion());
         commandSender.sendMessage(ChatColor.AQUA + "Developed by: DanTheTechMan");
-        commandSender.sendMessage(ChatColor.AQUA + "Wiki: https://github.com/dmccoystephenson/Dans-Essentials/wiki");
+        commandSender.sendMessage(ChatColor.AQUA + "Wiki: https://github.com/Dans-Plugins/Dans-Essentials/wiki");
         return true;
     }
 
