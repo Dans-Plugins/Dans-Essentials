@@ -27,7 +27,7 @@ An operator can toggle flight for themselves or another player:
 
 ### Setting Fly Speed
 
-Adjust your flight speed (0–10):
+Adjust your flight speed (1–10):
 
 ```
 /de flyspeed <number>
@@ -90,14 +90,16 @@ After teleporting, return to your previous location:
 
 ### Warp Signs
 
-Operators can place warp signs to allow players to teleport to predefined locations. Right-click a sign and format it as follows:
+Operators can place warp signs to allow players to teleport to predefined coordinates. Create a sign with the following format:
 
 ```
-[warp]
-<destination>
+[Warp]
+<x>
+<y>
+<z>
 ```
 
-Requires the `de.placewarpsign` permission to create and `de.usewarpsign` to use.
+Each of lines 2–4 must contain an integer coordinate. Requires the `de.placeWarpSign` permission to create and `de.usewarpsign` to use.
 
 ## Permissions
 
@@ -120,5 +122,5 @@ Requires the `de.placewarpsign` permission to create and `de.usewarpsign` to use
 | `de.label`       | op      | Rename a held item                               |
 | `de.mute`        | op      | Mute a player                                    |
 | `de.unmute`      | op      | Unmute a player                                  |
-| `de.vanish`      | op      | Vanish from other players                        |
-| `de.placewarpsign` | op    | Place a warp sign                                |
+| `de.vanish`      | op      | Reserved for future use; vanish is not currently implemented |
+| `de.placeWarpSign` | op    | Place a warp sign                                |

@@ -12,6 +12,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Initial documented release.
 - Commands: `back`, `broadcast`, `clearinv`, `fly`, `flyspeed`, `gm`, `getpos`, `help`, `invsee`, `label`, `mute`, `unmute`.
-- Warp sign support (`de.placewarpsign`, `de.usewarpsign`).
+- Warp sign support (`de.placeWarpSign`, `de.usewarpsign`).
 - bStats metrics integration (plugin ID 9527).
 - `debugMode` configuration option.

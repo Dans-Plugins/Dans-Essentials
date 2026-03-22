@@ -55,19 +55,23 @@ If you see `BUILD SUCCESS`, the tests have passed.
 
 ## Development
 
-### Test Server with Plugin Hot-Reloading
+### Local Test Server
 
-A Docker-based test server is available for development.
+You can test changes to the plugin using a local Spigot or Paper server.
 
 #### Setup
 
-1. Copy `sample.env` to `.env` and configure as needed.
-2. Build the plugin: `mvn clean package`
-3. Start the test server: `./up.sh`
+1. Build the plugin: `mvn clean package`
+2. Locate the built JAR in the `target` directory.
+3. Copy the JAR into the `plugins` folder of your local Minecraft server.
+4. Start or restart your server to load the updated plugin.
 
-#### Stopping the Test Server
+#### Iterating on Changes
 
-    ./down.sh
+1. Make your code changes.
+2. Rebuild the plugin: `mvn clean package`
+3. Replace the existing JAR in the `plugins` folder with the newly built JAR.
+4. Restart or reload your server to apply changes.
 
 ## Authors and Acknowledgement
 

@@ -4,6 +4,14 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ## General Commands
 
+### /de
+
+**Description:** Display basic plugin information, including version, author, and wiki link.  
+**Usage:** `/de`  
+**Example:** `/de`
+
+---
+
 ### /de help
 
 **Description:** Display the list of available commands.  
@@ -44,7 +52,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de flyspeed \<number\>
 
-**Description:** Set your fly speed. Accepts a value from 0 to 10.  
+**Description:** Set your fly speed. Accepts a value from 1 to 10.  
 **Permission:** `de.flyspeed`  
 **Usage:** `/de flyspeed <number>`  
 **Example:** `/de flyspeed 5`

@@ -54,9 +54,13 @@ Run the unit tests with:
 Linux: `mvn clean test`  
 Windows: `mvn clean test`
 
-For manual testing, start a local Spigot server:
+For manual testing, start a local Spigot or Paper server:
 
-    docker compose up
+1. Download a Spigot or Paper server JAR.
+2. Create a new folder and place the server JAR inside.
+3. Run `java -jar <server-jar>.jar` and follow the setup prompts.
+4. Copy the built plugin JAR from `target/` into the server's `plugins` folder.
+5. Start or restart the server and verify your changes in-game.
 
 ## Questions
 
