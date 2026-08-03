@@ -108,7 +108,7 @@ Each of lines 2–4 must contain an integer coordinate. Requires the `de.placeWa
 | `de.help`        | true    | View the help message                            |
 | `de.getpos`      | true    | Get your current coordinates                     |
 | `de.usewarpsign` | true    | Use warp signs to teleport                       |
-| `de.back`        | op      | Return to your last location after a teleport    |
+| `de.back`        | op      | Return to your last location after a teleport, or your join location if you haven't teleported yet |
 | `de.broadcast`   | op      | Broadcast a message to all online players        |
 | `de.clearinv`    | op      | Clear a player's inventory                       |
 | `de.fly`         | op      | Toggle flight for yourself                       |
