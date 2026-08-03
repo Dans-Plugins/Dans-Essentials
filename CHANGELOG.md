@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Build workflow now triggers on `master` (the repo's actual default branch) instead of `main`/`develop`, so CI actually runs on pushes and pull requests.
+
 ## [2.3.0]
 
 ### Added
