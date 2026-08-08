@@ -2,6 +2,7 @@ package dansplugins.dansessentials.commands;
 
 import dansplugins.dansessentials.data.EphemeralData;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
@@ -30,12 +31,13 @@ public class BackCommand extends AbstractPluginCommand {
         Player player = (Player) commandSender;
 
         // Check if we have a previous location stored
-        if (ephemeralData.getLastLogins().get(player) == null) {
+        Location previousLocation = ephemeralData.getLastLogins().get(player);
+        if (previousLocation == null) {
             player.sendMessage(ChatColor.RED + "You don't have a previous location to return to!");
             return false;
         }
 
-        player.teleport(ephemeralData.getLastLogins().get(player));
+        player.teleport(previousLocation);
         player.sendMessage(ChatColor.AQUA + "Teleported to your previous location!");
         return true;
     }

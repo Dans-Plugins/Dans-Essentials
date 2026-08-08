@@ -1,6 +1,7 @@
 package dansplugins.dansessentials.commands;
 
 import dansplugins.dansessentials.data.EphemeralData;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -44,6 +45,7 @@ public class BackCommandTest {
         boolean result = backCommand.execute(player);
 
         assertFalse(result);
+        verify(player).sendMessage(ChatColor.RED + "You don't have a previous location to return to!");
         verify(player, never()).teleport(any(Location.class));
     }
 
@@ -57,5 +59,6 @@ public class BackCommandTest {
 
         assertTrue(result);
         verify(player).teleport(previousLocation);
+        verify(player).sendMessage(ChatColor.AQUA + "Teleported to your previous location!");
     }
 }
