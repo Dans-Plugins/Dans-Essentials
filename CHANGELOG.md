@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Build workflow now triggers on `master` (the repo's actual default branch) instead of `main`/`develop`, so CI actually runs on pushes and pull requests.
+- `/de back` no longer throws `IllegalArgumentException` when used by a player with no stored previous location; it now sends a friendly error message instead. Players also get a join location tracked as their initial "back" destination, so the command is meaningful even before their first teleport.
 
 ## [2.3.0]
 

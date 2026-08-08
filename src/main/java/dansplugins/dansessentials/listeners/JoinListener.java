@@ -25,6 +25,9 @@ public class JoinListener implements Listener {
     public void handle(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
+        // Track the player's join location as their initial "back" location
+        ephemeralData.getLastLogins().put(player, player.getLocation());
+
         if (!player.hasPlayedBefore()) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendMessage(ChatColor.GREEN + "Welcome " + player.getName() + " to the server!");
