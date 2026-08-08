@@ -15,7 +15,7 @@ Options are listed in the order they appear in the default `config.yml`.
 **Example:**
 
 ```yaml
-version: v2.3.0
+version: v3.0.0-SNAPSHOT-8-8-2026
 ```
 
 ---
