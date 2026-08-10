@@ -10,6 +10,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - A `Dev Release` workflow, which republishes a rolling `dev` prerelease of `master` on every non-documentation push. This is what Dan's Plugin Manager's experimental channel installs from: `/dpm get dansessentials --experimental` reads `releases/tags/dev`, so without it there is nothing for that command to download. The prerelease is unreleased, unreviewed code and is marked as such.
 
+### Fixed
+
+- `/de back` no longer throws `IllegalArgumentException` when used by a player with no stored previous location; it now sends a friendly error message instead. Players also get a join location tracked as their initial "back" destination, so the command is meaningful even before their first teleport.
+- `/de help` now lists `/de back`, which was missing from the in-game help output despite being a registered command.
+
 ## [3.0.0-SNAPSHOT-8-8-2026] – 2026-08-08
 
 ### Changed
@@ -18,7 +23,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Build workflow now triggers on `master` (the repo's actual default branch) instead of `main`/`develop`, so CI actually runs on pushes and pull requests.
-- `/de back` no longer throws `IllegalArgumentException` when used by a player with no stored previous location; it now sends a friendly error message instead. Players also get a join location tracked as their initial "back" destination, so the command is meaningful even before their first teleport.
 
 ## [2.3.0]
 
