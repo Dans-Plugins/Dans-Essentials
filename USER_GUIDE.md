@@ -82,6 +82,8 @@ After teleporting, return to your previous location:
 /de back
 ```
 
+If you have not teleported yet, this returns you to where you joined the server. If no previous location is known, an error message is shown instead.
+
 ### Getting Your Current Coordinates
 
 ```
