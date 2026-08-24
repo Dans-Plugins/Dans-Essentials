@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- `/de fly <player>` no longer throws a `NullPointerException` when the named player is offline; it now reports `That player isn't online.` and stops, matching the guard every other target-taking command already had.
+- The permission-denied message for `/de fly <player>` now names `de.fly.others`, the node the command actually checks and the one declared in `plugin.yml`. It previously named `me.fly.others`, a node that does not exist, so a player who asked an administrator for exactly what the message said would still have been refused.
 - The `Dev Release` workflow now retries publishing the `dev` prerelease before giving up. The release and its tag have to be deleted and recreated for the tag to move to the new commit, and a transient API failure inside that window previously left the repository with no `dev` release at all until the workflow was re-run by hand. Each attempt now starts from a clean slate, and an exhausted retry fails loudly.
 
 ### Added

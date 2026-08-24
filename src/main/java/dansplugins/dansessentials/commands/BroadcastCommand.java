@@ -1,5 +1,5 @@
 // Permissions:
-// 'me.broadcast'
+// 'de.broadcast'
 
 package dansplugins.dansessentials.commands;
 
