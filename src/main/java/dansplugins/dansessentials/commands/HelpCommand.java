@@ -1,5 +1,5 @@
 // Permissions:
-// 'me.help'
+// 'de.help'
 
 package dansplugins.dansessentials.commands;
 

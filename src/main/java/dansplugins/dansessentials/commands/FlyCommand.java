@@ -1,6 +1,6 @@
 // Permissions:
-// 'me.fly'
-// 'me.fly.others'
+// 'de.fly'
+// 'de.fly.others'
 
 package dansplugins.dansessentials.commands;
 
@@ -46,10 +46,16 @@ public class FlyCommand extends AbstractPluginCommand {
     @Override
     public boolean execute(CommandSender commandSender, String[] args) {
         if (!commandSender.hasPermission("de.fly.others")) {
-            commandSender.sendMessage("Sorry! You need the 'me.fly.others' permission to use this command.");
+            commandSender.sendMessage("Sorry! You need the 'de.fly.others' permission to use this command.");
             return false;
         }
-        Player target = getServer().getPlayer(args[0]);
+        Player target = getTargetPlayer(args[0]);
+
+        if (target == null) {
+            commandSender.sendMessage(ChatColor.RED + "That player isn't online.");
+            return false;
+        }
+
         target.setAllowFlight(!target.getAllowFlight());
         if (target.getAllowFlight()) {
             target.sendMessage(ChatColor.GREEN + "Flight enabled!");
@@ -60,5 +66,15 @@ public class FlyCommand extends AbstractPluginCommand {
             commandSender.sendMessage(ChatColor.GREEN + "Flight disabled for " + target.getName());
         }
         return true;
+    }
+
+    /**
+     * Resolves an online player by name. Extracted so that the surrounding logic can be exercised
+     * without a live server.
+     * @param name The name to look up.
+     * @return The matching online player, or null if none is online.
+     */
+    Player getTargetPlayer(String name) {
+        return getServer().getPlayer(name);
     }
 }
