@@ -34,21 +34,33 @@ public class UnmuteCommand extends AbstractPluginCommand {
             return false;
         }
         Player operator = (Player) commandSender;
-        Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
+        Player targetPlayer = getTargetPlayer(args[0]);
 
         if (targetPlayer == null) {
             operator.sendMessage(ChatColor.RED + "That player isn't online!");
             return false;
         }
 
-        if (!ephemeralData.getMutedPlayers().contains(args[0])) {
+        String targetName = targetPlayer.getName();
+
+        if (!ephemeralData.getMutedPlayers().contains(targetName)) {
             operator.sendMessage(ChatColor.RED + "That player is already not muted!");
             return false;
         }
 
-        ephemeralData.getMutedPlayers().remove(args[0]);
+        ephemeralData.getMutedPlayers().remove(targetName);
         targetPlayer.sendMessage(ChatColor.GREEN + "You have been unmuted.");
         operator.sendMessage(ChatColor.GREEN + "Player has been unmuted.");
         return true;
+    }
+
+    /**
+     * Resolves an online player by name. Extracted so that the surrounding logic can be exercised
+     * without a live server.
+     * @param name The name to look up.
+     * @return The matching online player, or null if none is online.
+     */
+    Player getTargetPlayer(String name) {
+        return Bukkit.getServer().getPlayer(name);
     }
 }
