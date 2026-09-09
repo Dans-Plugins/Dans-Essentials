@@ -9,7 +9,7 @@ making any changes.
 - Language: Java
 - Build tool: Maven
 - Target platform: Spigot / Paper (Minecraft plugin, API version 1.13+)
-- Test framework: None currently configured (add one in `pom.xml`, e.g. JUnit, when adding tests)
+- Test framework: JUnit 5 (`junit-jupiter`) with Mockito, both declared at `test` scope in `pom.xml`
 
 ## Project Structure
 
@@ -21,7 +21,7 @@ making any changes.
   - `utils/` – Utility classes (e.g. `Logger`)
   - `bStats/` – bStats metrics integration
 - `src/main/resources/` – `plugin.yml` and any other resources (create `config.yml` here if adding config defaults)
-- `src/test/java/` – Unit tests (create this directory when adding tests, following the Maven convention)
+- `src/test/java/` – Unit tests, mirroring the package layout of `src/main/java/`
 
 ## Coding Conventions
 
@@ -33,6 +33,6 @@ making any changes.
 
 ## Contribution Workflow
 
-- Branch from `develop` for all changes.
-- Open a pull request against `develop`, not `main`.
+- Branch from `master` for all changes.
+- Open a pull request against `master`, the repository's default and only long-lived branch.
 - Reference the related GitHub issue in every pull request description.
