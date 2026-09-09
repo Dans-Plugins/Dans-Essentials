@@ -67,7 +67,7 @@ If you see `BUILD SUCCESS`, the plugin built successfully. This also runs the te
 
 ### Manual Testing
 
-Event listeners and world interaction need a live server. To test them, start a local Spigot or Paper server:
+Some behaviour cannot be covered by the unit suite — anything that depends on real world state, item stacks, or the server's own event dispatch. To verify that, start a local Spigot or Paper server:
 
 1. Download a Spigot or Paper server JAR.
 2. Create a new folder and place the server JAR inside.
