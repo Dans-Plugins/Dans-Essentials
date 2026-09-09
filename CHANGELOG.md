@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- The contributor documentation now describes the repository as it actually is. `CONTRIBUTING.md` and `.github/copilot-instructions.md` routed contributors through a `develop` branch that no longer exists, so the very first command in the "Making Changes" walkthrough failed; both now name `master`, the repository's default and only long-lived branch. `CONTRIBUTING.md` and `README.md` also stated that no automated tests were configured, which stopped being true once the JUnit 5 and Mockito suite under `src/test/java/` was added; both now describe that suite and the `mvn test` command that runs it.
+
 ### Fixed
 
 - `/de mute <player>` and `/de unmute <player>` now key the muted-player list on the resolved player's name rather than the spelling that was typed. Because the server resolves a name case-insensitively and by prefix, `/de mute ste` against `Steve` previously stored `ste`, reported success, and left the player able to chat, since the chat listener looks players up under their canonical name. The same spelling mismatch made a muted player impossible to unmute under a different spelling, allowed one player to be muted twice under two spellings, and let a partial name that resolved back to the sender slip past the "You can't mute yourself!" guard.

@@ -38,25 +38,36 @@ Issues are grouped into [milestones](https://github.com/Dans-Plugins/Dans-Essent
 ## Making Changes
 
 1. Make sure an issue exists for the work. If not, create one.
-2. Switch to `develop`: `git checkout develop`
+2. Switch to `master`: `git checkout master`
 3. Create a branch: `git checkout -b <branch-name>`
 4. Make your changes.
 5. Test your changes.
 6. Commit: `git commit -m "Description of changes"`
 7. Push: `git push origin <branch-name>`
-8. Open a pull request against `develop`, link the related issue with `#<number>`.
+8. Open a pull request against `master`, link the related issue with `#<number>`.
 9. Address review feedback.
 
 ## Testing
 
-There are currently no automated unit tests configured in this project. To verify your changes compile correctly, run:
+### Automated Tests
 
-Linux: `mvn clean package`  
-Windows: `mvn clean package`
+This project has a JUnit 5 test suite under `src/test/java/`, using Mockito to stand in for the Bukkit API. Run it with:
 
-If you see `BUILD SUCCESS`, the plugin compiled successfully.
+`mvn test`
 
-For manual testing, start a local Spigot or Paper server:
+Please extend the suite alongside your changes. Logic that can be exercised without a live server belongs in a test; put it in `src/test/java/` mirroring the package of the class under test, and follow the structure of the neighbouring tests.
+
+### Build Verification
+
+To verify the plugin builds and packages correctly, run:
+
+`mvn clean package`
+
+If you see `BUILD SUCCESS`, the plugin built successfully. This also runs the test suite, and is the same command CI runs on every pull request.
+
+### Manual Testing
+
+Some behaviour cannot be covered by the unit suite — anything that depends on real world state, item stacks, or the server's own event dispatch. To verify that, start a local Spigot or Paper server:
 
 1. Download a Spigot or Paper server JAR.
 2. Create a new folder and place the server JAR inside.
