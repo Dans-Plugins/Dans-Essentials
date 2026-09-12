@@ -5,6 +5,7 @@ import dansplugins.dansessentials.commands.*;
 import dansplugins.dansessentials.data.EphemeralData;
 import dansplugins.dansessentials.listeners.*;
 import dansplugins.dansessentials.services.ConfigService;
+import dansplugins.dansessentials.trace.TraceClient;
 import dansplugins.dansessentials.utils.Logger;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,6 +18,7 @@ import preponderous.ponder.minecraft.bukkit.tools.EventHandlerRegistry;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @author Daniel McCoy Stephenson
@@ -29,15 +31,36 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
     private final EphemeralData ephemeralData = new EphemeralData();
     private final Logger logger = new Logger(this);
 
+    // A no-op until the config has been read, so a command arriving before
+    // onEnable() finishes has something safe to report to.
+    private TraceClient trace = TraceClient.disabled();
+
     /**
      * This runs when the server starts.
      */
     @Override
     public void onEnable() {
+        // The bundled config.yml only carries the usage-reporting block; the rest of the
+        // file is written by initializeConfig(). saveDefaultConfig() is a no-op when the
+        // file already exists, in which case the block is read from the jar's defaults.
+        saveDefaultConfig();
         initializeConfig();
         registerEventHandlers();
         initializeCommandService();
         handlebStatsIntegration();
+        initializeUsageReporting();
+    }
+
+    /**
+     * Usage reporting: one event now, one per command; see config.yml.
+     */
+    private void initializeUsageReporting() {
+        trace = TraceClient.builder(configService.getUsageReportingEndpoint(), getName())
+                .key(configService.getUsageReportingKey())
+                .enabled(configService.isUsageReportingEnabled())
+                .logger(getLogger())
+                .build();
+        trace.report("startup", null, Collections.singletonMap("version", getDescription().getVersion()));
     }
 
     private void handlebStatsIntegration() {
@@ -47,7 +70,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
 
     @Override
     public void onDisable() {
-
+        trace.close();
     }
 
     /**
@@ -60,6 +83,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        trace.report("command", null, Collections.singletonMap("name", cmd.getName()));
         if (args.length == 0) {
             DefaultCommand defaultCommand = new DefaultCommand(this);
             return defaultCommand.execute(sender);
