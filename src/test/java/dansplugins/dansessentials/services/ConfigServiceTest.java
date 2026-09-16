@@ -2,11 +2,13 @@ package dansplugins.dansessentials.services;
 
 import dansplugins.dansessentials.DansEssentials;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -17,12 +19,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class ConfigServiceTest {
+    private DansEssentials plugin;
     private FileConfiguration config;
     private ConfigService configService;
 
     @BeforeEach
     void setUp() {
-        DansEssentials plugin = mock(DansEssentials.class);
+        plugin = mock(DansEssentials.class);
         config = mock(FileConfiguration.class);
         when(plugin.getConfig()).thenReturn(config);
         configService = new ConfigService(plugin);
@@ -64,5 +67,48 @@ class ConfigServiceTest {
         assertFalse(configService.isUsageReportingEnabled());
         assertEquals("http://localhost:8080", configService.getUsageReportingEndpoint());
         assertEquals("abc", configService.getUsageReportingKey());
+    }
+
+    @Test
+    void saveUsageReportingDefaultsIfMissing_putsTheBundledBlockOnDiskWhenTheFileLacksIt() {
+        // A config.yml from before usage reporting, with the jar's config.yml
+        // registered as its defaults the way JavaPlugin.reloadConfig() does.
+        YamlConfiguration onDisk = new YamlConfiguration();
+        onDisk.set("version", "v1.0");
+        onDisk.set("debugMode", true);
+        YamlConfiguration bundled = new YamlConfiguration();
+        bundled.set("usage-reporting.enabled", true);
+        bundled.set("usage-reporting.endpoint", "https://trace.danielstephenson.dev");
+        bundled.set("usage-reporting.key", "bundled-key");
+        onDisk.setDefaults(bundled);
+        when(plugin.getConfig()).thenReturn(onDisk);
+        when(plugin.getVersion()).thenReturn("v1.0");
+
+        configService.saveUsageReportingDefaultsIfMissing();
+
+        verify(plugin).saveConfig();
+        String saved = onDisk.saveToString();
+        assertTrue(saved.contains("enabled: true"), saved);
+        assertTrue(saved.contains("endpoint: https://trace.danielstephenson.dev"), saved);
+        assertTrue(saved.contains("key: bundled-key"), saved);
+        assertTrue(saved.contains("debugMode: true"), "existing settings must survive: " + saved);
+    }
+
+    @Test
+    void saveUsageReportingDefaultsIfMissing_leavesAFileThatHasTheBlockAlone() {
+        // In particular an operator's enabled: false must never be undone.
+        YamlConfiguration onDisk = new YamlConfiguration();
+        onDisk.set("usage-reporting.enabled", false);
+        YamlConfiguration bundled = new YamlConfiguration();
+        bundled.set("usage-reporting.enabled", true);
+        bundled.set("usage-reporting.key", "bundled-key");
+        onDisk.setDefaults(bundled);
+        when(plugin.getConfig()).thenReturn(onDisk);
+
+        configService.saveUsageReportingDefaultsIfMissing();
+
+        verify(plugin, never()).saveConfig();
+        assertFalse(onDisk.getBoolean("usage-reporting.enabled"));
+        assertNull(onDisk.get("usage-reporting.key", null), "nothing must be added beside the operator's switch");
     }
 }

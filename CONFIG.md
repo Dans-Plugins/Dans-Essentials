@@ -46,7 +46,9 @@ debugMode: false
 | `usage-reporting.endpoint` | `https://trace.danielstephenson.dev` | The trace server events are sent to. |
 | `usage-reporting.key` | the plugin's key | Identifies this plugin to the trace server so reports are attributed to it. Not a secret: it ships in the default config and can only report as DansEssentials. Empty means reporting is off regardless of `enabled`. |
 
-Servers upgraded from a version before this block existed keep their `config.yml` as it is; the plugin reads the bundled defaults for any key the file lacks, so reporting is active there too unless turned off.
+A `config.yml` from a version before this block existed is completed with the bundled `usage-reporting` values the next time the plugin starts, so the switch is always on disk; the plugin reads the bundled defaults for any key the file still lacks. The plugin says on every startup whether reporting is on, and why not when it is off.
+
+Two further switches win over this file: `enabled: false` in `plugins/trace/config.yml` (created the first time a plugin that reports this way starts) turns reporting off for every such plugin on the server, and the environment variables `TRACE_USAGE_REPORTING=off` or `DO_NOT_TRACK=1` turn it off for the whole process. Details: https://github.com/Stephenson-Software/trace#usage-reporting
 
 **Example:**
 

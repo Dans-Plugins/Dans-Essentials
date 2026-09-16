@@ -24,6 +24,7 @@ import java.util.Collections;
  * @author Daniel McCoy Stephenson
  */
 public class DansEssentials extends PonderBukkitPlugin implements Listener {
+    private static final String USAGE_REPORTING_DETAILS_URL = "https://github.com/Stephenson-Software/trace#usage-reporting";
     private final String pluginVersion = "v" + getDescription().getVersion();
 
     private final CommandService commandService = new CommandService(getPonder());
@@ -52,14 +53,26 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
     }
 
     /**
-     * Usage reporting: one event now, one per command; see config.yml.
+     * Usage reporting: one event now, one per command; see config.yml. The server-wide
+     * plugins/trace/config.yml and the environment get the last word over this plugin's
+     * own switch, and the outcome is said on every startup.
      */
     private void initializeUsageReporting() {
         trace = TraceClient.builder(configService.getUsageReportingEndpoint(), getName())
                 .key(configService.getUsageReportingKey())
                 .enabled(configService.isUsageReportingEnabled())
+                .serverWideConfig(getDataFolder().getParentFile())
                 .logger(getLogger())
                 .build();
+        if (trace.isEnabled()) {
+            getLogger().info("Usage reporting is on: " + getName() + " sends its name, version and command names to "
+                    + configService.getUsageReportingEndpoint() + " - nothing about players or the server. "
+                    + "Turn it off with usage-reporting.enabled: false in this plugin's config.yml, "
+                    + "or for every plugin with enabled: false in plugins/trace/config.yml. "
+                    + "Details: " + USAGE_REPORTING_DETAILS_URL);
+        } else {
+            getLogger().info("Usage reporting is off (" + trace.disabledReason() + ").");
+        }
         trace.report("startup", null, Collections.singletonMap("version", getDescription().getVersion()));
     }
 
@@ -109,6 +122,9 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
         if (isVersionMismatched()) {
             configService.saveMissingConfigDefaultsIfNotPresent();
         }
+        // A config.yml from before usage reporting only gets rewritten on a version
+        // change; make sure the switch reaches the disk regardless, so it can be found.
+        configService.saveUsageReportingDefaultsIfMissing();
         reloadConfig();
     }
 

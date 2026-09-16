@@ -16,6 +16,7 @@ import org.bukkit.configuration.file.FileConfiguration;
  * @author Daniel McCoy Stephenson
  */
 public class ConfigService {
+    private static final String USAGE_REPORTING_SECTION_KEY = "usage-reporting";
     private static final String USAGE_REPORTING_ENABLED_KEY = "usage-reporting.enabled";
     private static final String USAGE_REPORTING_ENDPOINT_KEY = "usage-reporting.endpoint";
     private static final String USAGE_REPORTING_KEY_KEY = "usage-reporting.key";
@@ -42,6 +43,20 @@ public class ConfigService {
 
         getConfig().options().copyDefaults(true);
         dansEssentials.saveConfig();
+    }
+
+    /**
+     * Puts the bundled usage-reporting block into a config.yml that predates it, so the
+     * switch is on disk where it can be found. Goes through the same copyDefaults + save
+     * that a version upgrade uses, so the values are the jar's defaults and every other
+     * setting is kept. A file that already has the block -- including one where enabled
+     * has been set to false -- is left exactly as it is.
+     */
+    public void saveUsageReportingDefaultsIfMissing() {
+        if (isSet(USAGE_REPORTING_SECTION_KEY)) {
+            return;
+        }
+        saveMissingConfigDefaultsIfNotPresent();
     }
 
     public void setConfigOption(String option, String value, CommandSender sender) {
