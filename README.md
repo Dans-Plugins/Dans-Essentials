@@ -8,7 +8,7 @@ Dan's Essentials is a Minecraft plugin that provides a collection of miscellaneo
 
 ### First Time Installation
 
-1. Download the plugin from [SpigotMC](https://www.spigotmc.org/resources/dans-essentials.98503/).
+1. Download the plugin from [SpigotMC](https://www.spigotmc.org/resources/dans-essentials.80513/).
 2. Place the jar in the `plugins` folder of your server.
 3. Restart your server.
 
