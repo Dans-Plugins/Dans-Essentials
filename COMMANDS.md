@@ -72,11 +72,11 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ## Admin Commands
 
-### /de broadcast \<message\>
+### /de broadcast "\<message\>"
 
-**Description:** Broadcast a message to all players currently online.  
+**Description:** Broadcast a message to all players currently online. The message must be wrapped in double quotes; without them the command replies `Message must be specified in between quotation marks.` and sends nothing.  
 **Permission:** `de.broadcast`  
-**Usage:** `/de broadcast <message>`  
+**Usage:** `/de broadcast "<message>"`  
 **Example:** `/de broadcast "Server restart in 5 minutes!"`
 
 ---
@@ -117,9 +117,9 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ---
 
-### /de label \<name\>
+### /de label "\<name\>"
 
-**Description:** Rename the item currently held in your main hand.  
+**Description:** Rename the item currently held in your main hand. The new name must be wrapped in double quotes; without them the command replies `New label must be specified between double quotes.` and changes nothing.  
 **Permission:** `de.label`  
-**Usage:** `/de label <name>`  
+**Usage:** `/de label "<name>"`  
 **Example:** `/de label "Magic Sword"`

@@ -8,7 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- Usage reporting is now disclosed on every startup: the plugin logs whether reporting is on (and what is sent, and how to turn it off) or off (and why). A `config.yml` from before the `usage-reporting` block existed is completed with the bundled values so the switch is visible on disk. Two new ways to turn reporting off: `enabled: false` in `plugins/trace/config.yml` (created on first start, shared by every plugin that reports this way) and the environment variables `TRACE_USAGE_REPORTING=off` or `DO_NOT_TRACK=1`. The vendored trace client is 0.2.0. Nothing about what is sent changed; see the README's Usage reporting section.
+- The command documentation now shows that `/de broadcast` and `/de label` only accept their argument inside double quotes. `COMMANDS.md`, `USER_GUIDE.md`, and the in-game `/de help` output wrote the label as `/de label <name>`, and the reference wrote the broadcast usage as `/de broadcast <message>`, which read as if quotes were optional; typed that way both commands reject the input. The in-game help line for `/de label` also now says it renames the item in the main hand, and the `/de broadcast` help line has its missing space restored.
+- `USER_GUIDE.md` now mentions the welcome message that is broadcast to everyone online when a player joins for the first time, which was not documented anywhere.
+- `CHANGELOG.md` now records the `2.4.0` release. The entries now under `[2.4.0]` were published as `v2.4.0` on 2026-09-19 but were still listed as unreleased, and their two `Changed` headings are merged into one.
+
+## [2.4.0] – 2026-09-19
 
 ### Added
 
@@ -17,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Usage reporting is now disclosed on every startup: the plugin logs whether reporting is on (and what is sent, and how to turn it off) or off (and why). A `config.yml` from before the `usage-reporting` block existed is completed with the bundled values so the switch is visible on disk. Two new ways to turn reporting off: `enabled: false` in `plugins/trace/config.yml` (created on first start, shared by every plugin that reports this way) and the environment variables `TRACE_USAGE_REPORTING=off` or `DO_NOT_TRACK=1`. The vendored trace client is 0.2.0. Nothing about what is sent changed; see the README's Usage reporting section.
 - The contributor documentation now describes the repository as it actually is. `CONTRIBUTING.md` and `.github/copilot-instructions.md` routed contributors through a `develop` branch that no longer exists, so the very first command in the "Making Changes" walkthrough failed; both now name `master`, the repository's default and only long-lived branch. `CONTRIBUTING.md` and `README.md` also stated that no automated tests were configured, which stopped being true once the JUnit 5 and Mockito suite under `src/test/java/` was added; both now describe that suite and the `mvn test` command that runs it.
 
 ### Fixed

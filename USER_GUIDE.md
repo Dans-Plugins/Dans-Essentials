@@ -47,6 +47,8 @@ Adjust your flight speed (1–10):
 /de broadcast "Your message here"
 ```
 
+The quotes are required; a message typed without them is rejected.
+
 ### Muting and Unmuting Players
 
 ```
@@ -71,8 +73,10 @@ Adjust your flight speed (1–10):
 Hold the item you want to rename and run:
 
 ```
-/de label <name>
+/de label "New Name"
 ```
+
+The quotes are required; a name typed without them is rejected.
 
 ### Returning to Your Last Location
 
@@ -102,6 +106,10 @@ Operators can place warp signs to allow players to teleport to predefined coordi
 ```
 
 Each of lines 2–4 must contain an integer coordinate. Requires the `de.placeWarpSign` permission to create and `de.usewarpsign` to use.
+
+### New Player Welcome
+
+When a player joins the server for the first time, everyone online is sent `Welcome <name> to the server!`. This happens automatically and has no permission or configuration switch.
 
 ## Permissions
 
