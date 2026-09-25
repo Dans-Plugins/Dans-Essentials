@@ -53,22 +53,26 @@ public class InteractionListener implements Listener {
 
         logger.log(player.getName() + " clicked on a warp sign. Teleporting.");
 
+        // acquire coordinates
+        int x;
+        int y;
+        int z;
         try {
-            // acquire coordinates
-            int x = Integer.parseInt(sign.getLine(1));
-            int y = Integer.parseInt(sign.getLine(2));;
-            int z = Integer.parseInt(sign.getLine(3));;
-            World world = event.getPlayer().getWorld();
-
-            Location warpLocation = new Location(world, x, y, z);
-
-            // teleport player
-            player.teleport(warpLocation);
-            player.sendMessage(ChatColor.GREEN + "You have warped to " + x + " " + y + " " + z  + ".");
-
-        } catch(Exception e) {
-            System.out.println("A problem occurred with a warp sign located at [" + clickedBlock.getX() + ", " + clickedBlock.getY()  + ", " + clickedBlock.getZ() + "] in " + event.getPlayer().getWorld().getName());
+            x = Integer.parseInt(sign.getLine(1));
+            y = Integer.parseInt(sign.getLine(2));
+            z = Integer.parseInt(sign.getLine(3));
+        } catch (NumberFormatException e) {
+            logger.warn("The warp sign located at [" + clickedBlock.getX() + ", " + clickedBlock.getY() + ", " + clickedBlock.getZ() + "] in " + player.getWorld().getName() + " has invalid coordinates: " + e.getMessage());
+            player.sendMessage(ChatColor.RED + "This warp sign's coordinates are not valid.");
+            return;
         }
+        World world = player.getWorld();
+
+        Location warpLocation = new Location(world, x, y, z);
+
+        // teleport player
+        player.teleport(warpLocation);
+        player.sendMessage(ChatColor.GREEN + "You have warped to " + x + " " + y + " " + z  + ".");
     }
 
     private boolean isSign(Block block) {
