@@ -20,4 +20,8 @@ public class Logger {
         }
     }
 
+    public void warn(String message) {
+        dansEssentials.getLogger().log(Level.WARNING, "[Dan's Essentials] " + message);
+    }
+
 }

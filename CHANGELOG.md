@@ -12,6 +12,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `USER_GUIDE.md` now mentions the welcome message that is broadcast to everyone online when a player joins for the first time, which was not documented anywhere.
 - `CHANGELOG.md` now records the `2.4.0` release. The entries now under `[2.4.0]` were published as `v2.4.0` on 2026-09-19 but were still listed as unreleased, and their two `Changed` headings are merged into one.
 
+### Fixed
+
+- A player without permission who places a `[Warp]` sign is now told the node they need, `de.placeWarpSign`. The denial message named `medievalessentials.placeWarpSign`, which does not exist, so granting it did nothing; it also called the sign a "spawn selection sign" and left the quote around the node unclosed.
+- Right-clicking a `[Warp]` sign whose lines 2–4 are not all integers now tells the player `This warp sign's coordinates are not valid.` Previously nothing happened for the player, and a line without a plugin prefix or log level was printed to the console via `System.out`. The console now gets a warning through the plugin's logger that names the sign's location and the offending value. Only coordinate parsing is caught, so a failure during the teleport itself is no longer hidden behind the same message.
+
 ## [2.4.0] – 2026-09-19
 
 ### Added

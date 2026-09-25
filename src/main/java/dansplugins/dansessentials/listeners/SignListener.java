@@ -20,7 +20,7 @@ public class SignListener implements Listener {
             }
             else {
                 // if they don't, cancel the event with a message
-                event.getPlayer().sendMessage(ChatColor.RED + "Sorry! In order to place a spawn selection sign, you must have the following permission: 'medievalessentials.placeWarpSign");
+                event.getPlayer().sendMessage(ChatColor.RED + "Sorry! You need the 'de.placeWarpSign' permission to place a warp sign.");
                 event.setCancelled(true);
             }
         }
