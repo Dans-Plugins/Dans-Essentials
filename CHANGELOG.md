@@ -16,6 +16,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - A player without permission who places a `[Warp]` sign is now told the node they need, `de.placeWarpSign`. The denial message named `medievalessentials.placeWarpSign`, which does not exist, so granting it did nothing; it also called the sign a "spawn selection sign" and left the quote around the node unclosed.
 - Right-clicking a `[Warp]` sign whose lines 2–4 are not all integers now tells the player `This warp sign's coordinates are not valid.` Previously nothing happened for the player, and a line without a plugin prefix or log level was printed to the console via `System.out`. The console now gets a warning through the plugin's logger that names the sign's location and the offending value. Only coordinate parsing is caught, so a failure during the teleport itself is no longer hidden behind the same message.
+- `/de label "<name>"` with an empty main hand now replies `You must be holding an item in your main hand!` and stops. The empty-hand check compared the held item to `null`, but the server hands back an `AIR` stack rather than `null`, so the check never matched and the command threw a `NullPointerException` instead. An item that cannot carry a name now gets `That item can't be renamed.` rather than the same exception.
+- `/de gm` with a mode other than `0`, `1`, or `2` (for example `/de gm 3` or `/de gm creative`) now replies with the usage line. Previously it changed nothing, said nothing, and still reported success.
+- The usage lines for `/de flyspeed` and `/de gm` now include the `/de` prefix. They read `/flyspeed` and `/gm`, which the server answers with `Unknown command`.
 
 ## [2.4.0] – 2026-09-19
 

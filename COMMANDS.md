@@ -63,7 +63,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de gm \<mode\>
 
-**Description:** Change your gamemode. Accepts `0` (Survival), `1` (Creative), or `2` (Spectator).  
+**Description:** Change your gamemode. Accepts `0` (Survival), `1` (Creative), or `2` (Spectator); any other value is rejected with the usage line.  
 **Permission:** `de.gm`, `de.gm.0`, `de.gm.1`, or `de.gm.2`  
 **Usage:** `/de gm <mode>`  
 **Example:** `/de gm 1`
@@ -119,7 +119,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de label "\<name\>"
 
-**Description:** Rename the item currently held in your main hand. The new name must be wrapped in double quotes; without them the command replies `New label must be specified between double quotes.` and changes nothing.  
+**Description:** Rename the item currently held in your main hand. The new name must be wrapped in double quotes; without them the command replies `New label must be specified between double quotes.` and changes nothing. With an empty main hand it replies `You must be holding an item in your main hand!`.  
 **Permission:** `de.label`  
 **Usage:** `/de label "<name>"`  
 **Example:** `/de label "Magic Sword"`

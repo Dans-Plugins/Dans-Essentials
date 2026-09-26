@@ -22,7 +22,7 @@ public class GamemodeCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /gm [ 0 | 1 | 2]");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de gm [ 0 | 1 | 2]");
         return false;
     }
 
@@ -41,6 +41,7 @@ public class GamemodeCommand extends AbstractPluginCommand {
             }
             player.setGameMode(GameMode.SURVIVAL);
             player.sendMessage(GREEN + "You are now in survival mode.");
+            return true;
         }
 
         if (args[0].equalsIgnoreCase("1")) {
@@ -50,6 +51,7 @@ public class GamemodeCommand extends AbstractPluginCommand {
             }
             player.setGameMode(GameMode.CREATIVE);
             player.sendMessage(GREEN + "You are now in creative mode.");
+            return true;
         }
 
         if (args[0].equalsIgnoreCase("2")) {
@@ -59,7 +61,9 @@ public class GamemodeCommand extends AbstractPluginCommand {
             }
             player.setGameMode(GameMode.SPECTATOR);
             player.sendMessage(GREEN + "You are now in spectator mode.");
+            return true;
         }
-        return true;
+
+        return execute(commandSender);
     }
 }

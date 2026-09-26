@@ -19,7 +19,7 @@ public class FlySpeedCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /flyspeed (number)");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de flyspeed (number)");
         return false;
     }
 
