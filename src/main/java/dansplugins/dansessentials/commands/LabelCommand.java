@@ -1,6 +1,7 @@
 package dansplugins.dansessentials.commands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -38,8 +39,9 @@ public class LabelCommand extends AbstractPluginCommand {
 
         ItemStack item = player.getInventory().getItemInMainHand();
 
-        if (item == null) {
+        if (item == null || item.getType() == Material.AIR) {
             player.sendMessage(ChatColor.RED + "You must be holding an item in your main hand!");
+            return false;
         }
 
         ArgumentParser argumentParser = new ArgumentParser();
@@ -52,12 +54,11 @@ public class LabelCommand extends AbstractPluginCommand {
 
         String newLabel = doubleQuoteArgs.get(0);
 
-        if (item == null) {
-            player.sendMessage(ChatColor.RED + "Something went wrong.");
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) {
+            player.sendMessage(ChatColor.RED + "That item can't be renamed.");
             return false;
         }
-
-        ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName(newLabel);
         item.setItemMeta(meta);
