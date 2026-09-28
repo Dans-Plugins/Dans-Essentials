@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - The command documentation now shows that `/de broadcast` and `/de label` only accept their argument inside double quotes. `COMMANDS.md`, `USER_GUIDE.md`, and the in-game `/de help` output wrote the label as `/de label <name>`, and the reference wrote the broadcast usage as `/de broadcast <message>`, which read as if quotes were optional; typed that way both commands reject the input. The in-game help line for `/de label` also now says it renames the item in the main hand, and the `/de broadcast` help line has its missing space restored.
 - `USER_GUIDE.md` now mentions the welcome message that is broadcast to everyone online when a player joins for the first time, which was not documented anywhere.
 - `CHANGELOG.md` now records the `2.4.0` release. The entries now under `[2.4.0]` were published as `v2.4.0` on 2026-09-19 but were still listed as unreleased, and their two `Changed` headings are merged into one.
+- The vendored trace client is now 0.3.0. `plugins/trace/config.yml` can now carry a `tags:` block whose entries are added to every usage event reported by the plugins on that server, with an event's own tag winning on a key clash; release test servers write `ci: "true"` there so their boots are left out of real-installation figures. A server without a `tags:` block reports exactly as before. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.3.0.
 
 ### Fixed
 
