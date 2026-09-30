@@ -58,7 +58,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
      * own switch, and the outcome is said on every startup.
      */
     private void initializeUsageReporting() {
-        trace = TraceClient.builder(configService.getUsageReportingEndpoint(), getName())
+        trace = TraceClient.builder(configService.getUsageReportingEndpoint(), getName(), getDescription().getVersion())
                 .key(configService.getUsageReportingKey())
                 .enabled(configService.isUsageReportingEnabled())
                 .serverWideConfig(getDataFolder().getParentFile())
@@ -73,7 +73,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
         } else {
             getLogger().info("Usage reporting is off (" + trace.disabledReason() + ").");
         }
-        trace.report("startup", null, Collections.singletonMap("version", getDescription().getVersion()));
+        trace.report("startup");
     }
 
     private void handlebStatsIntegration() {
