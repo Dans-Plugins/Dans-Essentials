@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -97,6 +98,21 @@ class MutedPlayersStorageTest {
 
         assertTrue(data.getMutedPlayers().isEmpty());
         verify(logger).warn(anyString());
+    }
+
+    @Test
+    void save_leavesAFileThatCouldNotBeReadUntouched() throws IOException {
+        // Bytes that are not valid UTF-8 make the read fail without making the file unwritable.
+        File file = new File(dataFolder, MutedPlayersStorage.FILE_NAME);
+        byte[] original = {'S', 't', 'e', 'v', 'e', (byte) 0xFF, '\n'};
+        Files.write(file.toPath(), original);
+        EphemeralData data = new EphemeralData();
+        MutedPlayersStorage storage = new MutedPlayersStorage(dataFolder, data, logger);
+        storage.load();
+
+        storage.save();
+
+        assertArrayEquals(original, Files.readAllBytes(file.toPath()));
     }
 
     @Test

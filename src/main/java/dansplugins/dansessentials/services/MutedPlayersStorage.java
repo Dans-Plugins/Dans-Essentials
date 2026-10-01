@@ -20,6 +20,7 @@ public class MutedPlayersStorage {
     private final File file;
     private final EphemeralData ephemeralData;
     private final Logger logger;
+    private boolean loadFailed = false;
 
     public MutedPlayersStorage(File dataFolder, EphemeralData ephemeralData, Logger logger) {
         this.file = new File(dataFolder, FILE_NAME);
@@ -38,6 +39,7 @@ public class MutedPlayersStorage {
         try {
             lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
         } catch (IOException e) {
+            loadFailed = true;
             logger.warn("Could not read " + file.getPath() + "; no players are muted. Cause: " + e.getMessage());
             return;
         }
@@ -52,9 +54,15 @@ public class MutedPlayersStorage {
     }
 
     /**
-     * Writes the in-memory muted-player list to the file, replacing its previous contents.
+     * Writes the in-memory muted-player list to the file, replacing its previous contents. If the file could not be
+     * read on load, it is left untouched so the mutes it holds are not overwritten.
      */
     public void save() {
+        if (loadFailed) {
+            logger.warn("Not saving the muted-player list because " + file.getPath()
+                    + " could not be read at startup; fix or remove the file to keep mutes across restarts.");
+            return;
+        }
         try {
             File parent = file.getParentFile();
             if (parent != null && !parent.exists() && !parent.mkdirs()) {
