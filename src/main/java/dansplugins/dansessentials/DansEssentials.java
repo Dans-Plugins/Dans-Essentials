@@ -5,6 +5,7 @@ import dansplugins.dansessentials.commands.*;
 import dansplugins.dansessentials.data.EphemeralData;
 import dansplugins.dansessentials.listeners.*;
 import dansplugins.dansessentials.services.ConfigService;
+import dansplugins.dansessentials.services.MutedPlayersStorage;
 import dansplugins.dansessentials.trace.TraceClient;
 import dansplugins.dansessentials.utils.Logger;
 import org.bukkit.command.Command;
@@ -31,6 +32,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
     private final ConfigService configService = new ConfigService(this);
     private final EphemeralData ephemeralData = new EphemeralData();
     private final Logger logger = new Logger(this);
+    private MutedPlayersStorage mutedPlayersStorage;
 
     // A no-op until the config has been read, so a command arriving before
     // onEnable() finishes has something safe to report to.
@@ -46,6 +48,8 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
         // file already exists, in which case the block is read from the jar's defaults.
         saveDefaultConfig();
         initializeConfig();
+        mutedPlayersStorage = new MutedPlayersStorage(getDataFolder(), ephemeralData, logger);
+        mutedPlayersStorage.load();
         registerEventHandlers();
         initializeCommandService();
         handlebStatsIntegration();
@@ -83,6 +87,9 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
 
     @Override
     public void onDisable() {
+        if (mutedPlayersStorage != null) {
+            mutedPlayersStorage.save();
+        }
         trace.close();
     }
 
