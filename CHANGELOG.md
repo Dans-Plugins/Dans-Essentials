@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Muted players now stay muted across server restarts. The muted-player list is written to `plugins/DansEssentials/muted-players.txt` (one player name per line) when the plugin is disabled and read back when it is enabled; previously every mute was lost on restart. The list is only written on a clean shutdown, so mutes and unmutes made since startup are lost if the server crashes. Mutes are still keyed on the player's name, so a player who changes their name is no longer muted. A file that cannot be read or written is reported as a console warning rather than stopping the plugin.
+
 ### Changed
 
 - The command documentation now shows that `/de broadcast` and `/de label` only accept their argument inside double quotes. `COMMANDS.md`, `USER_GUIDE.md`, and the in-game `/de help` output wrote the label as `/de label <name>`, and the reference wrote the broadcast usage as `/de broadcast <message>`, which read as if quotes were optional; typed that way both commands reject the input. The in-game help line for `/de label` also now says it renames the item in the main hand, and the `/de broadcast` help line has its missing space restored.

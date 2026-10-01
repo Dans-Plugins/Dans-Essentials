@@ -27,7 +27,7 @@ public class HelpCommand extends AbstractPluginCommand {
         commandSender.sendMessage(ChatColor.AQUA + "/de fly - Toggle flight for you or another player.");
         commandSender.sendMessage(ChatColor.AQUA + "/de flyspeed <number> - Set your fly speed.");
         commandSender.sendMessage(ChatColor.AQUA + "/de broadcast \"message\" - Broadcast a message to everyone online.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de mute <ign> - Mute a player until the next restart.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de mute <ign> - Mute a player until they are unmuted.");
         commandSender.sendMessage(ChatColor.AQUA + "/de unmute <ign> - Unmute a player.");
         commandSender.sendMessage(ChatColor.AQUA + "/de gm [ 0 | 1 | 2] - Set your gamemode.");
         commandSender.sendMessage(ChatColor.AQUA + "/de label \"name\" - Rename the item in your main hand.");

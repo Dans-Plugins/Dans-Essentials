@@ -52,7 +52,7 @@ The quotes are required; a message typed without them is rejected.
 ### Muting and Unmuting Players
 
 ```
-/de mute <player>    # Mute a player until the next server restart
+/de mute <player>    # Mute a player until they are unmuted (kept across restarts)
 /de unmute <player>  # Unmute a player
 ```
 

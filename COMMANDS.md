@@ -83,7 +83,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de mute \<player\>
 
-**Description:** Mute a player, preventing them from chatting until the next server restart.  
+**Description:** Mute a player, preventing them from chatting until they are unmuted. Mutes are kept across server restarts.  
 **Permission:** `de.mute`  
 **Usage:** `/de mute <player>`  
 **Example:** `/de mute Steve`
