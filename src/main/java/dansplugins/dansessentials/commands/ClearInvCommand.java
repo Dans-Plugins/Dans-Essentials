@@ -27,7 +27,7 @@ public class ClearInvCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender, String[] args) {
-        Player targetPlayer = Bukkit.getPlayer(args[0]);
+        Player targetPlayer = getTargetPlayer(args[0]);
 
         if (targetPlayer == null){
             commandSender.sendMessage("That player isn't online.");
@@ -36,5 +36,15 @@ public class ClearInvCommand extends AbstractPluginCommand {
 
         targetPlayer.getInventory().clear();
         return true;
+    }
+
+    /**
+     * Resolves an online player by name. Extracted so that the surrounding logic can be exercised
+     * without a live server.
+     * @param name The name to look up.
+     * @return The matching online player, or null if none is online.
+     */
+    Player getTargetPlayer(String name) {
+        return Bukkit.getPlayer(name);
     }
 }
