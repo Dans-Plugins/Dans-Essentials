@@ -57,17 +57,20 @@ public class ClearInvCommandTest {
     }
 
     @Test
-    public void testExecute_onlineTarget_clearsThatPlayersInventory() {
-        CommandSender commandSender = mock(CommandSender.class);
+    public void testExecute_onlineTarget_clearsThatPlayersInventoryOnly() {
+        Player operator = mock(Player.class);
+        PlayerInventory operatorInventory = mock(PlayerInventory.class);
+        when(operator.getInventory()).thenReturn(operatorInventory);
         Player target = mock(Player.class);
         PlayerInventory targetInventory = mock(PlayerInventory.class);
         when(target.getInventory()).thenReturn(targetInventory);
         onlinePlayers.put("Steve", target);
 
-        boolean result = clearInvCommand.execute(commandSender, new String[]{"Steve"});
+        boolean result = clearInvCommand.execute(operator, new String[]{"Steve"});
 
         assertTrue(result);
         verify(targetInventory).clear();
+        verify(operatorInventory, never()).clear();
     }
 
     @Test
