@@ -48,7 +48,7 @@ debugMode: false
 
 A `config.yml` from a version before this block existed is completed with the bundled `usage-reporting` values the next time the plugin starts, so the switch is always on disk; the plugin reads the bundled defaults for any key the file still lacks. The plugin says on every startup whether reporting is on, and why not when it is off.
 
-Two further switches win over this file: `enabled: false` in `plugins/trace/config.yml` (created the first time a plugin that reports this way starts) turns reporting off for every such plugin on the server, and the environment variables `TRACE_USAGE_REPORTING=off` or `DO_NOT_TRACK=1` turn it off for the whole process. Details: https://github.com/Stephenson-Software/trace#usage-reporting
+Two further switches win over this file: `enabled: false` in `plugins/trace/config.yml` (created the first time a plugin that reports this way starts) turns reporting off for every such plugin on the server, and the environment variables `TRACE_USAGE_REPORTING=off` or `DO_NOT_TRACK=1` turn it off for the whole process. Details: https://danielstephenson.dev/usage-reporting
 
 **Example:**
 

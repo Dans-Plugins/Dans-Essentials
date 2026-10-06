@@ -25,7 +25,7 @@ import java.util.Collections;
  * @author Daniel McCoy Stephenson
  */
 public class DansEssentials extends PonderBukkitPlugin implements Listener {
-    private static final String USAGE_REPORTING_DETAILS_URL = "https://github.com/Stephenson-Software/trace#usage-reporting";
+    private static final String USAGE_REPORTING_DETAILS_URL = "https://danielstephenson.dev/usage-reporting";
     private final String pluginVersion = "v" + getDescription().getVersion();
 
     private final CommandService commandService = new CommandService(getPonder());
