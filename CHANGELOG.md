@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- The usage-reporting "Details" link (startup notice, `config.yml` and the docs) now points at https://danielstephenson.dev/usage-reporting, a public page; the previous link led to a private repository and returned 404 for everyone. The vendored trace client is now 0.6.1, which carries the same link in the `plugins/trace/config.yml` header it writes. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.6.1.
+
 ### Added
 
 - Muted players now stay muted across server restarts. The muted-player list is written to `plugins/DansEssentials/muted-players.txt` (one player name per line) when the plugin is disabled and read back when it is enabled; previously every mute was lost on restart. The list is only written on a clean shutdown, so mutes and unmutes made since startup are lost if the server crashes. Mutes are still keyed on the player's name, so a player who changes their name is no longer muted. A file that cannot be read or written is reported as a console warning rather than stopping the plugin; a file that could not be read at startup is left untouched on shutdown, so the mutes it holds are not overwritten with an empty list.
