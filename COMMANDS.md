@@ -110,7 +110,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de clearinv \<player\>
 
-**Description:** Clear all items from the target player's inventory.  
+**Description:** Clear all items from the target player's inventory. The sender is told `Cleared <player>'s inventory.` and the target is told `Your inventory has been cleared.`. If the target is not online, the command replies `That player isn't online.` and changes nothing.  
 **Permission:** `de.clearinv`  
 **Usage:** `/de clearinv <player>`  
 **Example:** `/de clearinv Steve`
