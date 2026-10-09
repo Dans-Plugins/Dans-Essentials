@@ -12,7 +12,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -53,7 +52,7 @@ public class ClearInvCommandTest {
         boolean result = clearInvCommand.execute(commandSender, new String[]{"Nobody"});
 
         assertFalse(result);
-        verify(commandSender).sendMessage("That player isn't online.");
+        verify(commandSender).sendMessage(ChatColor.RED + "That player isn't online.");
     }
 
     @Test
@@ -89,16 +88,16 @@ public class ClearInvCommandTest {
     }
 
     @Test
-    public void testExecute_onlineTarget_sendsNoConfirmation() {
-        // Characterizes current behavior: neither the sender nor the target is told the inventory was cleared.
+    public void testExecute_onlineTarget_confirmsToSenderAndNotifiesTarget() {
         CommandSender commandSender = mock(CommandSender.class);
         Player target = mock(Player.class);
+        when(target.getName()).thenReturn("Steve");
         when(target.getInventory()).thenReturn(mock(PlayerInventory.class));
         onlinePlayers.put("Steve", target);
 
         clearInvCommand.execute(commandSender, new String[]{"Steve"});
 
-        verify(commandSender, never()).sendMessage(anyString());
-        verify(target, never()).sendMessage(anyString());
+        verify(commandSender).sendMessage(ChatColor.GREEN + "Cleared Steve's inventory.");
+        verify(target).sendMessage(ChatColor.RED + "Your inventory has been cleared.");
     }
 }

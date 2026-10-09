@@ -30,11 +30,13 @@ public class ClearInvCommand extends AbstractPluginCommand {
         Player targetPlayer = getTargetPlayer(args[0]);
 
         if (targetPlayer == null){
-            commandSender.sendMessage("That player isn't online.");
+            commandSender.sendMessage(ChatColor.RED + "That player isn't online.");
             return false;
         }
 
         targetPlayer.getInventory().clear();
+        targetPlayer.sendMessage(ChatColor.RED + "Your inventory has been cleared.");
+        commandSender.sendMessage(ChatColor.GREEN + "Cleared " + targetPlayer.getName() + "'s inventory.");
         return true;
     }
 
