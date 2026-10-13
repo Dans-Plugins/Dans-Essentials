@@ -8,7 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- `CHANGELOG.md` now records the `2.5.0`, `2.6.0`, and `2.6.1` releases. Their entries were published as `v2.5.0`, `v2.6.0`, and `v2.6.1` but were still listed as unreleased; each is now under the release that shipped it, and the two `Changed` headings that held them are merged into one.
+
+## [2.6.1] – 2026-10-10
+
+### Fixed
+
+- `/de clearinv <player>` now confirms that it worked: the sender is told `Cleared <player>'s inventory.` and the target is told `Your inventory has been cleared.`. Previously neither was told anything. Its `That player isn't online.` reply is now red, matching `/de invsee` and `/de fly`.
+
+## [2.6.0] – 2026-10-06
+
+### Changed
+
 - The usage-reporting "Details" link (startup notice, `config.yml` and the docs) now points at https://danielstephenson.dev/usage-reporting, a public page; the previous link led to a private repository and returned 404 for everyone. The vendored trace client is now 0.6.1, which carries the same link in the `plugins/trace/config.yml` header it writes. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.6.1.
+
+## [2.5.0] – 2026-10-02
 
 ### Added
 
@@ -23,7 +37,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
-- `/de clearinv <player>` now confirms that it worked: the sender is told `Cleared <player>'s inventory.` and the target is told `Your inventory has been cleared.`. Previously neither was told anything. Its `That player isn't online.` reply is now red, matching `/de invsee` and `/de fly`.
 - A player without permission who places a `[Warp]` sign is now told the node they need, `de.placeWarpSign`. The denial message named `medievalessentials.placeWarpSign`, which does not exist, so granting it did nothing; it also called the sign a "spawn selection sign" and left the quote around the node unclosed.
 - Right-clicking a `[Warp]` sign whose lines 2–4 are not all integers now tells the player `This warp sign's coordinates are not valid.` Previously nothing happened for the player, and a line without a plugin prefix or log level was printed to the console via `System.out`. The console now gets a warning through the plugin's logger that names the sign's location and the offending value. Only coordinate parsing is caught, so a failure during the teleport itself is no longer hidden behind the same message.
 - `/de label "<name>"` with an empty main hand now replies `You must be holding an item in your main hand!` and stops. The empty-hand check compared the held item to `null`, but the server hands back an `AIR` stack rather than `null`, so the check never matched and the command threw a `NullPointerException` instead. An item that cannot carry a name now gets `That item can't be renamed.` rather than the same exception.
