@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - `CHANGELOG.md` now records the `2.5.0`, `2.6.0`, and `2.6.1` releases. Their entries were published as `v2.5.0`, `v2.6.0`, and `v2.6.1` but were still listed as unreleased; each is now under the release that shipped it, and the two `Changed` headings that held them are merged into one.
+- `CHANGELOG.md` now records the trace-client 0.4.0 and 0.5.0 updates under `[2.5.0]` and `[2.6.0]`, the releases that shipped them; neither had an entry.
 
 ## [2.6.1] – 2026-10-10
 
@@ -20,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Every usage event now carries a random server ID as the tag `install`. The vendored trace client 0.5.0 creates it the first time an enabled client starts and stores it as the `server-id` line in `plugins/trace/config.yml`. The ID identifies no person, account or IP address, deleting the line gets a new one, and every existing opt-out stops it; a disabled client never creates one. The startup usage notice, the default `config.yml` comment, `CONFIG.md` and the README now mention the ID and no longer say that nothing about the server is sent. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.5.0.
 - The usage-reporting "Details" link (startup notice, `config.yml` and the docs) now points at https://danielstephenson.dev/usage-reporting, a public page; the previous link led to a private repository and returned 404 for everyone. The vendored trace client is now 0.6.1, which carries the same link in the `plugins/trace/config.yml` header it writes. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.6.1.
 
 ## [2.5.0] – 2026-10-02
@@ -34,6 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `USER_GUIDE.md` now mentions the welcome message that is broadcast to everyone online when a player joins for the first time, which was not documented anywhere.
 - `CHANGELOG.md` now records the `2.4.0` release. The entries now under `[2.4.0]` were published as `v2.4.0` on 2026-09-19 but were still listed as unreleased, and their two `Changed` headings are merged into one.
 - The vendored trace client is now 0.3.0. `plugins/trace/config.yml` can now carry a `tags:` block whose entries are added to every usage event reported by the plugins on that server, with an event's own tag winning on a key clash; release test servers write `ci: "true"` there so their boots are left out of real-installation figures. A server without a `tags:` block reports exactly as before. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.3.0.
+- The vendored trace client is now 0.4.0, which adds the plugin's version as a `version` tag on every usage event, so `command` events now carry the plugin version as well as the command name. The version is the one in `plugin.yml`, the same value the `startup` event already carried.
 
 ### Fixed
 
