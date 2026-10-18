@@ -12,6 +12,7 @@ import preponderous.ponder.misc.ArgumentParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,8 +44,12 @@ public class BroadcastCommand extends AbstractPluginCommand {
     }
 
     private void sendAllPlayersMessage(String message) {
-        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+        for (Player player : getOnlinePlayers()) {
             player.sendMessage(ChatColor.GREEN + "" + message);
         }
+    }
+
+    Collection<? extends Player> getOnlinePlayers() {
+        return Bukkit.getServer().getOnlinePlayers();
     }
 }
