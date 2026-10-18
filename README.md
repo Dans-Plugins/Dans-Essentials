@@ -1,5 +1,9 @@
 # Dan's Essentials
 
+![/de getpos showing the player's coordinates and /de broadcast sending a server-wide message](docs/images/getpos-and-broadcast.png)
+
+*Real in-game output from Dan's Essentials 2.6.1 on a local throwaway Paper 1.21.11 test server: the commands were typed by a scripted bot client, and the chat it received is drawn as Minecraft-style chat (typed commands appear in the input bars; grey lines say what happened between commands).*
+
 ## Description
 
 Dan's Essentials is a Minecraft plugin that provides a collection of miscellaneous utility commands for server operators and players, including fly toggles, gamemode switching, broadcasting, muting, inventory management, warp signs, and more.
