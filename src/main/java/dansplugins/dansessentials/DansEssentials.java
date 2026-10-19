@@ -18,7 +18,6 @@ import preponderous.ponder.minecraft.bukkit.tools.EventHandlerRegistry;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -156,12 +155,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
      *
      */
     private void initializeCommandService() {
-        ArrayList<AbstractPluginCommand> commands = new ArrayList<>(Arrays.asList(
-                new BackCommand(ephemeralData), new BroadcastCommand(), new ClearInvCommand(),
-                new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
-                new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
-                new LabelCommand(), new MuteCommand(ephemeralData), new UnmuteCommand(ephemeralData)
-        ));
+        ArrayList<AbstractPluginCommand> commands = new ArrayList<>(SubCommands.create(ephemeralData));
         commandService.initialize(commands, "That command wasn't found.");
     }
 

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,15 +40,8 @@ public class HelpCommandTest {
 
     @Test
     public void testExecute_listsEveryRegisteredSubCommand() {
-        // Mirrors the command list registered in DansEssentials#initializeCommandService;
-        // DefaultCommand is excluded because it runs on a bare /de, not as a sub-command.
-        EphemeralData ephemeralData = new EphemeralData();
-        List<AbstractPluginCommand> registered = Arrays.asList(
-                new BackCommand(ephemeralData), new BroadcastCommand(), new ClearInvCommand(),
-                new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
-                new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
-                new LabelCommand(), new MuteCommand(ephemeralData), new UnmuteCommand(ephemeralData)
-        );
+        // The same list DansEssentials#initializeCommandService registers.
+        List<AbstractPluginCommand> registered = SubCommands.create(new EphemeralData());
         List<String> lines = captureHelpLines(null);
 
         for (AbstractPluginCommand command : registered) {
