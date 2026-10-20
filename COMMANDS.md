@@ -32,7 +32,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de back
 
-**Description:** Teleport back to your location before your last teleport, or to where you joined the server if you haven't teleported yet.  
+**Description:** Teleport back to your location before your last teleport or to where you last died, whichever happened most recently, or to where you joined the server if neither has happened yet.  
 **Permission:** `de.back`  
 **Usage:** `/de back`  
 **Example:** `/de back`

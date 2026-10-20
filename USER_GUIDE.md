@@ -80,13 +80,13 @@ The quotes are required; a name typed without them is rejected.
 
 ### Returning to Your Last Location
 
-After teleporting, return to your previous location:
+After teleporting or dying, return to your previous location:
 
 ```
 /de back
 ```
 
-If you have not teleported yet, this returns you to where you joined the server. If no previous location is known, an error message is shown instead.
+After a teleport, this returns you to where you were before it; after a death, it returns you to where you died. Whichever happened most recently wins. If you have done neither yet, this returns you to where you joined the server. If no previous location is known, an error message is shown instead.
 
 ### Getting Your Current Coordinates
 
@@ -118,7 +118,7 @@ When a player joins the server for the first time, everyone online is sent `Welc
 | `de.help`        | true    | View the help message                            |
 | `de.getpos`      | true    | Get your current coordinates                     |
 | `de.usewarpsign` | true    | Use warp signs to teleport                       |
-| `de.back`        | op      | Return to your last location after a teleport, or your join location if you haven't teleported yet |
+| `de.back`        | op      | Return to your location before your last teleport or where you last died, or your join location if neither has happened yet |
 | `de.broadcast`   | op      | Broadcast a message to all online players        |
 | `de.clearinv`    | op      | Clear a player's inventory                       |
 | `de.fly`         | op      | Toggle flight for yourself                       |

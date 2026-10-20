@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `/de back` now returns you to where you died. Dying records your death location as your previous location, so `/de back` after respawning takes you back there. A later teleport replaces it, as before.
+
 ### Changed
 
 - `CHANGELOG.md` now records the `2.5.0`, `2.6.0`, and `2.6.1` releases. Their entries were published as `v2.5.0`, `v2.6.0`, and `v2.6.1` but were still listed as unreleased; each is now under the release that shipped it, and the two `Changed` headings that held them are merged into one.

@@ -141,6 +141,7 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
     private void registerEventHandlers() {
         ArrayList<Listener> listeners = new ArrayList<>();
         listeners.add(new ChatListener(ephemeralData));
+        listeners.add(new DeathListener(ephemeralData));
         listeners.add(new InteractionListener(logger));
         listeners.add(new JoinListener(ephemeralData, this));
         listeners.add(new QuitListener(ephemeralData));
