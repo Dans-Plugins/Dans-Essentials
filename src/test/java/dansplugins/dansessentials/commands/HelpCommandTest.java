@@ -30,7 +30,7 @@ public class HelpCommandTest {
     public void testExecute_sendsOneLinePerSubCommand() {
         List<String> lines = captureHelpLines(new String[]{});
 
-        assertEquals(12, lines.size());
+        assertEquals(13, lines.size());
     }
 
     @Test

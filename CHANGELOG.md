@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - `/de back` now returns you to where you died. Dying records your death location as your previous location, so `/de back` after respawning takes you back there. A later teleport replaces it, as before.
+- `/de tppos <x> <y> <z> [world]` teleports you to the given coordinates, in your current world or the named one, keeping the direction you face. It needs the new `de.tppos` permission (default: op). `/de back` afterwards returns you to where you were.
 
 ### Changed
 
