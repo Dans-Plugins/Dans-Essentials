@@ -67,7 +67,11 @@ public class TpPosCommand extends AbstractPluginCommand {
         }
 
         Location current = player.getLocation();
-        player.teleport(new Location(world, x, y, z, current.getYaw(), current.getPitch()));
+        if (!player.teleport(new Location(world, x, y, z, current.getYaw(), current.getPitch()))) {
+            // Another plugin cancelled the teleport.
+            player.sendMessage(ChatColor.RED + "The teleport was cancelled.");
+            return false;
+        }
         player.sendMessage(ChatColor.AQUA + "Teleported to " + args[0] + ", " + args[1] + ", " + args[2] + " in " + world.getName() + ".");
         return true;
     }

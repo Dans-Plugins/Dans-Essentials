@@ -41,6 +41,7 @@ public class TpPosCommandTest {
         when(player.getWorld()).thenReturn(currentWorld);
         when(player.getServer()).thenReturn(server);
         when(player.getLocation()).thenReturn(new Location(currentWorld, 1, 2, 3, 90f, 45f));
+        when(player.teleport(any(Location.class))).thenReturn(true);
     }
 
     @Test
@@ -132,6 +133,17 @@ public class TpPosCommandTest {
         assertFalse(result);
         verify(player).sendMessage(ChatColor.RED + "There is no world named nowhere.");
         verify(player, never()).teleport(any(Location.class));
+    }
+
+    @Test
+    public void testExecute_teleportCancelled_sendsErrorInsteadOfSuccess() {
+        when(player.teleport(any(Location.class))).thenReturn(false);
+
+        boolean result = tpPosCommand.execute(player, new String[]{"10", "70", "10"});
+
+        assertFalse(result);
+        verify(player).sendMessage(ChatColor.RED + "The teleport was cancelled.");
+        verify(player, never()).sendMessage(ChatColor.AQUA + "Teleported to 10, 70, 10 in world.");
     }
 
     private Location captureTeleport() {
