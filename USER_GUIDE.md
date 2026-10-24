@@ -88,6 +88,15 @@ After teleporting or dying, return to your previous location:
 
 After a teleport, this returns you to where you were before it; after a death, it returns you to where you died. Whichever happened most recently wins. If you have done neither yet, this returns you to where you joined the server. If no previous location is known, an error message is shown instead.
 
+### Teleporting to Coordinates
+
+```
+/de tppos 100 64 -250              # Teleport to coordinates in your current world
+/de tppos 0 70 0 world_nether      # Teleport to coordinates in another world
+```
+
+You keep facing the same direction. Relative coordinates (`~`) are not supported. Use `/de back` to return to where you were before the teleport.
+
 ### Getting Your Current Coordinates
 
 ```
@@ -131,6 +140,7 @@ When a player joins the server for the first time, everyone online is sent `Welc
 | `de.invsee`      | op      | View another player's inventory                  |
 | `de.label`       | op      | Rename a held item                               |
 | `de.mute`        | op      | Mute a player                                    |
+| `de.tppos`       | op      | Teleport to given coordinates                    |
 | `de.unmute`      | op      | Unmute a player                                  |
 | `de.vanish`      | op      | Reserved for future use; vanish is not currently implemented |
 | `de.placeWarpSign` | op    | Place a warp sign                                |

@@ -41,6 +41,8 @@ permissions:
     default: op
   de.mute:
     default: op
+  de.tppos:
+    default: op
   de.unmute:
     default: op
   de.vanish:

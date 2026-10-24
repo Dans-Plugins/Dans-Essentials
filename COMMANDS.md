@@ -39,6 +39,15 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ---
 
+### /de tppos \<x\> \<y\> \<z\> [world]
+
+**Description:** Teleport to the given coordinates, keeping the direction you are facing. Coordinates may be decimals; relative coordinates (`~`) are not supported. Without a world name you stay in your current world. A coordinate that is not a number is rejected with `Coordinates must be numbers.`, and an unknown world with `There is no world named <world>.`; neither moves you. If another plugin cancels the teleport, the command replies `The teleport was cancelled.`. Afterwards, `/de back` returns you to where you were.  
+**Permission:** `de.tppos`  
+**Usage:** `/de tppos <x> <y> <z> [world]`  
+**Example:** `/de tppos 100 64 -250` or `/de tppos 0 70 0 world_nether`
+
+---
+
 ## Flight Commands
 
 ### /de fly [player]
