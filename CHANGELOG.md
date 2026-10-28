@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- `CHANGELOG.md` now records the `2.8.0` release. Its entries were published as `v2.8.0` but were still listed as unreleased; they are now under `[2.8.0]`.
+- The vendored trace client is now 0.7.0, which coalesces repeated usage events. The first report of an event is sent at once; identical reports in the next 60 seconds are counted and sent as one event tagged `coalesced` with the count. Any count still open is sent when the plugin is disabled, and `startup` is never held back. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.7.0.
+
+## [2.8.0] – 2026-10-27
+
 ### Added
 
 - `/de tppos <x> <y> <z> [world]` teleports you to the given coordinates, in your current world or the named one, keeping the direction you face. It needs the new `de.tppos` permission (default: op). `/de back` afterwards returns you to where you were.
