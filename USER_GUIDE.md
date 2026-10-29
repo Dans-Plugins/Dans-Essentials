@@ -33,6 +33,8 @@ Adjust your flight speed (1–10):
 /de flyspeed <number>
 ```
 
+Flight must already be enabled (see `/de fly`).
+
 ### Switching Gamemode
 
 ```
@@ -40,6 +42,8 @@ Adjust your flight speed (1–10):
 /de gm 1   # Creative
 /de gm 2   # Spectator
 ```
+
+Each mode needs its own node (`de.gm.0`, `de.gm.1`, `de.gm.2`) in addition to `de.gm`.
 
 ### Broadcasting a Server-Wide Message
 

@@ -61,7 +61,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de flyspeed \<number\>
 
-**Description:** Set your fly speed. Accepts a value from 1 to 10.  
+**Description:** Set your fly speed. Accepts any number greater than 0 and up to 10, decimals included (`10` is the fastest). Flight must already be enabled; otherwise the command replies `You don't have flight enabled!` and changes nothing. A value that is not a number is rejected with `Must be a number between 1-10`, and one outside the range with `Fly speed can only be between 1-10`.  
 **Permission:** `de.flyspeed`  
 **Usage:** `/de flyspeed <number>`  
 **Example:** `/de flyspeed 5`
@@ -73,7 +73,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 ### /de gm \<mode\>
 
 **Description:** Change your gamemode. Accepts `0` (Survival), `1` (Creative), or `2` (Spectator); any other value is rejected with the usage line.  
-**Permission:** `de.gm`, `de.gm.0`, `de.gm.1`, or `de.gm.2`  
+**Permission:** `de.gm`, plus the node for the chosen mode: `de.gm.0` (Survival), `de.gm.1` (Creative), or `de.gm.2` (Spectator). Holding `de.gm` alone lets you run the command but not enter any mode.  
 **Usage:** `/de gm <mode>`  
 **Example:** `/de gm 1`
 
@@ -92,7 +92,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de mute \<player\>
 
-**Description:** Mute a player, preventing them from chatting until they are unmuted. Mutes are kept across server restarts.  
+**Description:** Mute a player, preventing them from chatting until they are unmuted. Mutes are kept across server restarts. The player must be online; otherwise the command replies `That player isn't online!`. Muting a player who is already muted, or yourself, is refused. Only players can run this command, not the console.  
 **Permission:** `de.mute`  
 **Usage:** `/de mute <player>`  
 **Example:** `/de mute Steve`
@@ -101,7 +101,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de unmute \<player\>
 
-**Description:** Unmute a previously muted player.  
+**Description:** Unmute a previously muted player. The player must be online; otherwise the command replies `That player isn't online!`. Unmuting a player who is not muted is refused with `That player is already not muted!`. Only players can run this command, not the console.  
 **Permission:** `de.unmute`  
 **Usage:** `/de unmute <player>`  
 **Example:** `/de unmute Steve`
@@ -110,7 +110,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de invsee \<player\>
 
-**Description:** Open and interact with another player's inventory.  
+**Description:** Open and interact with another player's inventory. The player must be online; otherwise the command replies `That player isn't online.`. Using it on yourself is refused. Only players can run this command, not the console.  
 **Permission:** `de.invsee`  
 **Usage:** `/de invsee <player>`  
 **Example:** `/de invsee Steve`
