@@ -110,7 +110,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de invsee \<player\>
 
-**Description:** Open and interact with another player's inventory. The player must be online; otherwise the command replies `That player isn't online.`. Using it on yourself is refused.  
+**Description:** Open and interact with another player's inventory. The player must be online; otherwise the command replies `That player isn't online.`. Using it on yourself is refused. Only players can run this command, not the console.  
 **Permission:** `de.invsee`  
 **Usage:** `/de invsee <player>`  
 **Example:** `/de invsee Steve`
