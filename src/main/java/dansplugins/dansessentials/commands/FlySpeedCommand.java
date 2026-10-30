@@ -36,7 +36,7 @@ public class FlySpeedCommand extends AbstractPluginCommand {
         try {
             speed = (float) (Double.parseDouble(args[0])* 0.10);
         } catch(Exception e) {
-            player.sendMessage(ChatColor.RED + "Must be a number between 1-10");
+            player.sendMessage(ChatColor.RED + "Fly speed must be a number greater than 0 and at most 10");
             return false;
         }
 
@@ -51,7 +51,7 @@ public class FlySpeedCommand extends AbstractPluginCommand {
             }
         }
         else {
-            player.sendMessage(ChatColor.RED + "Fly speed can only be between 1-10");
+            player.sendMessage(ChatColor.RED + "Fly speed must be greater than 0 and at most 10");
             return false;
         }
     }

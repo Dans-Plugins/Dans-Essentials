@@ -13,6 +13,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - The vendored trace client is now 0.7.0, which coalesces repeated usage events. The first report of an event is sent at once; identical reports in the next 60 seconds are counted and sent as one event tagged `coalesced` with the count. Any count still open is sent when the plugin is disabled, and `startup` is never held back. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.7.0.
 - Usage reporting now counts a `command` event only when a player runs the command; console, command-block and plugin-dispatched commands are no longer reported.
 
+### Fixed
+
+- `/de flyspeed` error messages now state the range the command accepts: a number greater than 0 and at most 10, decimals included. They said `1-10`, although values such as `0.5` were accepted.
+
 ## [2.8.0] – 2026-10-27
 
 ### Added

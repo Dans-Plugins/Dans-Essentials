@@ -61,7 +61,7 @@ All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
 ### /de flyspeed \<number\>
 
-**Description:** Set your fly speed. Accepts any number greater than 0 and up to 10, decimals included (`10` is the fastest). Flight must already be enabled; otherwise the command replies `You don't have flight enabled!` and changes nothing. A value that is not a number is rejected with `Must be a number between 1-10`, and one outside the range with `Fly speed can only be between 1-10`.  
+**Description:** Set your fly speed. Accepts any number greater than 0 and up to 10, decimals included (`10` is the fastest). Flight must already be enabled; otherwise the command replies `You don't have flight enabled!` and changes nothing. A value that is not a number is rejected with `Fly speed must be a number greater than 0 and at most 10`, and one outside the range with `Fly speed must be greater than 0 and at most 10`.  
 **Permission:** `de.flyspeed`  
 **Usage:** `/de flyspeed <number>`  
 **Example:** `/de flyspeed 5`
