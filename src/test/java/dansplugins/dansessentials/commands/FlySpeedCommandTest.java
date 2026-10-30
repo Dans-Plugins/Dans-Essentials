@@ -76,6 +76,18 @@ public class FlySpeedCommandTest {
     }
 
     @Test
+    public void testExecute_ten_isAccepted() {
+        Player player = mock(Player.class);
+        when(player.getAllowFlight()).thenReturn(true);
+
+        boolean result = new FlySpeedCommand().execute(player, new String[]{"10"});
+
+        assertTrue(result);
+        verify(player).setFlySpeed((float) (10 * 0.10));
+        verify(player).sendMessage(ChatColor.GREEN + "Fly speed set to 10");
+    }
+
+    @Test
     public void testExecute_flightNotEnabled_doesNotChangeSpeed() {
         Player player = mock(Player.class);
         when(player.getAllowFlight()).thenReturn(false);
