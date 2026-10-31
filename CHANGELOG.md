@@ -8,14 +8,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- `COMMANDS.md` now says that `/de gm` needs `de.gm` plus the node for the chosen mode, not any one of them; that `/de flyspeed` needs flight already enabled and accepts decimals above 0 up to 10; and when `/de mute`, `/de unmute` and `/de invsee` refuse (player offline, already muted or not muted, targeting yourself, run from the console). `USER_GUIDE.md` notes the flight and gamemode-node requirements too.
-- `CHANGELOG.md` now records the `2.8.0` release. Its entries were published as `v2.8.0` but were still listed as unreleased; they are now under `[2.8.0]`.
-- The vendored trace client is now 0.7.0, which coalesces repeated usage events. The first report of an event is sent at once; identical reports in the next 60 seconds are counted and sent as one event tagged `coalesced` with the count. Any count still open is sent when the plugin is disabled, and `startup` is never held back. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.7.0.
-- Usage reporting now counts a `command` event only when a player runs the command; console, command-block and plugin-dispatched commands are no longer reported.
+- `CHANGELOG.md` now records the `2.8.1` and `2.8.2` releases. Their entries were published as `v2.8.1` and `v2.8.2` but were still listed as unreleased; each is now under the release that shipped it.
+
+## [2.8.2] – 2026-10-30
 
 ### Fixed
 
 - `/de flyspeed` error messages now state the range the command accepts: a number greater than 0 and at most 10, decimals included. They said `1-10`, although values such as `0.5` were accepted.
+
+## [2.8.1] – 2026-10-29
+
+### Changed
+
+- `COMMANDS.md` now says that `/de gm` needs `de.gm` plus the node for the chosen mode, not any one of them; that `/de flyspeed` needs flight already enabled and accepts decimals above 0 up to 10; and when `/de mute`, `/de unmute` and `/de invsee` refuse (player offline, already muted or not muted, targeting yourself, run from the console). `USER_GUIDE.md` notes the flight and gamemode-node requirements too.
+- `CHANGELOG.md` now records the `2.8.0` release. Its entries were published as `v2.8.0` but were still listed as unreleased; they are now under `[2.8.0]`.
+- The vendored trace client is now 0.7.0, which coalesces repeated usage events. The first report of an event is sent at once; identical reports in the next 60 seconds are counted and sent as one event tagged `coalesced` with the count. Any count still open is sent when the plugin is disabled, and `startup` is never held back. Details: https://github.com/Stephenson-Software/trace-client-java/releases/tag/0.7.0.
+- Usage reporting now counts a `command` event only when a player runs the command; console, command-block and plugin-dispatched commands are no longer reported.
 
 ## [2.8.0] – 2026-10-27
 
