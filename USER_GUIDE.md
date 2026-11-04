@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- A Spigot or Paper Minecraft server (1.13 or later).
+- A Spigot or Paper Minecraft server (1.19.4 or later; the tested versions are listed under [Supported Minecraft Versions](README.md#supported-minecraft-versions)).
 - The Dan's Essentials plugin jar placed in your server's `plugins/` folder.
 - Server operator (`op`) status or the appropriate permission nodes for commands you wish to use.
 
@@ -27,7 +27,7 @@ An operator can toggle flight for themselves or another player:
 
 ### Setting Fly Speed
 
-Adjust your flight speed (1–10):
+Adjust your flight speed (any number above 0 and up to 10, decimals included):
 
 ```
 /de flyspeed <number>
@@ -118,7 +118,7 @@ Operators can place warp signs to allow players to teleport to predefined coordi
 <z>
 ```
 
-Each of lines 2–4 must contain an integer coordinate. Requires the `de.placeWarpSign` permission to create and `de.usewarpsign` to use.
+Each of lines 2–4 must contain an integer coordinate. The coordinates apply to the world the player using the sign is in, so a warp sign cannot send a player to another world. Requires the `de.placeWarpSign` permission to create and `de.usewarpsign` to use.
 
 ### New Player Welcome
 

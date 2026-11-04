@@ -53,6 +53,14 @@ public class HelpCommandTest {
         }
     }
 
+    @Test
+    public void testExecute_flyLineShowsOptionalPlayerArgument() {
+        List<String> lines = captureHelpLines(null);
+
+        assertTrue(lines.stream().anyMatch(line -> line.contains("/de fly [player] - ")),
+                "help output does not show that /de fly takes an optional player");
+    }
+
     private List<String> captureHelpLines(String[] args) {
         CommandSender commandSender = mock(CommandSender.class);
         boolean result = args == null ? helpCommand.execute(commandSender) : helpCommand.execute(commandSender, args);
