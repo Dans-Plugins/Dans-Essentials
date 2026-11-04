@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `USER_GUIDE.md` now gives the `/de flyspeed` range the command accepts (above 0 and up to 10, decimals included) rather than `1–10`, gives `1.19.4` as the minimum server version in place of `1.13`, matching `README.md` and `minecraft-versions.json`, and says that a warp sign teleports within the using player's current world.
 - `COMMANDS.md` now says which commands can be run from the console.
 - The in-game `/de help` line for `/de fly` now shows the optional `[player]` argument.
-- The `version` example in `CONFIG.md` now uses a real version string.
+- The `version` example in `CONFIG.md` now shows a released version, `v2.8.2`.
 
 ## [2.8.2] – 2026-10-30
 
