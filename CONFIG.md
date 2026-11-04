@@ -15,7 +15,7 @@ Options are listed in the order they appear in the default `config.yml`.
 **Example:**
 
 ```yaml
-version: v3.0.0-SNAPSHOT-8-8-2026
+version: v2.8.2
 ```
 
 ---
@@ -38,7 +38,7 @@ debugMode: false
 
 **Type:** section  
 **Default:** `enabled: true`, `endpoint: https://trace.danielstephenson.dev`, `key:` the plugin's key  
-**Description:** When the plugin is enabled, and each time one of its commands is used, a small event is sent to the author's [trace](https://github.com/Stephenson-Software/trace-client-java) server so it is known which plugins are actually in use. An event carries the plugin's name, the event name (`startup` or `command`), the plugin version, and for a command the command name, plus a random server ID (the `server-id` line in `plugins/trace/config.yml`, which identifies no person, account or IP address; deleting the line gets a new one) — nothing about players or the world. The first of a run of identical events is sent at once; repeats in the following 60 seconds are only counted, and the count is sent as one more event tagged `coalesced`. Sending happens off the main thread, never delays a tick, and is dropped silently if the server cannot be reached.
+**Description:** When the plugin is enabled, and each time a player runs one of its commands, a small event is sent to the author's [trace](https://github.com/Stephenson-Software/trace-client-java) server so it is known which plugins are actually in use. Commands run from the console, a command block or another plugin are not reported. An event carries the plugin's name, the event name (`startup` or `command`), the plugin version, and for a command the command name (`de` or `dansessentials`, never the sub-command or anything typed after it), plus a random server ID (the `server-id` line in `plugins/trace/config.yml`, which identifies no person, account or IP address; deleting the line gets a new one) — nothing about players or the world. The first of a run of identical events is sent at once; repeats in the following 60 seconds are only counted, and the count is sent as one more event tagged `coalesced`. Sending happens off the main thread, never delays a tick, and is dropped silently if the server cannot be reached.
 
 | Key | Default | Description |
 |-----|---------|-------------|

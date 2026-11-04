@@ -2,6 +2,8 @@
 
 All commands are sub-commands of `/de` (alias: `/dansessentials`).
 
+Only `/de`, `/de help`, `/de broadcast`, `/de clearinv` and `/de fly <player>` can be run from the console; every other command must be run by a player.
+
 ## General Commands
 
 ### /de
