@@ -25,7 +25,7 @@ public class FlySpeedCommandTest {
         boolean result = new FlySpeedCommand().execute(commandSender);
 
         assertFalse(result);
-        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de flyspeed (number)");
+        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de flyspeed <number>");
     }
 
     @Test

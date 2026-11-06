@@ -23,7 +23,7 @@ public class UnmuteCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /de unmute (player-name)");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de unmute <player>");
         return false;
     }
 

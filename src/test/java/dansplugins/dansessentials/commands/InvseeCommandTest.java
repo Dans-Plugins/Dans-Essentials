@@ -46,7 +46,7 @@ public class InvseeCommandTest {
         boolean result = invseeCommand.execute(commandSender);
 
         assertFalse(result);
-        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de invsee (playerName)");
+        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de invsee <player>");
     }
 
     @Test

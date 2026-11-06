@@ -21,7 +21,7 @@ public class InvseeCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /de invsee (playerName)");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de invsee <player>");
         return false;
     }
 

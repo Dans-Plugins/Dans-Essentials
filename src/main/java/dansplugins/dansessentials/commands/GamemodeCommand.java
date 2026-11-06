@@ -22,7 +22,7 @@ public class GamemodeCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /de gm [ 0 | 1 | 2]");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de gm <0|1|2>");
         return false;
     }
 

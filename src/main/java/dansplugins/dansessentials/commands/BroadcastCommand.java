@@ -26,7 +26,7 @@ public class BroadcastCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /de broadcast \"message\"");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de broadcast \"<message>\"");
         return false;
     }
 

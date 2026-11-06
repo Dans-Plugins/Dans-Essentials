@@ -36,7 +36,7 @@ public class GamemodeCommandTest {
         boolean result = gamemodeCommand.execute(player);
 
         assertFalse(result);
-        verify(player).sendMessage(ChatColor.RED + "Usage: /de gm [ 0 | 1 | 2]");
+        verify(player).sendMessage(ChatColor.RED + "Usage: /de gm <0|1|2>");
     }
 
     @ParameterizedTest
@@ -70,6 +70,6 @@ public class GamemodeCommandTest {
 
         assertFalse(result);
         verify(player, never()).setGameMode(any());
-        verify(player).sendMessage(ChatColor.RED + "Usage: /de gm [ 0 | 1 | 2]");
+        verify(player).sendMessage(ChatColor.RED + "Usage: /de gm <0|1|2>");
     }
 }

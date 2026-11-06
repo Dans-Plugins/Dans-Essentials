@@ -23,7 +23,7 @@ public class MuteCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /de mute (player-name)");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de mute <player>");
         return false;
     }
 

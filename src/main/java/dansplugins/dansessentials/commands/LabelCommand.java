@@ -24,7 +24,7 @@ public class LabelCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /de label \"newLabel\"");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de label \"<name>\"");
         return false;
     }
 
