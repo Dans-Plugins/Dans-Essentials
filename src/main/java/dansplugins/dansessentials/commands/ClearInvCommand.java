@@ -21,7 +21,7 @@ public class ClearInvCommand extends AbstractPluginCommand {
 
     @Override
     public boolean execute(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.RED + "Usage: /de clearinv (playerName)");
+        commandSender.sendMessage(ChatColor.RED + "Usage: /de clearinv <player>");
         return false;
     }
 

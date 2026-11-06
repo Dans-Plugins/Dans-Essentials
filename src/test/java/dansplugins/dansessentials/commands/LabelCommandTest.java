@@ -36,6 +36,14 @@ public class LabelCommandTest {
     }
 
     @Test
+    public void testExecute_noArguments_sendsUsageAndReturnsFalse() {
+        boolean result = labelCommand.execute(player);
+
+        assertFalse(result);
+        verify(player).sendMessage(ChatColor.RED + "Usage: /de label \"<name>\"");
+    }
+
+    @Test
     public void testExecute_emptyMainHand_sendsMessageAndReturnsFalse() {
         when(item.getType()).thenReturn(Material.AIR);
 

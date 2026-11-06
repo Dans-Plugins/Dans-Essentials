@@ -110,6 +110,6 @@ public class UnmuteCommandTest {
         boolean result = unmuteCommand.execute(commandSender);
 
         assertFalse(result);
-        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de unmute (player-name)");
+        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de unmute <player>");
     }
 }

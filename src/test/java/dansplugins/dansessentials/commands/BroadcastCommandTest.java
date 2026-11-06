@@ -42,7 +42,7 @@ public class BroadcastCommandTest {
         boolean result = broadcastCommand.execute(commandSender);
 
         assertFalse(result);
-        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de broadcast \"message\"");
+        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de broadcast \"<message>\"");
     }
 
     @Test

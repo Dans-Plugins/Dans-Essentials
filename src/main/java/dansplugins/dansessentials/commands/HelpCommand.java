@@ -27,11 +27,11 @@ public class HelpCommand extends AbstractPluginCommand {
         commandSender.sendMessage(ChatColor.AQUA + "/de tppos <x> <y> <z> [world] - Teleport to coordinates.");
         commandSender.sendMessage(ChatColor.AQUA + "/de fly [player] - Toggle flight for you or another player.");
         commandSender.sendMessage(ChatColor.AQUA + "/de flyspeed <number> - Set your fly speed.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de broadcast \"message\" - Broadcast a message to everyone online.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de mute <ign> - Mute a player until they are unmuted.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de unmute <ign> - Unmute a player.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de gm [ 0 | 1 | 2] - Set your gamemode.");
-        commandSender.sendMessage(ChatColor.AQUA + "/de label \"name\" - Rename the item in your main hand.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de broadcast \"<message>\" - Broadcast a message to everyone online.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de mute <player> - Mute a player until they are unmuted.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de unmute <player> - Unmute a player.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de gm <0|1|2> - Set your gamemode.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de label \"<name>\" - Rename the item in your main hand.");
         commandSender.sendMessage(ChatColor.AQUA + "/de invsee <player> - Interact with a player's inventory.");
         commandSender.sendMessage(ChatColor.AQUA + "/de clearinv <player> - Clear a player's inventory.");
         return true;

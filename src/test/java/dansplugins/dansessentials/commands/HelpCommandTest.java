@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import preponderous.ponder.minecraft.bukkit.abs.AbstractPluginCommand;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,6 +60,21 @@ public class HelpCommandTest {
 
         assertTrue(lines.stream().anyMatch(line -> line.contains("/de fly [player] - ")),
                 "help output does not show that /de fly takes an optional player");
+    }
+
+    @Test
+    public void testExecute_linesUseCommandsMdArgumentNotation() {
+        List<String> lines = captureHelpLines(null);
+
+        for (String syntax : Arrays.asList(
+                "/de gm <0|1|2> - ",
+                "/de mute <player> - ",
+                "/de unmute <player> - ",
+                "/de broadcast \"<message>\" - ",
+                "/de label \"<name>\" - ")) {
+            assertTrue(lines.stream().anyMatch(line -> line.contains(syntax)),
+                    "help output is missing '" + syntax + "'");
+        }
     }
 
     private List<String> captureHelpLines(String[] args) {

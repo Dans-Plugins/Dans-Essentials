@@ -42,7 +42,7 @@ public class ClearInvCommandTest {
         boolean result = clearInvCommand.execute(commandSender);
 
         assertFalse(result);
-        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de clearinv (playerName)");
+        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de clearinv <player>");
     }
 
     @Test

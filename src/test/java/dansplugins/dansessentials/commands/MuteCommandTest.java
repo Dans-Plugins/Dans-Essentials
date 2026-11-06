@@ -131,7 +131,7 @@ public class MuteCommandTest {
         boolean result = muteCommand.execute(commandSender);
 
         assertFalse(result);
-        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de mute (player-name)");
+        verify(commandSender).sendMessage(ChatColor.RED + "Usage: /de mute <player>");
     }
 
     @Test

@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `COMMANDS.md` now says which commands can be run from the console.
 - The in-game `/de help` line for `/de fly` now shows the optional `[player]` argument.
 - The `version` example in `CONFIG.md` now shows a released version, `v2.8.2`.
+- The `Usage:` replies from `/de flyspeed`, `/de mute`, `/de unmute`, `/de invsee`, `/de clearinv`, `/de gm`, `/de broadcast` and `/de label` now use the `<required>` / `[optional]` notation of `COMMANDS.md`. `/de gm` shows `<0|1|2>`, because its mode is required and the old square brackets marked it as optional. `/de help` shows the same forms for `/de gm`, `/de mute`, `/de unmute`, `/de broadcast` and `/de label`.
 
 ## [2.8.2] – 2026-10-30
 
