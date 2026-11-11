@@ -39,6 +39,20 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <filters>
+                                <!-- ponder's JAR embeds JUnit 4, Hamcrest and its own test class;
+                                     keep them out of the plugin JAR (see #142). -->
+                                <filter>
+                                    <artifact>com.github.Preponderous-Software:ponder</artifact>
+                                    <excludes>
+                                        <exclude>junit/**</exclude>
+                                        <exclude>org/junit/**</exclude>
+                                        <exclude>org/hamcrest/**</exclude>
+                                        <exclude>LICENSE-junit.txt</exclude>
+                                        <exclude>preponderous/ponder/tests/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>
@@ -84,6 +98,13 @@
             <artifactId>ponder</artifactId>
             <version>1.1</version>
             <scope>compile</scope>
+            <exclusions>
+                <!-- ponder declares JUnit 4 at compile scope; it is never used at runtime (see #142). -->
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
