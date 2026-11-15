@@ -107,6 +107,14 @@ You keep facing the same direction. Relative coordinates (`~`) are not supported
 /de getpos
 ```
 
+### Checking Which Way You Are Facing
+
+```
+/de compass
+```
+
+Replies with the nearest of the eight compass directions, for example `You are facing Northeast.`
+
 ### Warp Signs
 
 Operators can place warp signs to allow players to teleport to predefined coordinates. Create a sign with the following format:
@@ -130,6 +138,7 @@ When a player joins the server for the first time, everyone online is sent `Welc
 |------------------|---------|--------------------------------------------------|
 | `de.help`        | true    | View the help message                            |
 | `de.getpos`      | true    | Get your current coordinates                     |
+| `de.compass`     | true    | See which compass direction you are facing       |
 | `de.usewarpsign` | true    | Use warp signs to teleport                       |
 | `de.back`        | op      | Return to your location before your last teleport or where you last died, or your join location if neither has happened yet |
 | `de.broadcast`   | op      | Broadcast a message to all online players        |
