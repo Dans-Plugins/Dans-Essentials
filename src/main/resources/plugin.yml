@@ -13,6 +13,8 @@ permissions:
     default: true
   de.getpos:
     default: true
+  de.compass:
+    default: true
   de.usewarpsign:
     default: true
   de.back:

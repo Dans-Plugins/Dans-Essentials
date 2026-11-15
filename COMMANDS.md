@@ -32,6 +32,15 @@ Only `/de`, `/de help`, `/de broadcast`, `/de clearinv` and `/de fly <player>` c
 
 ---
 
+### /de compass
+
+**Description:** Display the compass direction you are facing, rounded to the nearest of North, Northeast, East, Southeast, South, Southwest, West and Northwest, for example `You are facing Northeast.`. Only players can run this command, not the console.  
+**Permission:** `de.compass`  
+**Usage:** `/de compass`  
+**Example:** `/de compass`
+
+---
+
 ### /de back
 
 **Description:** Teleport back to your location before your last teleport or to where you last died, whichever happened most recently, or to where you joined the server if neither has happened yet.  

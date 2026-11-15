@@ -24,7 +24,7 @@ public final class SubCommands {
     public static List<AbstractPluginCommand> create(EphemeralData ephemeralData) {
         return new ArrayList<>(Arrays.asList(
                 new BackCommand(ephemeralData), new BroadcastCommand(), new ClearInvCommand(),
-                new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
+                new CompassCommand(), new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
                 new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
                 new LabelCommand(), new MuteCommand(ephemeralData), new TpPosCommand(),
                 new UnmuteCommand(ephemeralData)

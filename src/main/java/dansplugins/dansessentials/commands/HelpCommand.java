@@ -23,6 +23,7 @@ public class HelpCommand extends AbstractPluginCommand {
     public boolean execute(CommandSender commandSender) {
         commandSender.sendMessage(ChatColor.AQUA + "/de help - See a list of helpful commands.");
         commandSender.sendMessage(ChatColor.AQUA + "/de getpos - Get your coordinates.");
+        commandSender.sendMessage(ChatColor.AQUA + "/de compass - See which direction you are facing.");
         commandSender.sendMessage(ChatColor.AQUA + "/de back - Return to your previous location.");
         commandSender.sendMessage(ChatColor.AQUA + "/de tppos <x> <y> <z> [world] - Teleport to coordinates.");
         commandSender.sendMessage(ChatColor.AQUA + "/de fly [player] - Toggle flight for you or another player.");

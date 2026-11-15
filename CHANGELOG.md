@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `/de compass` tells a player which compass direction they are facing, rounded to the nearest of the eight directions (North, Northeast, East, Southeast, South, Southwest, West, Northwest). It needs the new `de.compass` permission, which every player has by default.
+
 ### Fixed
 
 - The plugin JAR no longer contains the JUnit 4 test framework and its Hamcrest dependency. They came in through the `ponder` library, which both declares JUnit as a runtime dependency and bundles copies of JUnit and Hamcrest inside its own JAR, and made up 432 of the JAR's 624 entries. Neither is used while the plugin runs. The JAR now holds 190 entries.
