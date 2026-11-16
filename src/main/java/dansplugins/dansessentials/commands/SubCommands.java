@@ -27,7 +27,7 @@ public final class SubCommands {
                 new CompassCommand(), new FlyCommand(), new FlySpeedCommand(), new GamemodeCommand(),
                 new GetPosCommand(), new HelpCommand(), new InvseeCommand(),
                 new LabelCommand(), new MuteCommand(ephemeralData), new TpPosCommand(),
-                new UnmuteCommand(ephemeralData)
+                new TrashCommand(), new UnmuteCommand(ephemeralData)
         ));
     }
 }

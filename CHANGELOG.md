@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - `/de compass` tells a player which compass direction they are facing, rounded to the nearest of the eight directions (North, Northeast, East, Southeast, South, Southwest, West, Northwest). It needs the new `de.compass` permission, which every player has by default.
+- `/de trash` opens an empty 36-slot inventory titled `Trash`; anything a player puts in it is destroyed when they close it. It needs the new `de.trash` permission, which every player has by default.
 
 ### Fixed
 

@@ -37,8 +37,8 @@ public class SubCommandsTest {
     }
 
     @Test
-    public void testCreate_registersFourteenSubCommands() {
-        assertEquals(14, subCommands.size());
+    public void testCreate_registersFifteenSubCommands() {
+        assertEquals(15, subCommands.size());
     }
 
     @Test

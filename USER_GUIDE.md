@@ -115,6 +115,14 @@ You keep facing the same direction. Relative coordinates (`~`) are not supported
 
 Replies with the nearest of the eight compass directions, for example `You are facing Northeast.`
 
+### Throwing Items Away
+
+```
+/de trash
+```
+
+Opens an empty inventory titled `Trash`. Anything you put in it is destroyed when you close it and cannot be recovered.
+
 ### Warp Signs
 
 Operators can place warp signs to allow players to teleport to predefined coordinates. Create a sign with the following format:
@@ -139,6 +147,7 @@ When a player joins the server for the first time, everyone online is sent `Welc
 | `de.help`        | true    | View the help message                            |
 | `de.getpos`      | true    | Get your current coordinates                     |
 | `de.compass`     | true    | See which compass direction you are facing       |
+| `de.trash`       | true    | Open a trash inventory to destroy items          |
 | `de.usewarpsign` | true    | Use warp signs to teleport                       |
 | `de.back`        | op      | Return to your location before your last teleport or where you last died, or your join location if neither has happened yet |
 | `de.broadcast`   | op      | Broadcast a message to all online players        |
