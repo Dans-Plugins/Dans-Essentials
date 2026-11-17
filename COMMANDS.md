@@ -41,6 +41,15 @@ Only `/de`, `/de help`, `/de broadcast`, `/de clearinv` and `/de fly <player>` c
 
 ---
 
+### /de trash
+
+**Description:** Open an empty 36-slot inventory titled `Trash`. Items you put in it are destroyed when you close it and cannot be recovered. Each use opens a new, empty trash. Only players can run this command, not the console.  
+**Permission:** `de.trash`  
+**Usage:** `/de trash`  
+**Example:** `/de trash`
+
+---
+
 ### /de back
 
 **Description:** Teleport back to your location before your last teleport or to where you last died, whichever happened most recently, or to where you joined the server if neither has happened yet.  
