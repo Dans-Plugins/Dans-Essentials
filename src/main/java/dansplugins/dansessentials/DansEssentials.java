@@ -7,6 +7,7 @@ import dansplugins.dansessentials.listeners.*;
 import dansplugins.dansessentials.services.ConfigService;
 import dansplugins.dansessentials.services.MutedPlayersStorage;
 import dansplugins.dansessentials.trace.TraceClient;
+import dansplugins.dansessentials.trace.UsageReportingSetting;
 import dansplugins.dansessentials.utils.Logger;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -78,6 +79,22 @@ public class DansEssentials extends PonderBukkitPlugin implements Listener {
             getLogger().info("Usage reporting is off (" + trace.disabledReason() + ").");
         }
         trace.report("startup");
+    }
+
+    /**
+     * Every save of config.yml goes through here, so none of them can lose the operator's
+     * settings, usage-reporting opt-out included. A file that cannot be parsed -- which Bukkit
+     * loads as empty, so the version stamp and the copied usage-reporting block would otherwise
+     * be written over it with enabled: true -- is never overwritten, and an opt-out written to
+     * the file while the server was running is kept rather than replaced by a stale copy.
+     */
+    @Override
+    public void saveConfig() {
+        if (!UsageReportingSetting.prepareSave(getConfig(), configService.getConfigFile(), false)) {
+            getLogger().severe(UsageReportingSetting.UNPARSEABLE_MESSAGE);
+            return;
+        }
+        super.saveConfig();
     }
 
     private void handlebStatsIntegration() {
