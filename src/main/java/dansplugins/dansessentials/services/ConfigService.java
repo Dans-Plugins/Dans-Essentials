@@ -8,9 +8,12 @@ package dansplugins.dansessentials.services;
  */
 
 import dansplugins.dansessentials.DansEssentials;
+import dansplugins.dansessentials.trace.UsageReportingSetting;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import java.io.File;
 
 /**
  * @author Daniel McCoy Stephenson
@@ -67,7 +70,7 @@ public class ConfigService {
             } else if (option.equalsIgnoreCase("A")) {
                 getConfig().set(option, Integer.parseInt(value));
                 sender.sendMessage(ChatColor.GREEN + "Integer set.");
-            } else if (option.equalsIgnoreCase("debugMode")) {
+            } else if (option.equalsIgnoreCase("debugMode") || option.equalsIgnoreCase(USAGE_REPORTING_ENABLED_KEY)) {
                 getConfig().set(option, Boolean.parseBoolean(value));
                 sender.sendMessage(ChatColor.GREEN + "Boolean set.");
             } else if (option.equalsIgnoreCase("C")) {
@@ -105,8 +108,17 @@ public class ConfigService {
     // reporting off on every existing installation. Verified against
     // YamlConfiguration, not assumed.
 
+    /**
+     * Fails closed: only a value that clearly means on (not a quoted "false", which
+     * getBoolean() would read as the bundled true) turns reporting on, and an opt-out in
+     * config.yml on disk wins over the loaded copy.
+     */
     public boolean isUsageReportingEnabled() {
-        return getConfig().getBoolean(USAGE_REPORTING_ENABLED_KEY);
+        return UsageReportingSetting.isEnabled(getConfig(), getConfigFile());
+    }
+
+    public File getConfigFile() {
+        return new File(dansEssentials.getDataFolder(), "config.yml");
     }
 
     public String getUsageReportingEndpoint() {

@@ -5,6 +5,12 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,12 +29,21 @@ class ConfigServiceTest {
     private FileConfiguration config;
     private ConfigService configService;
 
+    @TempDir
+    Path dataFolder;
+
     @BeforeEach
     void setUp() {
         plugin = mock(DansEssentials.class);
         config = mock(FileConfiguration.class);
         when(plugin.getConfig()).thenReturn(config);
-        configService = new ConfigService(plugin);
+        // JavaPlugin.getDataFolder() is final, so the file is substituted here instead.
+        configService = new ConfigService(plugin) {
+            @Override
+            public File getConfigFile() {
+                return dataFolder.resolve("config.yml").toFile();
+            }
+        };
     }
 
     @Test
@@ -37,7 +52,7 @@ class ConfigServiceTest {
         // block in its config.yml. Bukkit's one-argument getters fall through
         // to the jar's defaults; the two-argument ones would return their
         // fallback and turn reporting off on every existing installation.
-        when(config.getBoolean("usage-reporting.enabled")).thenReturn(true);
+        when(config.get("usage-reporting.enabled")).thenReturn(true);
         when(config.getString("usage-reporting.endpoint")).thenReturn("https://trace.danielstephenson.dev");
         when(config.getString("usage-reporting.key")).thenReturn("bundled-key");
 
@@ -46,7 +61,7 @@ class ConfigServiceTest {
         assertEquals("bundled-key", configService.getUsageReportingKey());
         verify(config, never()).getString(eq("usage-reporting.key"), anyString());
         verify(config, never()).getString(eq("usage-reporting.endpoint"), anyString());
-        verify(config, never()).getBoolean(eq("usage-reporting.enabled"), anyBoolean());
+        verify(config, never()).get(eq("usage-reporting.enabled"), anyBoolean());
     }
 
     @Test
@@ -60,7 +75,7 @@ class ConfigServiceTest {
 
     @Test
     void usageReporting_readsTheConfiguredValues() {
-        when(config.getBoolean("usage-reporting.enabled")).thenReturn(false);
+        when(config.get("usage-reporting.enabled")).thenReturn(false);
         when(config.getString("usage-reporting.endpoint")).thenReturn("http://localhost:8080");
         when(config.getString("usage-reporting.key")).thenReturn("abc");
 
@@ -110,5 +125,21 @@ class ConfigServiceTest {
         verify(plugin, never()).saveConfig();
         assertFalse(onDisk.getBoolean("usage-reporting.enabled"));
         assertNull(onDisk.get("usage-reporting.key", null), "nothing must be added beside the operator's switch");
+    }
+
+    @Test
+    void usageReporting_aQuotedFalseIsOff() {
+        // getBoolean() reads the string "false" as the bundled default, true.
+        when(config.get("usage-reporting.enabled")).thenReturn("false");
+
+        assertFalse(configService.isUsageReportingEnabled());
+    }
+
+    @Test
+    void usageReporting_anOptOutInTheFileOnDiskWinsOverTheLoadedConfig() throws Exception {
+        when(config.get("usage-reporting.enabled")).thenReturn(true);
+        Files.write(configService.getConfigFile().toPath(), "usage-reporting:\n  enabled: false\n".getBytes(StandardCharsets.UTF_8));
+
+        assertFalse(configService.isUsageReportingEnabled());
     }
 }
